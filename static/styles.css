@@ -5,12 +5,12 @@
     box-sizing: border-box;
 }
 
-body{
+/* body{
     background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url("C:/Users/hp/OneDrive/Pictures/Screenshots/4.jpeg");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-}
+} */
 
 .hero{
     height: 100vh;
@@ -50,22 +50,22 @@ nav ul li a:hover{
 }
 .content{
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 8%;
     transform: translateY(-50%);
 }
 h1{
-    color: red;
+    color: #542502;
     margin: 20px 0px 20px;
     font-size: 75px;
 }
 p{
-    color: red;
+    color: #542502;
     font-size: 35px;
 }
 .about{
     width: 100%;
-    padding: 100px 0px;
+    padding: 10px 0px;
     background-color: transparent;
 }
 .abouttxt{
