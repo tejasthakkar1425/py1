@@ -2,10 +2,12 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 
+app_name = "home"
+
 urlpatterns = [
     path('',views.home, name="home"),
-    path('about',views.home, name="about"),
-    path('contact',views.home, name="contact"),
-    path('service',views.home, name="service"),
-    path('signin',views.home, name="signin"),
+    path('about',views.about, name="about"),
+    path('contact',views.contact, name="contact"),
+    path('service',views.service, name="service"),
+    path('signin',views.signin, name="signin"),
 ]
