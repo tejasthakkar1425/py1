@@ -12,4 +12,5 @@ urlpatterns = [
     path('login',views.login, name="login"),
     path('stateView',views.stateView,name="stateView"),
     path('cityView',views.cityView,name="cityView"),
+    path('gstView',views.gstView,name='gstView'),
 ]
