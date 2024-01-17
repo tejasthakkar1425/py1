@@ -92,7 +92,7 @@
                   <a class="nav-link" href="{% url 'home:contact' %}">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home:signin' %}"> <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
+                  <a class="nav-link" href="{% url 'home:login' %}"> <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
                 </li>
                 <form class="form-inline">
                   <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
@@ -514,16 +514,16 @@
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Home
               </a>
-              <a class="" href="about.html">
+              <a class="" href="{% url 'home:about' %}">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 About
               </a>
-              <a class="" href="service.html">
+              <a class="" href="{% url 'home:service' %}">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Services
               </a>
 
-              <a class="" href="contact.html">
+              <a class="" href="{% url 'home:contact' %}">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Contact Us
               </a>

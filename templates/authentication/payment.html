@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #3498db, #2c3e50);
+            color: #fff;
+        }
+
+        .district-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: #555;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #3498db;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="district-form">
+        <h2>Payment Information</h2>
+        <form>
+		    Docket Payment Detail:<input type="text" id="docpaydetail" name="docpaydetail" placeholder="Enter docket payment detail">
+			
+		    Docket Payment Detail ID:<input type="text" id="docpaydetailid" name="docpaydetailid" placeholder="Enter docket payment detail id">
+			
+            Docket ID:<input type="text" id="docid" name="docid" placeholder="Enter docket id">
+			
+            
+           Payment Method:<input type="text" id="paymethod" name="paymethod" placeholder="Enter payment method">
+		   
+           Payment status:<input type="text" id="paymestatus" name="paymestatus" placeholder="Enter payment status">
+			
+            Payment Trans ID:<input type="number" id="paytransid" name="paytransid" placeholder="Payment Transection id">
+			
+           Payment Response:<input type="text" id="payres" name="payres" placeholder="Enter payment response">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -13,5 +13,5 @@ def contact(request):
 def service(request):
     return render(request, "authentication/service.html")
 
-def signin(request):
-    return render(request, "authentication/signin.html")
+def login(request):
+    return render(request, "authentication/login.html")
