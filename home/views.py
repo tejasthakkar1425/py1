@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views import View
-from home.models import *
 
 def home(request):
     return render(request, "authentication/index.html")
@@ -16,7 +14,7 @@ def service(request):
     return render(request, "authentication/service.html")
 
 def login(request):
-    return render(request, "authentication/signin.html")
+    return render(request, "authentication/login.html")
 
 def stateView(request):
     objStateMaster = state_master_table.objects.all()
@@ -27,4 +25,9 @@ def cityView(request):
     objCityMaster = city_village_master_table.objects.all()
     print(objCityMaster)
     return render(request, "authentication/city-list.html",{'cityobj':objCityMaster})
+
+def gstView(request):
+    objGstMaster = gstcharges.objects.all()
+    print(objGstMaster)
+    return render(request, "authentication/gst-list.html",{'gstobj':objStateMaster})
 

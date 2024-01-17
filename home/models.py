@@ -38,12 +38,12 @@ class city_village_master_table(models.Model):
         db_table='city_village_master'
         
         
-class state_master_table(models.Model):
+class gstcharges(models.Model):
 
     gst_char_id = models.IntegerField(default=0)
     year = models.TextField()
-    cgst_per = models.DecimalField(max_length=10,blank=True,null=True)
-    sgst_per = models.DecimalField(max_length=10,blank=True,null=True)
+    cgst_per = models.FloatField(default=0,null=True)
+    sgst_per = models.FloatField(default=0,null=True)
 
     def __str__(self):
         return self.gst_char_id
