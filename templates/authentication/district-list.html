@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Distriict Id</th>
+                <th>District Name</th>
+                <th>State Id</th>
+                <th>Description </th>
+            </tr>
+            {% for dist in distobj %}
+            <tr>
+                <td> {{ dist.district_id }}</td>
+                <td>{{ dist.district_name }} </td>
+                <td>{{ dist.state_id }} </td>
+                <td>{{ dist.description }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

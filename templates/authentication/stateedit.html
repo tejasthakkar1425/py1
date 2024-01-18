@@ -1,0 +1,7 @@
+<h1 align="center">State List</h1>
+<form action="/stateupdate/{{state.state_id}}/"  method="post">
+    {% csrf_token %}
+    Enter State Name:<input type="text" name="txtname" value="{{state.stat_name}}">
+    <input type="submit" value="Save"><br>
+
+</form>

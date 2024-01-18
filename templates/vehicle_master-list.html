@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Vehicle Id</th>
+                <th>Vehicle Name</th>
+                <th>Rc Book No</th>
+                <th>Register Number </th>
+                <th>Capacity</th>
+                <th>Insurance From</th>
+                <th>Insurance To</th>
+                <th>Insurance Comp Name</th>
+                <th>Owner Name</th>
+            </tr>
+            {% for veh in vehobj %}
+            <tr>
+                <td> {{ veh.vehicle_id }}</td>
+                <td>{{ veh.vehicle_name }} </td>
+                <td>{{ veh.RC_book_number }} </td>
+                <td>{{ veh.Reg_number }}</td>
+                <td>{{ veh.capacity}}</td>
+                <td>{{ veh.insurance_from }}</td>
+                <td>{{ veh.insurance_to }}</td>
+                <td>{{ veh.insurance_company_name }}</td>
+                <td>{{ veh.owner_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

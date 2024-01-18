@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Doc Id</th>
+                <th>Doc Number</th>
+                <th>Doc Date</th>
+                <th>LR Number</th>
+                <th>GST Charges</th>
+                <th>Net Amount</th>
+                <th>Is Cancel</th>
+            </tr>
+            {% for doc in docobj %}
+            <tr>
+                <td> {{ doc.doc_id}}</td>
+                <td>{{ doc.ddoc_number }} </td>
+                <td>{{ doc.doc_date }} </td>
+                <td>{{ doc.LR_number }}</td>
+                <td>{{ doc.gst_charges_id }}</td>
+                <td>{{ doc.net_amount }}</td>
+                <td>{{ doc.is_cancel }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

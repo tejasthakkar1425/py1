@@ -50,6 +50,7 @@ class gstcharges(models.Model):
     
     class Meta:
         db_table='gstcharges'
+        
 class district_master_table(models.Model):
     
     district_id = models.IntegerField(default=0)
@@ -62,7 +63,7 @@ class district_master_table(models.Model):
     updated_date= models.DateTimeField(auto_now_add=True,blank=True,null=True)
 
     def __str__(self):
-        return self.district_id
+        return self.district_name
     
     class Meta:
         db_table='district_master'

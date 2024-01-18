@@ -13,4 +13,10 @@ urlpatterns = [
     path('stateView',views.stateView,name="stateView"),
     path('cityView',views.cityView,name="cityView"),
     path('gstView',views.gstView,name='gstView'),
+    path('distView',views.distView,name="cityView"),
+    path('docView',views.docView,name="docView"),
+    path('vehViwe',views.vehViwe,name="vehViwe"),
+    path('vehroutViwe',views.vehroutViwe,name="vehroutViwe"),
+    path('userView',views.userView,name="userView"),
+    path('reviewView',views.reviewView,name="reviewView"),
 ]
