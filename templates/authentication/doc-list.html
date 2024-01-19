@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 
-<head></head>
+<head>
+    <title>Doc Master View</title>
+</head>
 <body class="sub_page">
     <div>
         <table align="center" width="50%" border="2.5">
@@ -18,10 +20,10 @@
             {% for doc in docobj %}
             <tr>
                 <td> {{ doc.doc_id}}</td>
-                <td>{{ doc.ddoc_number }} </td>
+                <td>{{ doc.doc_number }} </td>
                 <td>{{ doc.doc_date }} </td>
-                <td>{{ doc.LR_number }}</td>
-                <td>{{ doc.gst_charges_id }}</td>
+                <td>{{ doc.lr_number }}</td>
+                <td>{{ doc.gst_charges }}</td>
                 <td>{{ doc.net_amount }}</td>
                 <td>{{ doc.is_cancel }}</td>
             </tr>

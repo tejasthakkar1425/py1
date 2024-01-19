@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Vehicle Rout Master View</title>
+
+</head>
+<body class="sub_page">
+<div>
+    <table align="center" width="50%" border="2.5">
+        <tr>
+            <th>Veh Rout Id</th>
+            <th>From State Id</th>
+            <th>To State Id</th>
+            <th>Veh Rout Det</th>
+            <th>Veh Rout Det Id</th>
+        </tr>
+        {% for vehrout in vehroutobj %}
+        <tr>
+            <td> {{ vehrout.veh_rout_id }}</td>
+            <td>{{ vehrout.from_state }} </td>
+            <td>{{ vehrout.to_state }} </td>
+            <td>{{ vehrout.vehc_rout_det }} </td>
+            <td>{{ vehrout.veh_rout_details_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

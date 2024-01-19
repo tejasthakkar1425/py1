@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>User Master Id</th>
+                <th>User Email Id</th>
+                <th>User Name</th>
+                <th>User Password</th>
+            </tr>
+            {% for user in userobj %}
+            <tr>
+                <td> {{ user.user_master_id }}</td>
+                <td>{{ user.user_email_id }} </td>
+                <td>{{ user.user_name }} </td>
+                <td>{{ user.user_password }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

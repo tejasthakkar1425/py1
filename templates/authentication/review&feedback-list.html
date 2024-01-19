@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Review & Feedback View</title>
+
+</head>
+<body class="sub_page">
+<div>
+    <table align="center" width="50%" border="2.5">
+        <tr>
+            <th>Review Id</th>
+            <th>User Id</th>
+            <th>Review Image</th>
+            <th>Review Description</th>
+            <th>Review Star</th>
+        </tr>
+        {% for review in reviewobj %}
+        <tr>
+            <td> {{ review.review_id }}</td>
+            <td>{{ review.user }} </td>
+            <td>{{ review.review_image }} </td>
+            <td>{{ review.review_description }} </td>
+            <td>{{ review.review_star }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
