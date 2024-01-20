@@ -14,12 +14,24 @@
             <th>State Id</th>
             <th>State Name </th>
             <th>Description </th>
+            <th>Created By User Id</th>
+            <th>Created Date</th>
+            <th>Updated By User Id</th>
+            <th>Updated Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         {% for state in stateobj %}
         <tr>
             <td> {{ state.state_id }}</td>
             <td>{{ state.stat_name }} </td>
             <td>{{ state.description }}</td>
+            <td>{{state.created_by_user_id}}</td>
+            <td>{{state.created_date}}</td>
+            <td>{{state.updated_by_user_id}}</td>
+            <td>{{state.updated_date}}</td>
+            <td><a href="/stateedit/{{state.id}}">Edit</a></td>
+            <td><a href="/statedelete/{{state.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

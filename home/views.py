@@ -1,9 +1,9 @@
 from sre_parse import State
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-
 from home.models import *
 
+""""
 def home(request):
     return render(request, "authentication/index.html")
 
@@ -18,15 +18,57 @@ def service(request):
 
 def login(request):
     return render(request, "authentication/login.html")
+"""
+
+def stateadd(request):
+    return render(request, "authentication/stateadd.html")
+
+def statesave(request):
+    id=request.POST.get('txtsid')
+    name=request.POST.get('txtsname')
+    desc=request.POST.get('txtdesc')
+    cbui=request.POST.get('txtuser')
+    cd=request.POST.get('txtuserdate')
+    ubui=request.POST.get('txtupdate')
+    ud=request.POST.get('txtup')
+    state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user_id=cbui,created_date=cd,updated_by_user_id=ubui,updated_date=ud)
+    state.save()
+
+    return redirect("/stateView")
 
 def stateView(request):
     objStateMaster = StateMasterTable.objects.all()
     print(objStateMaster)
     return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
 
-def stateadd(request):
-    return render(request, "authentication/stateadd.html")
-    
+def stateedit(request,id):
+    state=StateMasterTable.objects.get(state_id=id)
+    return render(request, "authentication/stateedit.html",{'state':state})
+
+def stateupdate(request,id):
+    state=StateMasterTable.objects.get(state_id=id)
+    id=request.POST.get('txtsid')
+    name=request.POST.get('txtsname')
+    desc=request.POST.get('txtdesc')
+    cbui=request.POST.get('txtuser')
+    cd=request.POST.get('txtuserdate')
+    ubui=request.POST.get('txtupdate')
+    ud=request.POST.get('txtup')
+    state.state_id=id
+    state.stat_name=name
+    state.description=desc
+    state.created_by_user_id=cbui
+    state.created_date=cd
+    state.updated_by_user_id=ubui
+    state.updated_date=ud
+
+    state.save()
+    return redirect("/stateView")
+
+def statedelete(request,id):
+    state=StateMasterTable.objects.get(state_id=id)
+    state.delete()
+    return redirect("/stateView")
 
 def cityView(request):
     objCityMaster = CityVillageMaster.objects.all()

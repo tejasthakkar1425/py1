@@ -4,22 +4,22 @@
         <title>Add Details</title>
     </head>
     <body>
-        <form method="POST" action="/stateView">
+        <form method="post" action="/statesave">
             <br>
             {% csrf_token %}
             <h3>Enter Details</h3>
 
-            <label>Enter State Id:</label><input type="number" name="txtid"><br>
+            <label>Enter State Id:</label><input type="number" name="txtsid"><br>
 
-            <label>Enter State Name:</label><input type="text" name="txtname"><br>
+            <label>Enter State Name:</label><input type="text" name="txtsname"><br>
 
             <label>Enter Description</label><input type="text" name="txtdesc"><br>
 
-            <label>Created By User Id</label><input type="text" name="txtuser"><br>
+            <label>Created By User Id</label><input type="number" name="txtuser"><br>
  
             <label>Created Date</label><input type="date" name="txtuserdate"><br>
 
-            <label>Updated By User Id</label><input type="text" name="txtupdate"><br>
+            <label>Updated By User Id</label><input type="number" name="txtupdate"><br>
 
             <label>Updated Date</label><input type="date" name="txtup"><br>
 

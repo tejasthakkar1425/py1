@@ -1,7 +1,29 @@
-<h1 align="center">State List</h1>
-<form action="/stateupdate/{{state.state_id}}/"  method="post">
-    {% csrf_token %}
-    Enter State Name:<input type="text" name="txtname" value="{{state.state_name}}">
-    <input type="submit" value="Save"><br>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Details</title>
+    </head>
+    <body>
+        <form action="stateupdate/{{state.state_id}}/" method="post">
+            <br>
+            {% csrf_token %}
+            <h3>Update Details</h3>
+            
+            <label>Enter State Id:</label><input type="number" name="txtsid" value="{{state.state_id}}"><br>
 
-</form>
+            <label>Enter State Name:</label><input type="text" name="txtsname" value="{{state.stat_name}}"><br>
+
+            <label>Enter Description</label><input type="text" name="txtdesc" value="{{state.description}}"><br>
+
+            <label>Created By User Id</label><input type="number" name="txtuser" value="{{state.created_by_user_id}}"><br>
+ 
+            <label>Created Date</label><input type="date" name="txtuserdate" value="{{state.created_date}}"><br>
+
+            <label>Updated By User Id</label><input type="number" name="txtupdate" value="{{state.updated_by_user_id}}"><br>
+
+            <label>Updated Date</label><input type="date" name="txtup" value="{{state.updated_date}}"><br>
+
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>
