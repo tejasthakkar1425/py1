@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="POST" action="/stateView">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter State Id:</label><input type="number" name="txtid"><br>
+
+            <label>Enter State Name:</label><input type="text" name="txtname"><br>
+
+            <label>Enter Description</label><input type="text" name="txtdesc"><br>
+
+            <label>Created By User Id</label><input type="text" name="txtuser"><br>
+ 
+            <label>Created Date</label><input type="date" name="txtuserdate"><br>
+
+            <label>Updated By User Id</label><input type="text" name="txtupdate"><br>
+
+            <label>Updated Date</label><input type="date" name="txtup"><br>
+
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>

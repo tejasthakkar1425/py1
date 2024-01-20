@@ -19,4 +19,5 @@ urlpatterns = [
     path('vehroutView',views.vehroutView,name="vehroutView"),
     path('userView',views.userView,name="userView"),
     path('reviewView',views.reviewView,name="reviewView"),
+    path('stateadd',views.stateadd,name="stateadd"),
 ]

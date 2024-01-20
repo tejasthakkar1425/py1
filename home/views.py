@@ -24,13 +24,9 @@ def stateView(request):
     print(objStateMaster)
     return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
 
-def stateupdate(request,id):
-    state=State.objects.get(state_id=id)
-    name=request.POST.get('txtsname')
-    state.state_name=name
-
-    state.save()
-    return redirect("/state/")
+def stateadd(request):
+    return render(request, "authentication/stateadd.html")
+    
 
 def cityView(request):
     objCityMaster = CityVillageMaster.objects.all()
