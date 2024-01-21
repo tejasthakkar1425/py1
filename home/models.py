@@ -2,7 +2,6 @@ import datetime
 from django.db import models
 
 # Create your models here.
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -78,9 +77,9 @@ class CityVillageMaster(models.Model):
     state = models.ForeignKey('StateMasterTable', models.DO_NOTHING)
     city_village_name = models.TextField(blank=True, null=True)
     description = models.CharField(max_length=50)
-    created_by_user_id = models.IntegerField(blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
-    updated_by_user_id = models.IntegerField(blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='cityvillagemaster_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -114,9 +113,9 @@ class DistrictMaster(models.Model):
     district_name = models.TextField(blank=True, null=True)
     state = models.ForeignKey('StateMasterTable', models.DO_NOTHING)
     description = models.CharField(max_length=50)
-    created_by_user_id = models.IntegerField(blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
-    updated_by_user_id = models.IntegerField(blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='districtmaster_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -241,9 +240,9 @@ class ReviewFeedbackStatus(models.Model):
     review = models.ForeignKey(ReviewFeedback, models.DO_NOTHING, db_column='Review_id')  # Field name made lowercase.
     status = models.TextField(blank=True, null=True)
     user = models.ForeignKey('UserMasterTable', models.DO_NOTHING)
-    created_by_user_id = models.IntegerField(blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='reviewfeedbackstatus_created_by_user_set', blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
-    updated_by_user_id = models.IntegerField(blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='reviewfeedbackstatus_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -255,9 +254,9 @@ class StateMasterTable(models.Model):
     state_id = models.IntegerField(primary_key=True)
     stat_name = models.TextField(blank=True, null=True)
     description = models.CharField(db_column='Description', max_length=50)  # Field name made lowercase.
-    created_by_user_id = models.IntegerField(blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField()
-    updated_by_user_id = models.IntegerField(blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='statemastertable_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField()
 
     class Meta:
@@ -270,7 +269,7 @@ class UserDetails(models.Model):
     user_master = models.ForeignKey('UserMasterTable', models.DO_NOTHING)
     user_type = models.IntegerField(blank=True, null=True)
     profile_pic = models.TextField()
-    contact = models.IntegerField(blank=True, null=True)
+    contact = models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=1, blank=True, null=True)
     address = models.TextField(db_column='Address', blank=True, null=True)  # Field name made lowercase.
 
@@ -325,9 +324,9 @@ class VehicleMaster(models.Model):
 class VehicleRoutMaster(models.Model):
     veh_rout_id = models.IntegerField(primary_key=True)
     from_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, blank=True, null=True)
-    to_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, related_name='vehicleroutmaster_to_state_set', blank=True, null=True)       
+    to_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, related_name='vehicleroutmaster_to_state_set', blank=True, null=True)
     vehc_rout_det = models.TextField(blank=True, null=True)
-    veh_rout_details_id = models.IntegerField(blank=True, null=True)
+    veh_rout_details = models.ForeignKey(VehRoutDetalis, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False

@@ -31,7 +31,7 @@ def statesave(request):
     cd=request.POST.get('txtuserdate')
     ubui=request.POST.get('txtupdate')
     ud=request.POST.get('txtup')
-    state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user_id=cbui,created_date=cd,updated_by_user_id=ubui,updated_date=ud)
+    state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
     state.save()
 
     return redirect("/stateView")
@@ -57,9 +57,9 @@ def stateupdate(request,id):
     state.state_id=id
     state.stat_name=name
     state.description=desc
-    state.created_by_user_id=cbui
+    state.created_by_user=cbui
     state.created_date=cd
-    state.updated_by_user_id=ubui
+    state.updated_by_user=ubui
     state.updated_date=ud
 
     state.save()
