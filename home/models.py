@@ -2,6 +2,7 @@ import datetime
 from django.db import models
 
 # Create your models here.
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -254,9 +255,9 @@ class StateMasterTable(models.Model):
     state_id = models.IntegerField(primary_key=True)
     stat_name = models.TextField(blank=True, null=True)
     description = models.CharField(db_column='Description', max_length=50)  # Field name made lowercase.
-    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, blank=True, null=True)
     created_date = models.DateField()
-    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='statemastertable_updated_by_user_set', blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, related_name='statemastertable_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField()
 
     class Meta:

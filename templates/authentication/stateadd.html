@@ -15,11 +15,17 @@
 
             <label>Enter Description</label><input type="text" name="txtdesc"><br>
 
-            <label>Created By User Id</label><input type="text" name="txtuser" value="{{created_by_user}}"><br>
- 
+            <label>Created By User Id</label>
+            <select>
+                <option name="txtuser" value="{created_by_user}">{{created_by_user}}</option>
+            </select><br>
+
             <label>Created Date</label><input type="date" name="txtuserdate"><br>
 
-            <label>Updated By User Id</label><input type="text" name="txtupdate" value="{{updated_by_user}}"><br>
+            <label>Updated By User Id</label>
+            <select>
+                <option name="txtupdate" value="{updated_by_user}">{{updated_by_user}}</option><br>
+            </select><br>
 
             <label>Updated Date</label><input type="date" name="txtup"><br>
 

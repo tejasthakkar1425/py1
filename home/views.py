@@ -24,16 +24,16 @@ def stateadd(request):
     return render(request, "authentication/stateadd.html")
 
 def statesave(request):
-    id=request.POST.get('txtsid')
-    name=request.POST.get('txtsname')
-    desc=request.POST.get('txtdesc')
-    cbui=request.POST.get('txtuser')
-    cd=request.POST.get('txtuserdate')
-    ubui=request.POST.get('txtupdate')
-    ud=request.POST.get('txtup')
-    state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
-    state.save()
-
+    if request.method=="POST":
+        id=request.POST.get('txtsid')
+        name=request.POST.get('txtsname')
+        desc=request.POST.get('txtdesc')
+        cbui=request.POST.get('txtuser')
+        cd=request.POST.get('txtuserdate')
+        ubui=request.POST.get('txtupdate')
+        ud=request.POST.get('txtup')
+        state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
+        state.save()
     return redirect("/stateView")
 
 def stateView(request):
@@ -42,27 +42,28 @@ def stateView(request):
     return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
 
 def stateedit(request,id):
-    state=StateMasterTable.objects.get(state_id=id)
-    return render(request, "authentication/stateedit.html",{'state':state})
+    if request.method=="POST":
+        state=StateMasterTable.objects.get(state_id=id)
+        return render(request, "authentication/stateedit.html",{'state':state})
 
 def stateupdate(request,id):
-    state=StateMasterTable.objects.get(state_id=id)
-    id=request.POST.get('txtsid')
-    name=request.POST.get('txtsname')
-    desc=request.POST.get('txtdesc')
-    cbui=request.POST.get('txtuser')
-    cd=request.POST.get('txtuserdate')
-    ubui=request.POST.get('txtupdate')
-    ud=request.POST.get('txtup')
-    state.state_id=id
-    state.stat_name=name
-    state.description=desc
-    state.created_by_user=cbui
-    state.created_date=cd
-    state.updated_by_user=ubui
-    state.updated_date=ud
-
-    state.save()
+    if request.method=="POST":
+        state=StateMasterTable.objects.get(state_id=id)
+        id=request.POST.get('txtsid')
+        name=request.POST.get('txtsname')
+        desc=request.POST.get('txtdesc')
+        cbui=request.POST.get('txtuser')
+        cd=request.POST.get('txtuserdate')
+        ubui=request.POST.get('txtupdate')
+        ud=request.POST.get('txtup')
+        state.state_id=id
+        state.stat_name=name
+        state.description=desc
+        state.created_by_user=cbui
+        state.created_date=cd
+        state.updated_by_user=ubui
+        state.updated_date=ud
+        state.save()
     return redirect("/stateView")
 
 def statedelete(request,id):

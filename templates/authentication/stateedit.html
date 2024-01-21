@@ -4,7 +4,7 @@
         <title>Edit Details</title>
     </head>
     <body>
-        <form action="stateupdate/{{state.state_id}}/" method="post">
+        <form action="stateupdate/{{state.state_id}}/" method="POST">
             <br>
             {% csrf_token %}
             <h3>Update Details</h3>
@@ -15,7 +15,7 @@
 
             <label>Enter Description</label><input type="text" name="txtdesc" value="{{state.description}}"><br>
 
-            <label>Created By User Id</label><input type="number" name="txtuser" value="{{state.created_by_user}}">
+            <label>Created By User Id</label><input type="number" name="txtuser" value="{{state.created_by_user}}"><br>
  
             <label>Created Date</label><input type="date" name="txtuserdate" value="{{state.created_date}}"><br>
 
