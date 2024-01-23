@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/gstView">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+            <div>
+                <p>Enter GST Charges Id</p>{{ form.gst_char_id }}
+            </div>
+            <div>
+                <p>Enter Year</p>{{ form.year }}
+            </div>
+            <div>
+                <p>Enter CGST</p>{{ form.cgst_per }}
+            </div>
+            <div>
+                <p>Enter SGST</p>{{ form:sgst_per }}
+            </div><br>
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>

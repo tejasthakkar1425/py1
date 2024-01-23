@@ -16,17 +16,26 @@
             <th>State Id</th>
             <th>City Name</th>
             <th>Description </th>
+            <th>Created By User Id</th>
+            <th>Created Date</th>
+            <th>Updated By User Id</th>
+            <th>Updated Date</th>
         </tr>
         {% for city in cityobj %}
         <tr>
-            <td> {{ city.city_village_id }}</td>
-            <td>{{ city.district_id }} </td>
+            <td>{{ city.city_village_id }}</td>
+            <td>{{ city.district }} </td>
             <td>{{ city.state }} </td>
             <td>{{ city.city_village_name }} </td>
             <td>{{ city.description }}</td>
+            <td>{{ city.created_by_user }}</td>
+            <td>{{ city.created_date }}</td>
+            <td>{{ city.updated_by_user }}</td>
+            <td>{{ city.updated_date }}</td>
         </tr>
         {% endfor %}
     </table>
+    <a href="/city">Add</a>
 </div>
 </body>
 </html>

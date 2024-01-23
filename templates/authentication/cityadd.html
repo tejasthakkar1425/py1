@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/citysave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter City village Id:</label><input type="number" name="txtcid"><br>
+
+            <label>Enter District Id:</label>
+            <select>
+                <option name="txtdid" value="{city.district}">{{city.district}}</option>
+            </select><br>
+
+            <label>Enter State Id</label>
+            <select>
+                <option name="txtsid" value="{city.state}">{{city.state}}</option>
+            </select><br>
+
+            <label>Enter City Name</label><input type="text" name="txtcname"><br>
+
+            <label>Enter Description</label><input type="text" name="txtcdesc"><br>
+
+            <label>Created By User Id</label>
+            <select>
+                <option name="txtuser" value="{created_by_user}">{{created_by_user}}</option>
+            </select><br>
+
+            <label>Created Date</label><input type="date" name="txtuserdate"><br>
+
+            <label>Updated By User Id</label>
+            <select>
+                <option name="txtupdate" value="{updated_by_user}">{{updated_by_user}}</option><br>
+            </select><br>
+
+            <label>Updated Date</label><input type="date" name="txtup"><br>
+
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>

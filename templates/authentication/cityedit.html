@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Details</title>
+    </head>
+    <body>
+        <form action="/cityupdate/{{city.id}}" method="POST">
+            <br>
+            {% csrf_token %}
+            <h3>Update Details</h3>
+
+            <label>Enter City Id:</label><input type="number" name="txtcid" value="{{city.city_village_id}}"/><br>
+
+            <label>Enter District Id:</label><input type="number" name="txtdid" value="{{city.district}}"><br>
+            
+            <label>Enter State Id:</label><input type="number" name="txtsid" value="{{city.state}}"/><br>
+
+            <label>Enter City Name:</label><input type="text" name="txtcname" value="{{city.city_village_name}}"/><br>
+
+            <label>Enter Description</label><input type="text" name="txtcdesc" value="{{city.description}}"/><br>
+
+            <label>Created By User Id</label><input type="number" name="txtuser" value="{{city.created_by_user}}"/><br>
+ 
+            <label>Created Date</label><input type="date" name="txtuserdate" value="{{city.created_date}}"/><br>
+
+            <label>Updated By User Id</label><input type="number" name="txtupdate" value="{{city.updated_by_user}}"/><br>
+
+            <label>Updated Date</label><input type="date" name="txtup" value="{{city.updated_date}}"/><br>
+
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

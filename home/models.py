@@ -74,13 +74,13 @@ class AuthUserUserPermissions(models.Model):
 
 class CityVillageMaster(models.Model):
     city_village_id = models.IntegerField(primary_key=True)
-    district = models.ForeignKey('DistrictMaster', models.DO_NOTHING)
-    state = models.ForeignKey('StateMasterTable', models.DO_NOTHING)
+    district = models.ForeignKey('DistrictMaster', models.CASCADE)
+    state = models.ForeignKey('StateMasterTable', models.CASCADE)
     city_village_name = models.TextField(blank=True, null=True)
     description = models.CharField(max_length=50)
-    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
-    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='cityvillagemaster_updated_by_user_set', blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, related_name='cityvillagemaster_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -112,11 +112,11 @@ class ComplainStatus(models.Model):
 class DistrictMaster(models.Model):
     district_id = models.IntegerField(primary_key=True)
     district_name = models.TextField(blank=True, null=True)
-    state = models.ForeignKey('StateMasterTable', models.DO_NOTHING)
+    state = models.ForeignKey('StateMasterTable', models.CASCADE)
     description = models.CharField(max_length=50)
-    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
+    created_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
-    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='districtmaster_updated_by_user_set', blank=True, null=True)
+    updated_by_user = models.ForeignKey('UserMasterTable', models.CASCADE, related_name='districtmaster_updated_by_user_set', blank=True, null=True)
     updated_date = models.DateField(blank=True, null=True)
 
     class Meta:
@@ -213,7 +213,7 @@ class Gstcharges(models.Model):
 class PaymentMaster(models.Model):
     doc_pay_detail = models.TextField(blank=True, null=True)
     doc_pay_detail_id = models.IntegerField(primary_key=True)
-    doc = models.ForeignKey(DocMaster, models.DO_NOTHING)
+    doc = models.ForeignKey(DocMaster, models.CASCADE)
     pay_status = models.TextField(blank=True, null=True)
     pay_method = models.TextField(blank=True, null=True)
     pay_tran_id = models.IntegerField(blank=True, null=True)
@@ -226,7 +226,7 @@ class PaymentMaster(models.Model):
 
 class ReviewFeedback(models.Model):
     review_id = models.IntegerField(db_column='Review_id', primary_key=True)  # Field name made lowercase.
-    user = models.ForeignKey('UserMasterTable', models.DO_NOTHING)
+    user = models.ForeignKey('UserMasterTable', models.CASCADE)
     review_image = models.CharField(db_column='Review_image', max_length=10)  # Field name made lowercase.
     review_description = models.TextField(db_column='Review_description')  # Field name made lowercase.
     review_star = models.IntegerField(db_column='Review_star')  # Field name made lowercase.
