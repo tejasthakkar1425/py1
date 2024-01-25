@@ -19,13 +19,25 @@
 
             <label>Enter Description</label><input type="text" name="txtcdesc" value="{{city.description}}"/><br>
 
-            <label>Created By User Id</label><input type="number" name="txtuser" value="{{city.created_by_user}}"/><br>
- 
-            <label>Created Date</label><input type="date" name="txtuserdate" value="{{city.created_date}}"/><br>
+             {% comment %}
+            <label>Created By User Id</label>
+            <select name="state_master_table">
+                {% for i in stateobj %}
+                <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
+                {% endfor %}
+            </select><br>
 
-            <label>Updated By User Id</label><input type="number" name="txtupdate" value="{{city.updated_by_user}}"/><br>
+            <label>Created Date</label><input type="date" name="txtuserdate"><br>
 
-            <label>Updated Date</label><input type="date" name="txtup" value="{{city.updated_date}}"/><br>
+            <label>Updated By User Id</label>
+            <select name="state_master_table">
+                {% for i in stateobj %}
+                <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Updated Date</label><input type="date" name="txtup"><br>
+            {% endcomment %}
 
             <button type="submit">Update</button>
         </form>

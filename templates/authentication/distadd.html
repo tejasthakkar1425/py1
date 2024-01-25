@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/distsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Distriict Id</label><input type="number" name="txtdid"><br>
+
+            <label>Enter Distriict Name</label><input type="text" name="txtdname"><br>
+
+            <label>Enter State Id</label>
+            <select name="dist_master_table">
+                {% for i in distobj %}
+                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Description</label><input type="text" name="txtddesc"><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

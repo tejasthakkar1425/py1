@@ -22,19 +22,20 @@ def login(request):
 """
 
 def stateadd(request):
-    return render(request, "authentication/stateadd.html")
+    stateobj=StateMasterTable.objects.all()
+    print(stateobj)
+    return render(request, "authentication/stateadd.html",{'stateobj':stateobj})
 
 def statesave(request):
-    if request.method=="POST":
-        id=request.POST.get('txtsid')
-        name=request.POST.get('txtsname')
-        desc=request.POST.get('txtdesc')
-        cbui=request.POST.get('txtuser')
-        cd=request.POST.get('txtuserdate')
-        ubui=request.POST.get('txtupdate')
-        ud=request.POST.get('txtup')
-        state=StateMasterTable(state_id=id,stat_name=name,description=desc,created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
-        state.save()
+    id=request.POST.get('txtsid')
+    name=request.POST.get('txtsname')
+    desc=request.POST.get('txtdesc')
+    #cbui=request.POST.get('txtuser')
+    #cd=request.POST.get('txtuserdate')
+    #ubui=request.POST.get('txtupdate')
+    #ud=request.POST.get('txtup')
+    state=StateMasterTable(state_id=id,stat_name=name,description=desc)#(created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
+    state.save()
     return redirect("/stateView")
 
 def stateView(request):
@@ -47,21 +48,20 @@ def stateedit(request,id):
     return render(request, "authentication/stateedit.html",{"state":state})
 
 def stateupdate(request,id):
-    if request.method=="GET":
-        state=StateMasterTable.objects.get(state_id=id)
-        name=request.POST.get('txtsname')
-        desc=request.POST.get('txtdesc')
-        cbui=request.POST.get('txtuser')
-        cd=request.POST.get('txtuserdate')
-        ubui=request.POST.get('txtupdate')
-        ud=request.POST.get('txtup')
-        state.stat_name=name
-        state.description=desc
-        state.created_by_user=cbui
-        state.created_date=cd
-        state.updated_by_user=ubui
-        state.updated_date=ud
-        state.save()
+    state=StateMasterTable.objects.get(state_id=id)
+    name=request.POST.get('txtsname')
+    desc=request.POST.get('txtdesc')
+    #cbui=request.POST.get('txtuser')
+    #cd=request.POST.get('txtuserdate')
+    #ubui=request.POST.get('txtupdate')
+    #ud=request.POST.get('txtup')
+    state.stat_name=name
+    state.description=desc
+    #state.created_by_user=cbui
+    #state.created_date=cd
+    #state.updated_by_user=ubui
+    #state.updated_date=ud
+    #state.save()
     return redirect("/stateView")
 
 def statedelete(request,id):
@@ -70,21 +70,22 @@ def statedelete(request,id):
     return redirect("/stateView")
 
 def city(request):
-    return render(request, "authentication/cityadd.html")
+    cityobj=CityVillageMaster.objects.all()
+    print(cityobj)
+    return render(request, "authentication/cityadd.html",{'cityobj':cityobj})
 
 def citysave(request):
-    if request.method=="POST":
-        cid=request.POST.get('txtcid')
-        did=request.POST.get('txtdid')
-        sid=request.POST.get('txtsid')
-        name=request.POST.get('txtcname')
-        desc=request.POST.get('txtcdesc')
-        cbui=request.POST.get('txtuser')
-        cd=request.POST.get('txtuserdate')
-        ubui=request.POST.get('txtupdate')
-        ud=request.POST.get('txtup')
-        city=CityVillageMaster(city_village_id=cid,district=did,state=sid,city_village_name=name,description=desc,created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
-        city.save()
+    cid=request.POST.get('txtcid')
+    did=request.POST.get('txtdid')
+    sid=request.POST.get('txtsid')
+    name=request.POST.get('txtcname')
+    desc=request.POST.get('txtcdesc')
+    #cbui=request.POST.get('txtuser')
+    #cd=request.POST.get('txtuserdate')
+    #ubui=request.POST.get('txtupdate')
+    #ud=request.POST.get('txtup')
+    city=CityVillageMaster(city_village_id=cid,district=did,state=sid,city_village_name=name,description=desc)#created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
+    city.save()
     return redirect("/cityView")
 
 def cityedit(request,id):
@@ -98,19 +99,19 @@ def cityupdate(request,id):
         sid=request.POST.get('txtsid')
         name=request.POST.get('txtcname')
         desc=request.POST.get('txtcdesc')
-        cbui=request.POST.get('txtuser')
-        cd=request.POST.get('txtuserdate')
-        ubui=request.POST.get('txtupdate')
-        ud=request.POST.get('txtup')
+        #cbui=request.POST.get('txtuser')
+        #cd=request.POST.get('txtuserdate')
+        #ubui=request.POST.get('txtupdate')
+        #ud=request.POST.get('txtup')
         city.city_village_id=cid
         city.district=did
         city.state=sid
         city.city_village_name=name
         city.description=desc
-        city.created_by_user=cbui
-        city.created_date=cd
-        city.updated_by_user=ubui
-        city.updated_date=ud
+        #city.created_by_user=cbui
+        #city.created_date=cd
+        #city.updated_by_user=ubui
+        #city.updated_date=ud
         city.save()
         return redirect("/cityView")
 
@@ -125,17 +126,18 @@ def cityView(request):
     return render(request, "authentication/city-list.html",{'cityobj':objCityMaster})
 
 def gst(request):
-    if request.method=="POST":
-        form=Gst(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-                return redirect("/gstView")
-            except:
-                pass
-    else:
-        form=Gst()
-    return render(request, "authentication/gstadd.html",{'form':form})
+    gstobj=Gstcharges.objects.all()
+    print(gstobj)
+    return render(request, "authentication/gstadd.html",{'gstobj':gstobj})
+
+def gstsave(request):
+    gid=request.POST.get('txtgid')
+    gyear=request.POST.get('txtgyear')
+    gcgst=request.POST.get('txtcgst')
+    gsgst=request.POST.get('txtsgst')
+    gst=Gstcharges(gst_char_id=gid,year=gyear,cgst_per=gcgst,sgst_per=gsgst)
+    gst.save()
+    return redirect("/gstView")
     
 def gstedit(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
@@ -143,23 +145,58 @@ def gstedit(request,id):
 
 def gstupdate(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
-    form=Gst(request.POST,instance=gst)
-    if form.is_valid():
-        form.save()
-        return redirect("/gstView")
-    
-    return render(request, "authentication/gstedit.html",{'gst':gst})
+    gyear=request.POST.get('txtgyear')
+    gcgst=request.POST.get('txtcgst')
+    gsgst=request.POST.get('txtsgst')
+    gst.year=gyear
+    gst.cgst_per=gcgst
+    gst.sgst_per=gsgst
+    gst.save()
+    return redirect("/gstView")
 
 def gstdelete(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
     gst.delete()
     return redirect("/gstView")
 
-
 def gstView(request):
     objGstMaster = Gstcharges.objects.all()
     print(objGstMaster)
     return render(request, "authentication/gst-list.html",{'gstobj':objGstMaster})
+
+def dist(request):
+    distobj=DistrictMaster.objects.all()
+    print(distobj)
+    return render(request, "authentication/distadd.html",{'distobj':distobj})
+
+def distsave(request):
+    did=request.POST.get('txtdid')
+    dname=request.POST.get('txtdname')
+    sid=request.POST.get('txtsid')
+    ddesc=request.POST.get('txtddesc')
+    dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
+    dist.save()
+    return redirect("/distView")
+
+def distedit(request,id):
+    dist=DistrictMaster.objects.get(district_id=id)
+    return render(request, "authentication/distedit.html",{'dist':dist})
+
+def distupdate(request,id):
+    dist=DistrictMaster.objects.get(district_id=id)
+    dname=request.POST.get('txtdname')
+    sid=request.POST.get('txtsid')
+    ddesc=request.POST.get('txtddesc')
+    dist.district_name=dname
+    dist.state=sid
+    dist.description=ddesc
+    dist.save()
+    return redirect("/distView")
+
+def distdelete(request,id):
+    dist=DistrictMaster.object.get(district_id=id)
+    dist.delete()
+    return render("/distView")
 
 def distView(request):
     objDistMaster = DistrictMaster.objects.all()

@@ -4,24 +4,17 @@
         <title>Edit Details</title>
     </head>
     <body>
-        <form action="/gstView" method="POST">
+        <form action="/gstupdate/{{gst.gst_char_id}}" method="POST">
             <br>
             {% csrf_token %}
             <h3>Update Details</h3>
-            <div>
-                <p>Enter GST Charges Id</p>{{ gst.gst_char_id }}
-            </div>
-            <div>
-                <p>Enter Year</p>{{ gst.year }}
-            </div>
-            <div>
-                <p>Enter CGST</p>{{ gst.cgst_per }}
-            </div>
-            <div>
-                <p>Enter SGST</p>{{ gst:sgst_per }}
-            </div><br>
-            
 
+            <label>Enter Year:</label><input type="text" name="txtgyear" value="{{gst.year}}"><br>
+
+            <label>Enter CGST Percentage</label><input type="number" name="txtgcgst" value="{{gst.cgst_per}}"><br>
+
+            <label>Enter SGST Percentage</label><input type="number" name="txtgsgst" value="{{gst.sgst_per}}"><br>
+            
             <button type="submit">Update</button>
         </form>
     </body>

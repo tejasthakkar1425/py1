@@ -15,19 +15,25 @@
 
             <label>Enter Description</label><input type="text" name="txtdesc"><br>
 
+            {% comment %}
             <label>Created By User Id</label>
-            <select>
-                <option name="txtuser" value="{created_by_user}">{{created_by_user}}</option>
+            <select name="state_master_table">
+                {% for i in stateobj %}
+                <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
+                {% endfor %}
             </select><br>
 
             <label>Created Date</label><input type="date" name="txtuserdate"><br>
 
             <label>Updated By User Id</label>
-            <select>
-                <option name="txtupdate" value="{updated_by_user}">{{updated_by_user}}</option><br>
+            <select name="state_master_table">
+                {% for i in stateobj %}
+                <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
+                {% endfor %}
             </select><br>
 
             <label>Updated Date</label><input type="date" name="txtup"><br>
+            {% endcomment %}
 
             <button type="submit" value="save">Submit</button>
         </form>

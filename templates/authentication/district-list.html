@@ -11,6 +11,8 @@
                 <th>District Name</th>
                 <th>State Id</th>
                 <th>Description </th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             {% for dist in distobj %}
             <tr>
@@ -18,9 +20,12 @@
                 <td>{{ dist.district_name }} </td>
                 <td>{{ dist.state }} </td>
                 <td>{{ dist.description }}</td>
+                <td><a href="/distedit/{{dist.id}}">Edit</a></td>
+                <td><a href="/distdelete/{{dist.id}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
+    <a href="/dist">Add</a>
 </body>
 </html>
