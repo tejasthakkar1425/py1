@@ -31,6 +31,8 @@ urlpatterns = [
     path('docView',views.docView,name="docView"),
     path('vehView',views.vehView,name="vehView"),
     path('vehroutView',views.vehroutView,name="vehroutView"),
+    path('user',views.user),
+    path('usersave',views.usersave),
     path('userView',views.userView,name="userView"),
     path('reviewView',views.reviewView,name="reviewView"),
     path('stateadd',views.stateadd),

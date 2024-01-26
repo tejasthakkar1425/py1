@@ -14,14 +14,14 @@
             <label>Enter District Id:</label>
             <select name="city_village_master_table">
                 {% for i in cityobj %}
-                <option name="txtdid" value="{{i.district}}">{{i.district}}</option>
+                <option name="txtdid" value="{{i.district_id}}">{{i.district}}</option>
                 {% endfor %}
             </select><br>
 
             <label>Enter State Id</label>
             <select name="city_village_master_table">
                 {% for i in cityobj %}
-                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
+                <option name="txtsid" value="{{i.state_id}}">{{i.state}}</option>
                 {% endfor %}
             </select><br>
 
@@ -32,7 +32,7 @@
             {% comment %}
             <label>Created By User Id</label>
             <select name="state_master_table">
-                {% for i in stateobj %}
+                {% for i in cityobj %}
                 <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
                 {% endfor %}
             </select><br>
@@ -41,7 +41,7 @@
 
             <label>Updated By User Id</label>
             <select name="state_master_table">
-                {% for i in stateobj %}
+                {% for i in cityobj %}
                 <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
                 {% endfor %}
             </select><br>

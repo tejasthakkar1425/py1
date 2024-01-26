@@ -4,16 +4,26 @@
         <title>Edit Details</title>
     </head>
     <body>
-        <form action="/cityupdate/{{city.id}}" method="POST">
+        <form action="/cityupdate/{{city.city_village_id}}" method="POST">
             <br>
             {% csrf_token %}
             <h3>Update Details</h3>
 
-            <label>Enter City Id:</label><input type="number" name="txtcid" value="{{city.city_village_id}}"/><br>
-
-            <label>Enter District Id:</label><input type="number" name="txtdid" value="{{city.district}}"><br>
+            {% comment %}
+            <label>Enter District Id:</label>
+            <select name="city_village_master_table">
+                {% for i in cityobj %}
+                <option name="txtdid" value="{{i.district}}">{{i.district}}</option>
+                {% endfor %}
+            </select><br>
             
             <label>Enter State Id:</label><input type="number" name="txtsid" value="{{city.state}}"/><br>
+            <select name="city_village_master_table">
+                {% for i in cityobj %}
+                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
+                {% endfor %}
+            </select><br>
+            {% endcomment %}
 
             <label>Enter City Name:</label><input type="text" name="txtcname" value="{{city.city_village_name}}"/><br>
 
@@ -22,7 +32,7 @@
              {% comment %}
             <label>Created By User Id</label>
             <select name="state_master_table">
-                {% for i in stateobj %}
+                {% for i in cityobj %}
                 <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
                 {% endfor %}
             </select><br>
@@ -31,7 +41,7 @@
 
             <label>Updated By User Id</label>
             <select name="state_master_table">
-                {% for i in stateobj %}
+                {% for i in cityobj %}
                 <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
                 {% endfor %}
             </select><br>

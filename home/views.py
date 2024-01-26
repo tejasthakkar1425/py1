@@ -48,20 +48,21 @@ def stateedit(request,id):
     return render(request, "authentication/stateedit.html",{"state":state})
 
 def stateupdate(request,id):
-    state=StateMasterTable.objects.get(state_id=id)
-    name=request.POST.get('txtsname')
-    desc=request.POST.get('txtdesc')
-    #cbui=request.POST.get('txtuser')
-    #cd=request.POST.get('txtuserdate')
-    #ubui=request.POST.get('txtupdate')
-    #ud=request.POST.get('txtup')
-    state.stat_name=name
-    state.description=desc
-    #state.created_by_user=cbui
-    #state.created_date=cd
-    #state.updated_by_user=ubui
-    #state.updated_date=ud
-    #state.save()
+    if request.method=="POST":
+        state=StateMasterTable.objects.get(state_id=id)
+        sname=request.POST.get('txtname')
+        sdesc=request.POST.get('txtsdesc')
+        #cbui=request.POST.get('txtuser')
+        #cd=request.POST.get('txtuserdate')
+        #ubui=request.POST.get('txtupdate')
+        #ud=request.POST.get('txtup')
+        state.stat_name=sname
+        state.description=sdesc
+        #state.created_by_user=cbui
+        #state.created_date=cd
+        #state.updated_by_user=ubui
+        #state.updated_date=ud
+        state.save()
     return redirect("/stateView")
 
 def statedelete(request,id):
@@ -94,18 +95,18 @@ def cityedit(request,id):
 
 def cityupdate(request,id):
         city=CityVillageMaster.objects.get(city_village_id=id)
-        cid=request.POST.get('txtcid')
-        did=request.POST.get('txtdid')
-        sid=request.POST.get('txtsid')
+        #cid=request.POST.get('txtcid')
+        #did=request.POST.get('txtdid')
+        #sid=request.POST.get('txtsid')
         name=request.POST.get('txtcname')
         desc=request.POST.get('txtcdesc')
         #cbui=request.POST.get('txtuser')
         #cd=request.POST.get('txtuserdate')
         #ubui=request.POST.get('txtupdate')
         #ud=request.POST.get('txtup')
-        city.city_village_id=cid
-        city.district=did
-        city.state=sid
+        #city.city_village_id=cid
+        #city.district=did
+        #city.state=sid
         city.city_village_name=name
         city.description=desc
         #city.created_by_user=cbui
@@ -194,9 +195,9 @@ def distupdate(request,id):
     return redirect("/distView")
 
 def distdelete(request,id):
-    dist=DistrictMaster.object.get(district_id=id)
+    dist=DistrictMaster.objects.get(district_id=id)
     dist.delete()
-    return render("/distView")
+    return redirect("/distView")
 
 def distView(request):
     objDistMaster = DistrictMaster.objects.all()
@@ -217,6 +218,20 @@ def vehroutView(request):
     objVehroutMaster = VehicleRoutMaster.objects.all()
     print(objVehroutMaster)
     return render(request, "authentication/vehicle_rout_master-list.html",{'vehroutobj':objVehroutMaster})
+
+def user(request):
+    userobj=UserMasterTable.objects.all()
+    print(userobj)
+    return render(request, "authentication/useradd.html",{'userobj':userobj})
+
+def usersave(request):
+    id=request.POST.get('txtuid')
+    mail=request.POST.get('txtemail')
+    name=request.POST.get('txtuname')
+    pas=request.POST.get('txtpass')
+    user=UserMasterTable(user_master_id=id,user_email_id=mail,user_name=name,user_password=pas)
+    user.save()
+    return redirect("/userView")
 
 def userView(request):
     objUserMaster = UserMasterTable.objects.all()
