@@ -233,10 +233,66 @@ def usersave(request):
     user.save()
     return redirect("/userView")
 
+def useredit(request,id):
+    user=UserMasterTable.objects.get(user_master_id=id)
+    return render(request, "authentication/useredit.html",{'user':user})
+
+def userupdate(request,id):
+    user=UserMasterTable.objects.get(user_master_id=id)
+    email=request.POST.get('txtemail')
+    name=request.POST.get('txtuname')
+    pas=request.POST.get('txtpass')
+    user.user_email_id=email
+    user.user_name=name
+    user.user_password=pas
+    user.save()
+    return redirect("/userView")
+
+def userdelete(request,id):
+    user=UserMasterTable.objects.get(user_master_id=id)
+    user.delete()
+    return redirect("/userView")
+
 def userView(request):
     objUserMaster = UserMasterTable.objects.all()
     print(objUserMaster)
     return render(request, "authentication/user_master-list.html",{'userobj':objUserMaster})
+
+def review(request):
+    reviewobj1=ReviewFeedback.objects.all()
+    print(reviewobj1)
+    return render(request, "authentication/reviewadd.html",{'reviewobj1':reviewobj1})
+
+def reviewsave(request):
+    rid=request.POST.get('txtrid')
+    ruid=request.POST.get('txtruid')
+    img=request.POST.get('txtrimg')
+    rdesc=request.POST.get('txtrdesc')
+    rstar=request.POST.get('txtrstar')
+    review=ReviewFeedback(review_id=rid,user=ruid,review_image=img,review_description=rdesc,review_star=rstar)
+    review.save()
+    return redirect("/reviewView")
+
+def reviewedit(request,id):
+    review=ReviewFeedback.objects.get(review_id=id)
+    return render(request, "authentication/reviewedit.html",{'review':review})
+
+def reviewupdate(request,id):
+    review=ReviewFeedback.objects.get(review_id=id)
+    rimg=request.POST.get('txtrimg')
+    rdesc=request.POST.get('txtrdesc')
+    rstar=request.POST.get('txtrstar')
+    review.review_image=rimg
+    review.review_description=rdesc
+    review.review_star=rstar
+    review.save()
+    return redirect("/reviewView")
+
+def reviewdelete(request,id):
+    review=ReviewFeedback.objects.get(review_id=id)
+    review.delete()
+    return redirect("/reviewView")
+
 
 def reviewView(request):
     objReviewMaster = ReviewFeedback.objects.all()

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Details</title>
+    </head>
+    <body>
+        <form action="/userupdate/{{user.user_master_id}}" method="POST">
+            <br>
+            {% csrf_token %}
+            <h3>Update Details</h3>
+
+            <label>Enter Email Id</label><input type="Email" name="txtemail" value="{{user.user_email_id}}"><br>
+
+            <label>Enter Username</label><input type="text" name="txtuname" value="{{user.user_name}}"><br>
+
+            <label>Enter Password</label><input type="Password" name="txtpass" value="{{user.user_password}}"><br>
+            
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

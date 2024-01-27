@@ -16,6 +16,8 @@
             <th>Review Image</th>
             <th>Review Description</th>
             <th>Review Star</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         {% for review in reviewobj %}
         <tr>
@@ -24,9 +26,12 @@
             <td>{{ review.review_image }} </td>
             <td>{{ review.review_description }} </td>
             <td>{{ review.review_star }}</td>
+            <td><a href="/reviewedit/{{review.id}}">Edit</a></td>
+            <td><a href="/reviewdelete/{{review.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
+    <a href="/review">Add</a>
 </div>
 </body>
 </html>

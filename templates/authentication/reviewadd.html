@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/reviewsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Review Id</label><input type="number" name="txtrid"><br>
+
+            <label>Enter User Id</label>
+            <select name="review&feedback">
+                {% for i in reviewobj1 %}
+                <option name="txtruid" value="{{i.user_id}}">{{i.user}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Review Image</label><input type="text" name="txtrimg"><br>
+
+            <label>Enter Description</label><input type="text" name="txtrdesc"><br>
+
+            <label>Enter Review Star</label><input type="number" name="txtrstar"><br>
+
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>
