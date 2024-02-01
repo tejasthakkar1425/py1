@@ -16,6 +16,8 @@
                 <th>GST Charges</th>
                 <th>Net Amount</th>
                 <th>Is Cancel</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             {% for doc in docobj %}
             <tr>
@@ -26,9 +28,12 @@
                 <td>{{ doc.gst_charges }}</td>
                 <td>{{ doc.net_amount }}</td>
                 <td>{{ doc.is_cancel }}</td>
+                <td><a href="/docedit/{{doc.id}}">Edit</a></td>
+                <td><a href="/docdelete/{{doc.id}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
+    <a href="/doc">Add</a>
 </body>
 </html>

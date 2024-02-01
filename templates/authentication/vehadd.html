@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Vehicle Details</title>
+    </head>
+    <body>
+        <form method="post" action="/vehsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Vehicle Id</label><input type="number" name="txtvid"><br>
+
+            <label>Enter Vehicle Name</label><input type="text" name="txtvname"><br>
+
+            <label>Enter RC BookNo.</label><input type="text" name="txtrcnum"><br>
+
+            <label>Enter Register Number</label><input type="number" name="txtrnum"><br>
+
+            <label>Enter Capacity</label><input type="number" name="txtcap"><br>
+
+            <label>Insurance From</label><input type="date" name="txtfdate"><br>
+
+            <label>Insurance To</label><input type="date" name="txttdate"><br>
+
+            <label>Insurance Company Name</label><input type="text" name="txtcom"><br>
+
+            <label>Owner Name</label><input type="text" name="txtown"><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

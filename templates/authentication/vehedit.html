@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Vehicle Details</title>
+    </head>
+    <body>
+        <form method="post" action="/vehupdate/{{veh.vehicle_id}}">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Vehicle Name</label><input type="text" name="txtvname" value="{{veh.vehicle_name}}""><br>
+
+            <label>Enter RC BookNo.</label><input type="text" name="txtrcnum" value="{{veh.rc_book_number}}"><br>
+
+            <label>Enter Register Number</label><input type="number" name="txtrnum" value="{{veh.reg_no}}"><br>
+
+            <label>Enter Capacity</label><input type="number" name="txtcap" value="{{veh.capacity}}"><br>
+
+            <label>Insurance From</label><input type="date" name="txtfdate" value="{{veh.insurance_from}}"><br>
+
+            <label>Insurance To</label><input type="date" name="txttdate" value="{{veh.insurance_to}}"><br>
+
+            <label>Insurance Company Name</label><input type="text" name="txtcom" value="{{veh.insurance_company_name}}"><br>
+
+            <label>Owner Name</label><input type="text" name="txtown" value="{{veh.owner_name}}"><br>
+
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

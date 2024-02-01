@@ -16,6 +16,8 @@
             <th>To State Id</th>
             <th>Veh Rout Det</th>
             <th>Veh Rout Det Id</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         {% for vehrout in vehroutobj %}
         <tr>
@@ -24,9 +26,12 @@
             <td>{{ vehrout.to_state }} </td>
             <td>{{ vehrout.vehc_rout_det }} </td>
             <td>{{ vehrout.veh_rout_details_id }}</td>
+            <td><a href="/vehroutedit/{{vehrout.id}}">Edit</a></td>
+            <td><a href="/vehroutdelete/{{vehrout.id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
 </div>
+<a href="/vehrout">Add</a>
 </body>
 </html>

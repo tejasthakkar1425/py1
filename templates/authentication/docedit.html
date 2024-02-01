@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/docupdate/{{doc.doc_id}}">
+            <br>
+            {% csrf_token %}
+            <h3>Edit Details</h3>
+
+            <label>Enter Doc Number</label><input type="text" name="txtdnum" value={{doc.doc_number}}><br>
+
+            <label>Enter Doc Date</label><input type="date" name="txtddate" value={{doc.doc_date}}><br>
+
+            <label>Enter LR Number</label><input type="number" name="txtlnum" value={{doc.lr_number}}><br>
+
+            <label>Gst Charges Id</label>
+            <select name="txtgid" value={{doc.gst_charges}}>
+                {% for i in docobj %}
+                <option name="" value="{{i.gst_charges}}">{{i.gst_charges}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Net Amount</label><input type="number" name="txtnet" value={{doc.net_amount}}><br>
+
+            <label>Is Cancel</label>
+            <select>
+                <option name="txtis" value="{{doc.is_cancel}}">1.Yes</option>
+                <option name="txtis" value="{{doc.is_cancel}}">2.No</option>
+            </select><br>
+
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>

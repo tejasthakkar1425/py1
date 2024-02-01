@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Enter Deatils</title>
+    </head>
+    <body>
+        <form method="post" action="/vehroutsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Vehicle Rout Id</label><input type="number" name="txtvrid"><br>
+
+            <label>From State Id</label>
+            <select name="veh_rout_master_table">
+                {% for i in vehroutobj %}
+                <option name="txtfsid" value="{{i.from_state}}">{{i.from_state}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>To State Id</label>
+            <select name="veh_rout_master_table">
+                {% for i in vehroutobj %}
+                <option name="txttsid" value="{{i.to_state}}">{{i.to_state}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Vehicle Rout Details</label><input type="text" name="txtvrd"><br>
+
+            <label>Enter Vehicle Rout Details Id</label>
+            <select name="veh_rout_master_table">
+                {% for i in vehroutobj %}
+                <option name="txtvrdid" value="{{i.veh_rout_details}}">{{i.veh_rout_details}}</option>
+                {% endfor %}
+            </select><br>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

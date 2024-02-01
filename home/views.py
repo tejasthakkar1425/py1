@@ -20,6 +20,8 @@ def service(request):
 def login(request):
     return render(request, "authentication/login.html")
 """
+def admin(request):
+    return render(request, "authentication/masterpage.html")
 
 def stateadd(request):
     stateobj=StateMasterTable.objects.all()
@@ -204,15 +206,144 @@ def distView(request):
     print(objDistMaster)
     return render(request, "authentication/district-list.html",{'distobj':objDistMaster})
 
+def doc(request):
+    docobj=DocMaster.objects.all()
+    print(docobj)
+    return render(request, "authentication/docadd.html",{'docobj':docobj})
+
+def docsave(request):
+    id=request.POST.get('txtdocid')
+    num=request.POST.get('txtdnum')
+    date=request.POST.get('txtddate')
+    lnum=request.POST.get('txtlnum')
+    gid=request.POST.get('txtgid')
+    net=request.POST.get('txtnet')
+    cancel=request.POST.get('txtis')
+    doc=DocMaster(doc_id=id,doc_number=num,doc_date=date,lr_number=lnum,gst_charges=gid,net_amount=net,is_cancel=cancel)
+    doc.save()
+    return redirect("/docView")
+
+def docedit(request,id):
+    doc=DocMaster.objects.get(doc_id=id)
+    return render(request, "authentication/docedit.html",{'doc':doc})
+
+def docupdate(request,id):
+    doc=DocMaster.objects.get(doc_id=id)
+    num=request.POST.get('txtdnum')
+    date=request.POST.get('txtddate')
+    lnum=request.POST.get('txtlnum')
+    gid=request.POST.get('txtgid')
+    net=request.POST.get('txtnet')
+    cancel=request.POST.get('txtis')
+    doc.doc_number=num
+    doc.doc_date=date
+    doc.lr_number=lnum
+    doc.gst_charges=gid
+    doc.net_amount=net
+    doc.is_cancel=cancel
+    doc.save()
+    return redirect("/docView")
+
+def docdelete(request,id):
+    doc=DocMaster.objects.get(doc_id=id)
+    doc.delete()
+    return redirect("/docView")
+
 def docView(request):
     objDocMaster = DocMaster.objects.all()
     print(objDocMaster)
     return render(request, "authentication/doc-list.html",{'docobj':objDocMaster})
 
+def veh(request):
+    vehobj=VehicleMaster.objects.all()
+    print(vehobj)
+    return render(request, "authentication/vehadd.html",{'vehobj':vehobj})
+
+def vehsave(request):
+    id=request.POST.get('txtvid')
+    name=request.POST.get('txtvname')
+    rcnum=request.POST.get('txtrcnum')
+    rnum=request.POST.get('txtrnum')
+    cap=request.POST.get('txtcap')
+    insf=request.POST.get('txtfdate')
+    inst=request.POST.get('txttdate')
+    com=request.POST.get('txtcom')
+    own=request.POST.get('txtown')
+    veh=VehicleMaster(vehicle_id=id,vehicle_name=name,rc_book_number=rcnum,reg_no=rnum,capacity=cap,insurance_from=insf,insurance_to=inst,insurance_company_name=com,owner_name=own)
+    veh.save()
+    return redirect("/vehView")
+
+def vehedit(request,id):
+    veh=VehicleMaster.objects.get(vehicle_id=id)
+    return render(request,"authentication/vehedit.html",{'veh':veh})
+
+def vehupdate(request,id):
+    veh=VehicleMaster.objects.get(vehicle_id=id)
+    name=request.POST.get('txtvname')
+    rcnum=request.POST.get('txtrcnum')
+    rnum=request.POST.get('txtrnum')
+    cap=request.POST.get('txtcap')
+    insf=request.POST.get('txtfdate')
+    inst=request.POST.get('txttdate')
+    com=request.POST.get('txtcom')
+    own=request.POST.get('txtown')
+    veh.vehicle_name=name
+    veh.rc_book_number=rcnum
+    veh.reg_no=rnum
+    veh.capacity=cap
+    veh.insurance_from=insf
+    veh.insurance_to=inst
+    veh.insurance_company_name=com
+    veh.owner_name=own
+    veh.save()
+    return redirect("/vehView")
+
+def vehdelete(request,id):
+    veh=VehicleMaster.objects.get(vehicle_id=id)
+    veh.delete()
+    return redirect("/vehView")
+
 def vehView(request):
     objVehMaster = VehicleMaster.objects.all()
     print(objVehMaster)
     return render(request, "authentication/vehicle_master-list.html",{'vehobj':objVehMaster})
+
+def vehrout(request):
+    vehroutobj=VehicleRoutMaster.objects.all()
+    print(vehroutobj)
+    return render(request, "authentication/vehroutadd.html",{'vehroutobj':vehroutobj})
+
+def vehroutsave(request):
+    id=request.POST.get('txtvrid')
+    fsid=request.POST.get('txtfsid')
+    tsid=request.POST.get('txttsid')
+    vrd=request.POST.get('txtvrd')
+    vrdid=request.POST.get('txtvrdid')
+    vehrout=VehicleRoutMaster(veh_rout_id=id,from_state=fsid,to_state=tsid,vehc_rout_det=vrd,veh_rout_details=vrdid)
+    vehrout.save()
+    return redirect("/vehroutView")
+
+def vehroutedit(request,id):
+    vehrout=VehicleRoutMaster.objects.get(veh_rout_id=id)
+    return render(request, "authentication/vehroutedit.html",{'vehrout':vehrout})
+
+def vehroutupdate(request,id):
+    vehrout=VehicleRoutMaster.objects.get(veh_rout_id=id)
+    fsid=request.POST.get('txtfsid')
+    tsid=request.POST.get('txttsid')
+    vrd=request.POST.get('txtvrd')
+    vrdid=request.POST.get('txtvrdid')
+    vehrout.from_state=fsid
+    vehrout.to_state=tsid
+    vehrout.vehc_rout_det=vrd
+    vehrout.veh_rout_details=vrdid
+    vehrout.save()
+    return redirect("/vehroutView")
+
+def vehroutdelete(request,id):
+    vehrout=VehicleRoutMaster.objects.get(veh_rout_id=id)
+    vehrout.delete()
+    return redirect("/vehroutView")
 
 def vehroutView(request):
     objVehroutMaster = VehicleRoutMaster.objects.all()
@@ -292,7 +423,6 @@ def reviewdelete(request,id):
     review=ReviewFeedback.objects.get(review_id=id)
     review.delete()
     return redirect("/reviewView")
-
 
 def reviewView(request):
     objReviewMaster = ReviewFeedback.objects.all()
