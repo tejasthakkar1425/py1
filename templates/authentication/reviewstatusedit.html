@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Details</title>
+    </head>
+    <body>
+        <form action="/reviewstatusupdate/{{revstaobj.review_status_id}}" method="POST">
+            <br>
+            {% csrf_token %}
+            <h3>Update Details</h3>
+
+            <label>Enter Review Id</label>
+            <select name="review&feedback_status">
+                {% for i in revsta %}
+                <option name="txtrid" value="{{i.review}}">{{i.review}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Status</label><input type="text" name="txtstatus" value="{{revsta.status}}"><br>
+
+            <label>Enter User Id</label>
+            <select name="review&feedback_status">
+                {% for i in revsta %}
+                <option name="txtuid" value="{{i.user}}">{{i.user}}</option>
+                {% endfor %}
+            </select><br>
+            
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Doc Veh Det Id</th>
+                <th>Doc Id</th>
+                <th>Vehicle Id</th>
+                <th>Veh Rout Id</th>
+                <th>Description</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for docvehdet in docvehdet %}
+            <tr>
+                <td> {{ docvehdet.doc_veh_det_id }}</td>
+                <td>{{ docvehdet.doc }} </td>
+                <td>{{ docvehdet.veh }} </td>
+                <td>{{ docvehdet.vehc_rout }}</td>
+                <td>{{ docvehdet.description }}</td>
+                <td><a href="/docvehdetedit/{{docvehdet.id}}">Edit</a></td>
+                <td><a href="/docvehdetdelete/{{docvehdet.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/docvehdet">Add</a>
+</body>
+</html>

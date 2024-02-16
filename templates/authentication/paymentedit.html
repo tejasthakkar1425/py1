@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Vehicle Details</title>
+    </head>
+    <body>
+        <form method="post" action="/paymentupdate/{{payment.doc_pay_detail_id}}">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Payment Details</label><input type="text" name="txtpdet" value="{{payment.doc_pay_detail}}""><br>
+
+            <label>Doc Id</label>
+            <select name="doc_detail_table">
+                {% for i in paymentobj %}
+                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Payment Status</label><input type="text" name="txtpaysta" value="{{payment.pay_status}}"><br>
+
+            <label>Enter Payment Method</label><input type="text" name="txtpaymet" value="{{payment.pay_method}}"><br>
+
+            <label>Transection Id</label><input type="number" name="txttransid" value="{{payment.pay_tran_id}}"><br>
+
+            <label>Payment Response</label><input type="text" name="txtresp" value="{{payment.pay_response}}"><br>
+
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

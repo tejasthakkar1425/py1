@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vehicle Master View</title>
+</head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Veh Rout Det Id</th>
+                <th>Veh Rout Id</th>
+                <th>State Id</th>
+                <th>District Id</th>
+                <th>City Village Id</th>
+                <th>Description</th>
+                <th>Char Below 50</th>
+                <th>Char Below 150</th>
+                <th>Char Above 150</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for vehroutdet in vehroutdetobj %}
+            <tr>
+                <td> {{ vehroutdet.veh_rout_det_id }}</td>
+                <td>{{ vehroutdet.veh_rout }} </td>
+                <td>{{ vehroutdet.state }} </td>
+                <td>{{ vehroutdet.ditrict }}</td>
+                <td>{{ vehroutdet.city_village}}</td>
+                <td>{{ vehroutdet.decription }}</td>
+                <td>{{ vehroutdet.char_bel_50 }}</td>
+                <td>{{ vehroutdet.char_bel_150 }}</td>
+                <td>{{ vehroutdet.char_abo_150 }}</td>
+                <td><a href="/vehroutdetedit/{{vehroutdet.id}}">Edit</a></td>
+                <td><a href="/vehroutdetdelete/{{vehroutdet.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/vehroutdet">Add</a>
+</body>
+</html>

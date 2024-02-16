@@ -428,3 +428,357 @@ def reviewView(request):
     objReviewMaster = ReviewFeedback.objects.all()
     print(objReviewMaster)
     return render(request, "authentication/review&feedback-list.html",{'reviewobj':objReviewMaster})
+
+def complain(request):
+    complainobj=ComplainMaster.objects.all()
+    print(complainobj)
+    return render(request, "authentication/complainadd.html",{'complainobj':complainobj})
+
+def complainsave(request):
+    id=request.POST.get('txtcid')
+    uid=request.POST.get('txtuid')
+    desc=request.POST.get('txtcdesc')
+    complain=ComplainMaster(com_id=id,user_master=uid,com_description=desc)
+    complain.save()
+    return redirect("/complainView")
+
+def complainedit(request,id):
+    complain=ComplainMaster.objects.get(com_id=id)
+    return render(request, "authentication/complainedit.html",{'complain':complain})
+
+def complainupdate(request,id):
+    complain=ComplainMaster.objects.get(com_id=id)
+    uid=request.POST.get('txtuid')
+    desc=request.POST.get('txtcdesc')
+    complain.user_master=uid
+    complain.com_description=desc
+    complain.save()
+    return redirect("/complainView")
+
+def complaindelete(request,id):
+    complain=ComplainMaster.objects.get(com_id=id)
+    complain.delete()
+    return redirect("/complainView")
+
+def complainView(request):
+    complainobj=ComplainMaster.objects.all()
+    print(complainobj)
+    return render(request, "authentication/complainlist.html",{'complainobj':complainobj})
+
+def complainstatus(request):
+    complainstatusobj=ComplainStatus.objects.all()
+    print(complainstatusobj)
+    return render(request, "authentication/complainstatusadd.html",{'complainstatusobj':complainstatusobj})
+
+def complainstatussave(request):
+    cid=request.POST.get('txtcid')
+    id=request.POST.get('txtcsid')
+    date=request.POST.get('txtcsdate')
+    status=request.POST.get('txtcstatus')
+    complainstatus=ComplainStatus(com=cid,com_status_id=id,com_status_date=date,com_status=status)
+    complainstatus.save()
+    return redirect("/complainsView")
+
+def complainstatusedit(request,id):
+    complainstatus=ComplainStatus.objects.get(com_status_id=id)
+    return render(request, "authentication/complainsedit.html",{'complainstatus':complainstatus})
+
+def complainstatusupdate(request,id):
+    complainstatus=ComplainStatus.objects.get(com_status_id=id)
+    cid=request.POST.get('txtcid')
+    date=request.POST.get('txtcsdate')
+    status=request.POST.get('txtcstatus')
+    complainstatus.com=cid
+    complainstatus.com_status_date=date
+    complainstatus.com_status=status
+    complainstatus.save()
+    return redirect("/complainsView")
+
+def complainstatusdelete(request,id):
+    complainstatus=ComplainStatus.objects.get(com_status_id=id)
+    complainstatus.delete()
+    return redirect("/complainsView")
+
+def complainsView(request):
+    complainstatusobj=ComplainStatus.objects.all()
+    print(complainstatusobj)
+    return render(request, "authentication/complainstatuslist.html",{'complainstatusobj':complainstatusobj})
+
+def docdetail(request):
+    docdetobj=DocDetail.objects.all()
+    print(docdetobj)
+    return render(request, "authentication/docdetadd.html",{'docdetobj':docdetobj})
+
+def docdetsave(request):
+    did=request.POST.get('txtddid')
+    id=request.POST.get('txtdid')
+    addre=request.POST.get('txtdadd')
+    vrid=request.POST.get('txtvrid')
+    wet=request.POST.get('txtwet')
+    vrdid=request.POST.get('txtvrdid')
+    amount=request.POST.get('txtamount')
+    docdet=DocDetail(doc_detail_id=did,doc=id,doc_address=addre,vehc_rout=vrid,doc_weight=wet,veh_rout_det=vrdid,total_amount=amount)
+    docdet.save()
+    return redirect("/docdetView")
+
+def docdetedit(request,id):
+    docdet=DocDetail.objects.get(doc_detail_id=id)
+    return render(request, "authentication/docdetedit.html",{'docdet':docdet})
+
+def docdetupdate(request,id):
+    docdet=DocDetail.objects.get(doc_detail_id=id)
+    id=request.POST.get('txtdid')
+    addre=request.POST.get('txtdadd')
+    vrid=request.POST.get('txtvrid')
+    wet=request.POST.get('txtwet')
+    vrdid=request.POST.get('txtvrdid')
+    amount=request.POST.get('txtamount')
+    docdet.doc=id
+    docdet.doc_address=addre
+    docdet.vehc_rout=vrid
+    docdet.doc_weight=wet
+    docdet.veh_rout_det=vrdid
+    docdet.total_amount=amount
+    docdet.save()
+    return redirect("/docdetView")
+
+def docdetdelete(request,id):
+    docdet=DocDetail.objects.get(doc_detail_id=id)
+    docdet.delete()
+    return redirect("/docdetView")
+
+def docdetView(request):
+    docdetobj=DocDetail.objects.all()
+    print(docdetobj)
+    return render(request, "authentication/docdetlist.html",{'docdetobj':docdetobj})
+
+def docvehdet(request):
+    docvehdet=DocVehDetailsTable.objects.all()
+    print(docvehdet)
+    return render(request, "authentication/docvehdet.html",{'docvehdet':docvehdet})
+
+def docvehdetsave(request):
+    id=request.POST.get('txtdvdid')
+    did=request.POST.get('txtdid')
+    vid=request.POST.get('txtvid')
+    vrid=request.POST.get('txtvrid')
+    desc=request.POST.get('txtdesc')
+    docvehdet=DocVehDetailsTable(doc_veh_det_id=id,doc=did,veh=vid,vehc_rout=vrid,description=desc)
+    docvehdet.save()
+    return redirect("/docvehdetView")
+
+def docvehdetedit(request,id):
+    docvehdet=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
+    return render(request, "authentication/docvehdetedit.html",{'docvehdet':docvehdet})
+
+def docvehdetupdate(request,id):
+    docvehdetobj=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
+    did=request.POST.get('txtdid')
+    vid=request.POST.get('txtvid')
+    vrid=request.POST.get('txtvrid')
+    desc=request.POST.get('txtdesc')
+    docvehdetobj.doc=did
+    docvehdetobj.veh=vid
+    docvehdetobj.vehc_rout=vrid
+    docvehdetobj.description=desc
+    docvehdetobj.save()
+    return redirect("/docvehdetView")
+
+def docvehdetdelete(request,id):
+    docvehdet=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
+    docvehdet.delete()
+    return redirect("/docvehdetView")
+
+def docvehdetView(request):
+    docvehdet=DocVehDetailsTable.objects.all()
+    print(docvehdet)
+    return render(request, "authentication/docvehdetlist.html",{'docvehdet':docvehdet})
+
+def reviewstatus(request):
+    revstaobj=ReviewFeedbackStatus.objects.all()
+    print(revstaobj)
+    return render(request, "authentication/reviewstatus.html",{'revstaobj':revstaobj})
+
+def reviewstatussave(request):
+    id=request.POST.get('txtrsid')
+    rid=request.POST.get('txtrid')
+    stat=request.POST.get('txtstatus')
+    uid=request.POST.get('txtuid')
+    reviewstatus=ReviewFeedbackStatus(review_status_id=id,review=rid,status=stat,user=uid)
+    reviewstatus.save()
+    return redirect("/reviewstatusView")
+
+def reviewstatusedit(request,id):
+    revsta=ReviewFeedbackStatus.objects.get(review_status_id=id)
+    return render(request, "authentication/reviewstatusedit.html",{'revstaobj':revsta})
+
+def reviewstatusupdate(request,id):
+    revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
+    rid=request.POST.get('txtrid')
+    stat=request.POST.get('txtstatus')
+    uid=request.POST.get('txtuid')
+    revstaobj.review=rid
+    revstaobj.status=stat
+    revstaobj.user=uid
+    revstaobj.save()
+    return redirect("/reviewstatusView")
+
+def reviewstatusdelete(request,id):
+    revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
+    revstaobj.delete()
+    return redirect("/reviewstatusView")
+
+def reviewstatusView(request):
+    revstaobj=ReviewFeedbackStatus.objects.all()
+    print(revstaobj)
+    return render(request, "authentication/reviewstatuslist.html",{'revstaobj':revstaobj})
+
+def payment(request):
+    paymentobj=PaymentMaster.objects.all()
+    print(paymentobj)
+    return render(request, "authentication/paymentadd.html",{'paymentobj':paymentobj})
+
+def paymentsave(request):
+    detail=request.POST.get('txtpdet')
+    payid=request.POST.get('txtpayid')
+    did=request.POST.get('txtdid')
+    paysta=request.POST.get('txtpaysta')
+    paymet=request.POST.get('txtpaymet')
+    transid=request.POST.get('txttransid')
+    resp=request.POST.get('txtresp')
+    payment=PaymentMaster(doc_pay_detail=detail,doc_pay_detail_id=payid,doc=did,pay_status=paysta,pay_method=paymet,pay_tran_id=transid,pay_response=resp)
+    payment.save()
+    return redirect("/paymentView")
+
+def paymentedit(request,id):
+    payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
+    return render(request, "authentication/paymentedit.html",{'payment':payment})
+
+def paymentupdate(request,id):
+    payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
+    detail=request.POST.get('txtpdet')
+    did=request.POST.get('txtdid')
+    paysta=request.POST.get('txtpaysta')
+    paymet=request.POST.get('txtpaymet')
+    transid=request.POST.get('txttransid')
+    resp=request.POST.get('txtresp')
+    payment.doc_pay_detail=detail
+    payment.doc=did
+    payment.pay_status=paysta
+    payment.pay_method=paymet
+    payment.pay_tran_id=transid
+    payment.pay_response=resp
+    payment.save()
+    return redirect("/paymentView")
+
+def paymentdelete(request,id):
+    payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
+    payment.delete()
+    return redirect("/paymentView")
+
+def paymentView(request):
+    paymentobj=PaymentMaster.objects.all()
+    print(paymentobj)
+    return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
+
+def userdet(request):
+    userdetobj=UserDetails.objects.all()
+    print(userdetobj)
+    return render(request, "authentication/userdetail.html",{'userdetobj':userdetobj})
+
+def userdetsave(request):
+    id=request.POST.get('txtudid')
+    uid=request.POST.get('txtuid')
+    typ=request.POST.get('txttyp')
+    pic=request.POST.get('txtpic')
+    con=request.POST.get('txtcon')
+    gen=request.POST.get('txtgen')
+    add=request.POST.get('txtadd')
+    userdet=UserDetails(user_deatil_id=id,user_master=uid,user_type=typ,profile_pic=pic,contact=con,gender=gen,address=add)
+    userdet.save()
+    return redirect("/userdetView")
+
+def userdetedit(request,id):
+    userdet=UserDetails.objects.get(user_deatil_id=id)
+    return render(request, "authentication/userdetedit.html",{'userdet':userdet})
+
+def userdetupdate(request,id):
+    userdet=UserDetails.objects.get(user_deatil_id=id)
+    uid=request.POST.get('txtuid')
+    typ=request.POST.get('txttyp')
+    pic=request.POST.get('txtpic')
+    con=request.POST.get('txtcon')
+    gen=request.POST.get('txtgen')
+    add=request.POST.get('txtadd')
+    userdet.user_master=uid
+    userdet.user_type=typ
+    userdet.profile_pic=pic
+    userdet.contact=con
+    userdet.gender=gen
+    userdet.address=add
+    userdet.save()
+    return redirect("/userdetView")
+
+def userdetdelete(request,id):
+    userdet=UserDetails.objects.all()
+    userdet.delete()
+    return redirect("/userdetView")
+
+def userdetView(request):
+    userdetobj=UserDetails.objects.all()
+    print(userdetobj)
+    return render(request, "authentication/userdetlist.html",{'userdetobj':userdetobj})
+
+def vehroutdet(request):
+    vehroutdetobj=VehRoutDetalis.objects.all()
+    print(vehroutdetobj)
+    return render(request, "authentication/vehroutdet.html",{'vehroutdetobj':vehroutdetobj})
+
+def vehroutdetsave(request):
+    id=request.POST.get('txtvrdid')
+    vrid=request.POST.get('txtvrid')
+    sid=request.POST.get('txtsid')
+    did=request.POST.get('txtdid')
+    cid=request.POST.get('txtcid')
+    desc=request.POST.get('txtdesc')
+    chbe50=request.POST.get('txtchbe50')
+    chbe150=request.POST.get('txtchbe150')
+    chab150=request.POST.get('txtchab150')
+    vehroutdet=VehRoutDetalis(veh_rout_det_id=id,veh_rout=vrid,state=sid,ditrict=did,city_village=cid,decription=desc,char_bel_50=chbe50,char_bel_150=chbe150,char_abo_150=chab150)
+    vehroutdet.save()
+    return redirect("/vehroutdetView")
+
+def vehroudetedit(request,id):
+    vehroutdet=VehRoutDetalis.objects.get(veh_rout_det_id=id)
+    return render(request, "authentication/vehroutdetedit.html",{'vehroutdet':vehroutdet})
+
+def vehroutdetupdate(request,id):
+    vehroutdet=VehRoutDetalis.objects.get(veh_rout_det_id=id)
+    vrid=request.POST.get('txtvrid')
+    sid=request.POST.get('txtsid')
+    did=request.POST.get('txtdid')
+    cid=request.POST.get('txtcid')
+    desc=request.POST.get('txtdesc')
+    chbe50=request.POST.get('txtchbe50')
+    chbe150=request.POST.get('txtchbe150')
+    chab150=request.POST.get('txtchab150')
+    vehroutdet.veh_rout=vrid
+    vehroutdet.state=sid
+    vehroutdet.ditrict=did
+    vehroutdet.city_village=cid
+    vehroutdet.decription=desc
+    vehroutdet.char_bel_50=chbe50
+    vehroutdet.char_bel_150=chbe150
+    vehroutdet.char_abo_150=chab150
+    vehroutdet.save()
+    return redirect("/vehroutdetView")
+
+def vehroutdetdelete(request,id):
+    vehroutdet=VehRoutDetalis.objects.get(veh_rout_det_id=id)
+    vehroutdet.delete()
+    return redirect("/vehroutdetView")
+
+def vehroutdetView(request):
+    vehroutdetobj=VehRoutDetalis.objects.all()
+    print(vehroutdetobj)
+    return render(request, "authentication/vehroutdetlist.html",{'vehroutdetobj':vehroutdetobj})

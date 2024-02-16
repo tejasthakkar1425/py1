@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>userdeticle Master View</title>
+</head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>User Detail Id</th>
+                <th>User Master Id</th>
+                <th>User Type</th>
+                <th>Profile Pic</th>
+                <th>Conatact</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for userdet in userdetobj %}
+            <tr>
+                <td> {{ userdet.user_deatil_id }}</td>
+                <td>{{ userdet.user_master }} </td>
+                <td>{{ userdet.user_type }} </td>
+                <td>{{ userdet.profile_pic }}</td>
+                <td>{{ userdet.contact }}</td>
+                <td>{{ userdet.gender }}</td>
+                <td>{{ userdet.address }}</td>
+                <td><a href="/userdetedit/{{userdet.id}}">Edit</a></td>
+                <td><a href="/userdetdelete/{{userdet.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/userdet">Add</a>
+</body>
+</html>

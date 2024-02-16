@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/docdetsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Doc Details Id</label><input type="number" name="txtddid"><br>
+
+            <label>Enter Doc Id</label>
+            <select name="doc_detail_table">
+                {% for i in docdetobj %}
+                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Doc Address</label><input type="text" name="txtdadd"><br>
+
+            <label>Enter Vehicle Rout Id</label>
+            <select name="doc_detail_table">
+                {% for i in docdetobj %}
+                <option name="txtvrid" value="{{i.vehc_rout}}">{{i.vehc_rout}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Doc Weight</label><input type="number" name="txtwet" step=".01"><br>
+
+            <label>Enter Vehicle Rout Det Id</label>
+            <select name="doc_detail_table">
+                {% for i in docdetobj %}
+                <option name="txtvrdid" value="{{i.veh_rout_det}}">{{i.veh_rout_det}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Total Amount</label><input type="number" name="txtamount" step=".01"><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>GST Charges View</title>
+
+</head>
+<body class="sub_page">
+<div>
+    <table align="center" width="50%" border="2.5">
+        <tr>
+            <th>Review Status Id</th>
+            <th>Review Id</th>
+            <th>Status</th>
+            <th>User Id</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for revsta in revstaobj %}
+        <tr>
+            <td> {{ revsta.review_status_id }}</td>
+            <td>{{ revsta.review }} </td>
+            <td>{{ revsta.status }} </td>
+            <td>{{ revsta.user }} </td>
+            <td><a href="/reviewstatusedit/{{revstaobj.id}}">Edit</a></td>
+            <td><a href="/reviewstatusdelete/{{revstaobj.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/reviewstatus">Add</a>
+</div>
+</body>
+</html>

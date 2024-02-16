@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+<body class="sub_page">
+    <div>
+        <table align="center" width="50%" border="2.5">
+            <tr>
+                <th>Doc Det Id</th>
+                <th>Doc Id</th>
+                <th>Doc Address</th>
+                <th>Veh Rout Id</th>
+                <th>Doc Weight</th>
+                <th>Veh Rout Det Id</th>
+                <th>Total Amount</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for docdet in docdetobj %}
+            <tr>
+                <td> {{ docdet.doc_detail_id }}</td>
+                <td>{{ docdet.doc }} </td>
+                <td>{{ docdet.doc_address }} </td>
+                <td>{{ docdet.vehc_rout }}</td>
+                <td>{{ docdet.doc_weight }}</td>
+                <td>{{ docdet.veh_rout_det }}</td>
+                <td>{{ docdet.total_amount }}</td>
+                <td><a href="/docdetedit/{{docdet.id}}">Edit</a></td>
+                <td><a href="/docdetdelete/{{docdet.id}}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <a href="/docdet">Add</a>
+</body>
+</html>

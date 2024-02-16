@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Details</title>
+    </head>
+    <body>
+        <form method="post" action="/complainsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Complain Id</label><input type="number" name="txtcid"><br>
+
+            <label>Enter User Id</label>
+            <select name="complain_master_table">
+                {% for i in complainobj %}
+                <option name="txtuid" value="{{i.user_master}}">{{i.user_master}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Complain Description</label><input type="text" name="txtcdesc"><br>
+
+            <button type="submit" value="save">Submit</button>
+        </form>
+    </body>
+</html>

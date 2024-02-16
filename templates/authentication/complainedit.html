@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Edit Details</title>
+    </head>
+    <body>
+        <form action="/complainupdate/{{complain.com_id}}" method="POST">
+            <br>
+            {% csrf_token %}
+            <h3>Update Details</h3>
+
+            <label>User Id</label>
+            <select name="complain_master_table">
+                {% for i in complainobj %}
+                <option name="txtuid" value="{{i.user_master}}">{{i.user_master}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Description</label><input type="text" name="txtcdesc" value="{{complain.com_description}}"><br>
+            
+            <button type="submit">Update</button>
+        </form>
+    </body>
+</html>

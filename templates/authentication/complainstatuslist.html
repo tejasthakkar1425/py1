@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Complain View</title>
+
+</head>
+<body class="sub_page">
+<div>
+    <table align="center" width="50%" border="2.5">
+        <tr>
+            <th>Complain Id</th>
+            <th>Complain Status Id</th>
+            <th>Complain Date</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for complain in complainstatusobj %}
+        <tr>
+            <td> {{ complain.com }}</td>
+            <td>{{ complain.com_status_id }} </td>
+            <td>{{ complain.com_status_date }} </td>
+            <td>{{ complain.com_status }}
+            <td><a href="/complainstatusedit/{{complainstatus.id}}">Edit</a></td>
+            <td><a href="/complainstatusdelete/{{complainstatus.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/complainstatus">Add</a>
+</div>
+</body>
+</html>

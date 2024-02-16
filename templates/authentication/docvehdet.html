@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Vehicle Details</title>
+    </head>
+    <body>
+        <form method="post" action="/docvehdetsave">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Dov Veh Det Id</label><input type="number" name="txtdvdid"><br> 
+
+            <label>Enter Doc Id</label>
+            <select name="doc_veh_details_table">
+                {% for i in docvehdet %}
+                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Vehicle Id</label>
+            <select name="doc_veh_details_table">
+                {% for i in docvehdet %}
+                <option name="txtvid" value="{{i.veh}}">{{i.veh}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Veh Rout Id</label>
+            <select name="doc_veh_details_table">
+                {% for i in docvehdet %}
+                <option name="txtvrid" value="{{i.vehc_rout}}">{{i.vehc_rout}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Description</label><input type="text" name="txtdesc"><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

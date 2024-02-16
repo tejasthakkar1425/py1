@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Vehicle Details</title>
+    </head>
+    <body>
+        <form method="post" action="/vehroutdetupdate/{{vehroutdet.veh_rout_det_id}}">
+            <br>
+            {% csrf_token %}
+            <h3>Enter Details</h3>
+
+            <label>Enter Veh Rout Id</label>
+            <select name="veh_rout_detail">
+                {% for i in vehroutdetobj %}
+                <option name="txtvrid" value="{{i.veh_rout}}">{{i.veh_rout}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter State Id</label>
+            <select name="veh_rout_detail">
+                {% for i in vehroutdetobj %}
+                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter District Id:</label>
+            <select name="veh_rout_detail">
+                {% for i in vehroutdetobj %}
+                <option name="txtdid" value="{{i.ditrict}}">{{i.ditrict}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter City Id</label>
+            <select name="veh_rout_detail">
+                {% for i in vehroutdetobj %}
+                <option name="txtcid" value="{{i.city_village}}">{{i.city_village}}</option>
+                {% endfor %}
+            </select><br>
+
+            <label>Enter Description</label><input type="text" name="txtdesc" value="{{vehroutdet.decription}}"><br>
+
+            <label>Charges Below 50</label><input type="number" name="txtchbe50" value="{{vehroutdet.char_bel_50}}"><br>
+
+            <label>Charges Below 150</label><input type="number" name="txtchbe150" value="{{vehroutdet.char_bel_150}}"><br>
+
+            <label>Charges Above 150</label><input type="number" name="txtchab150" value="{{vehroutdet.char_abo_150}}"><br>
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
