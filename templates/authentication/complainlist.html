@@ -1,13 +1,123 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-
-<head>
-
-  <title>Complain View</title>
-
-</head>
-<body class="sub_page">
+    <head>
+        <title>Transport Admin Dashboard</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        hieght:"5px"
+    }
+    
+    aside {
+        width: 200px;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        padding: 20px;
+        box-sizing: border-box;
+        float: left;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    li {
+        margin-bottom: 10px;
+    }
+    
+    a {
+        color: #ecf0f1;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    a.active {
+        background-color: #3498db;
+    }
+    
+    i {
+        margin-right: 10px;
+    }
+    
+    main {
+        margin-left: 220px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    
+    .widgets-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .widget {
+        flex: 1 1 calc(33.33% - 20px);
+        background-color: #ecf0f1;
+        padding: 20px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    h2 {
+        color: #333;
+    }
+    
+    p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #3498db;
+    }
+    
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        clear: both;
+    }
+    
+    
+        </style>
+    </head>
+    <body>
+    
+        <header>
+            <h1 >Transport Admin Dashboard</h1>
+       
+        </header>
+    
+        <aside>
+            <ul>
+                <li><a href="/stateView">StateMaster</a></li>
+                <li><a href="/distView">DistrictMaster</a></li>
+                <li><a href="/cityView">City-VillageMaster</a></li>
+                <li><a href="/gstView"> GSTChargeMaster</a></li>
+                <li><a href="/userView"> UserMaster</a></li>
+                <li><a href="/paymentView"> PaymentStatus</a></li>
+                <li><a href="/reviewView"> ReviewAndFeedback</a></li>
+                <li><a href="/vehView">VehicleDetails</a></li>
+                <li><a href="/vehroutView">VehicleRouteMaster</a></li>
+                <li><a href="/complainView">Complains</a></li>
+               
+            </ul>
+        </aside>
 <div>
     <table align="center" width="50%" border="2.5">
         <tr>
