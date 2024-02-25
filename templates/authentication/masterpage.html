@@ -1,8 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Transport Admin Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}">
+    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
 	<style>
 		body {
     margin: 0;
@@ -119,7 +123,11 @@ footer {
     </aside>
 
     <main>
-        <div class="widgets-container">
+        {% block content %}
+
+        {% endblock content %}
+        
+        <div class="widgets-container" id="dtWidgets">
             <div class="widget">
                 <h2>Total Vehicles</h2>
                 <p>150</p>
