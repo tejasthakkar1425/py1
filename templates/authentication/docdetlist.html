@@ -26,8 +26,8 @@
                 <td>{{ docdet.doc_weight }}</td>
                 <td>{{ docdet.veh_rout_det }}</td>
                 <td>{{ docdet.total_amount }}</td>
-                <td><a href="/docdetedit/{{docdet.id}}">Edit</a></td>
-                <td><a href="/docdetdelete/{{docdet.id}}">Delete</a></td>
+                <td><a href="/docdetedit/{{docdet.doc_detail_id}}">Edit</a></td>
+                <td><a href="/docdetdelete/{{docdet.doc_detail_id}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>

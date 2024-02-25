@@ -28,8 +28,8 @@
                 <td>{{ payment.pay_method }}</td>
                 <td>{{ payment.pay_tran_id }}</td>
                 <td>{{ payment.pay_response }}</td>
-                <td><a href="/paymentedit/{{payment.id}}">Edit</a></td>
-                <td><a href="/paymentdelete/{{payment.id}}">Delete</a></td>
+                <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}">Edit</a></td>
+                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>

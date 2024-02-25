@@ -20,8 +20,8 @@
                 <td>{{ user.user_email_id }} </td>
                 <td>{{ user.user_name }} </td>
                 <td>{{ user.user_password }}</td>
-                <td><a href="/useredit/{{user.id}}">Edit</a></td>
-                <td><a href="/userdelete/{{user.id}}">Delete</a></td>
+                <td><a href="/useredit/{{user.user_master_id}}">Edit</a></td>
+                <td><a href="/userdelete/{{user.user_master_id}}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>

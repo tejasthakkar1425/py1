@@ -168,13 +168,14 @@ def gstView(request):
     return render(request, "authentication/gst-list.html",{'gstobj':objGstMaster})
 
 def dist(request):
-    distobj=DistrictMaster.objects.all()
+    distobj=StateMasterTable.objects.all()
     print(distobj)
     return render(request, "authentication/distadd.html",{'distobj':distobj})
 
 def distsave(request):
     did=request.POST.get('txtdid')
     dname=request.POST.get('txtdname')
+    #sid=StateMasterTable.objects.filter(State_id=request.POST.get('DisId')).first().state_id
     sid=request.POST.get('txtsid')
     ddesc=request.POST.get('txtddesc')
     dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)

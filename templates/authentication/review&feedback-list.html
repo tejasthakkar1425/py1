@@ -26,8 +26,8 @@
             <td>{{ review.review_image }} </td>
             <td>{{ review.review_description }} </td>
             <td>{{ review.review_star }}</td>
-            <td><a href="/reviewedit/{{review.id}}">Edit</a></td>
-            <td><a href="/reviewdelete/{{review.id}}">Delete</a></td>
+            <td><a href="/reviewedit/{{review.review_id}}">Edit</a></td>
+            <td><a href="/reviewdelete/{{review.review_id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

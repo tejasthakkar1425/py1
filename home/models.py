@@ -112,7 +112,7 @@ class ComplainStatus(models.Model):
 class DistrictMaster(models.Model):
     district_id = models.IntegerField(primary_key=True)
     district_name = models.TextField(blank=True, null=True)
-    state = models.ForeignKey('StateMasterTable', models.DO_NOTHING, blank=True, null=True)
+    state = models.ForeignKey('StateMasterTable',on_delete=models.CASCADE, null=True)
     description = models.CharField(max_length=50)
     created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)

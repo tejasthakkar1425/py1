@@ -24,8 +24,8 @@
             <td>{{ gst.year }} </td>
             <td>{{ gst.cgst_per }} </td>
             <td>{{ gst.sgst_per }} </td>
-            <td><a href="/gstedit/{{gst.id}}">Edit</a></td>
-            <td><a href="/gstdelete/{{gst.id}}">Delete</a></td>
+            <td><a href="/gstedit/{{gst.gst_char_id}}">Edit</a></td>
+            <td><a href="/gstdelete/{{gst.gst_char_id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
