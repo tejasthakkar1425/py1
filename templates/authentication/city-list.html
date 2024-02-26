@@ -1,4 +1,5 @@
-{% load static %}
+{% extends 'authentication\masterpage.html' %}
+{% block content %}{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     {% load static %}
@@ -146,4 +147,35 @@ footer {
     <a href="/city">Add</a>
 </div>
 </body>
-</html>
+</html> {% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>City Id</th>
+            <th>District Id</th>
+            <th>State Id</th>
+            <th>City Name</th>
+            <th>Description </th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td>{{ city.city_village_id }}</td>
+            <td>{{ city.district }} </td>
+            <td>{{ city.state }} </td>
+            <td>{{ city.city_village_name }} </td>
+            <td>{{ city.description }}</td>
+            <td><a href="/cityedit/{{city.city_village_id}}">Edit</a></td>
+            <td><a href="/citydelete/{{city.city_village_id}}">Delete</a></td>
+          </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/cityadd">Add</a>
+</div>
+{% endblock content %}

@@ -1,4 +1,7 @@
-{% load static %}
+
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -148,4 +151,39 @@
     </div>
     <a href="/payment">Add</a>
 </body>
-</html>
+</html> {% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Payment Details</th>
+            <th>Doc Payment Id</th>
+            <th>Doc Id</th>
+            <th>Payment Status</th>
+            <th>Payment Method</th>
+            <th>Transection Id</th>
+            <th>Payment Response</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ payment.doc_pay_detail }}</td>
+                <td>{{ payment.doc_pay_detail_id }} </td>
+                <td>{{ payment.doc }} </td>
+                <td>{{ payment.pay_status }}</td>
+                <td>{{ payment.pay_method }}</td>
+                <td>{{ payment.pay_tran_id }}</td>
+                <td>{{ payment.pay_response }}</td>
+                <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}">Edit</a></td>
+                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}">Delete</a></td>
+             </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/paymentadd">Add</a>
+</div>
+{% endblock content %}

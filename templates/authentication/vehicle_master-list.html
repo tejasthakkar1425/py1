@@ -1,4 +1,7 @@
-{% load static %}
+
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -152,4 +155,44 @@
     </div>
     <a href="/veh">Add</a>
 </body>
-</html>
+</html> {% endcomment %}
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Vehicle Id</th>
+            <th>Vehicle Name</th>
+            <th>Rc Book No</th>
+            <th>Register Number </th>
+            <th>Capacity</th>
+            <th>Insurance From</th>
+            <th>Insurance To</th>
+            <th>Insurance Comp Name</th>
+            <th>Owner Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ veh.vehicle_id }}</td>
+            <td>{{ veh.vehicle_name }} </td>
+            <td>{{ veh.rc_book_number }} </td>
+            <td>{{ veh.reg_no }}</td>
+            <td>{{ veh.capacity}}</td>
+            <td>{{ veh.insurance_from }}</td>
+            <td>{{ veh.insurance_to }}</td>
+            <td>{{ veh.insurance_company_name }}</td>
+            <td>{{ veh.owner_name }}</td>
+            <td><a href="/vehedit/{{veh.vehicle_id}}">Edit</a></td>
+            <td><a href="/vehdelete/{{veh.vehicle_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/reviewadd">Add</a>
+</div>
+{% endblock content %}

@@ -1,4 +1,7 @@
-{% load static %}
+
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -140,4 +143,32 @@
     <a href="/complain">Add</a>
 </div>
 </body>
-</html>
+</html> {% endcomment %}
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Complain Id</th>
+            <th>User Id</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr> 
+            <td> {{ complain.com_id }}</td>
+            <td>{{ complain.user_master }} </td>
+            <td>{{ complain.com_description }} </td>
+            <td><a href="/complainedit/{{complain.com_id}}">Edit</a></td>
+            <td><a href="/complaindelete/{{complain.com_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/complainadd">Add</a>
+</div>
+{% endblock content %}

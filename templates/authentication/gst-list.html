@@ -1,4 +1,6 @@
-{% load static %}
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -142,4 +144,33 @@
     <a href="/gst">Add</a>
 </div>
 </body>
-</html>
+</html> {% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Gst Charges Id</th>
+            <th>Year</th>
+            <th>CGST Per</th>
+            <th>SGST Per</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ gst.gst_char_id }}</td>
+            <td>{{ gst.year }} </td>
+            <td>{{ gst.cgst_per }} </td>
+            <td>{{ gst.sgst_per }} </td>
+            <td><a href="/gstedit/{{gst.gst_char_id}}">Edit</a></td>
+            <td><a href="/gstdelete/{{gst.gst_char_id}}">Delete</a></td>
+          </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/gstadd">Add</a>
+</div>
+{% endblock content %}

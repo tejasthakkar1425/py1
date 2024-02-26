@@ -1,4 +1,7 @@
-{% load static %}
+
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -142,4 +145,33 @@
         <a href="/user">Add</a>
     </div>
 </body>
-</html>
+</html> {% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>User Master Id</th>
+            <th>User Email Id</th>
+            <th>User Name</th>
+            <th>User Password</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ user.user_master_id }}</td>
+            <td>{{ user.user_email_id }} </td>
+            <td>{{ user.user_name }} </td>
+            <td>{{ user.user_password }}</td>
+            <td><a href="/useredit/{{user.user_master_id}}">Edit</a></td>
+            <td><a href="/userdelete/{{user.user_master_id}}">Delete</a></td>
+          </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/useradd">Add</a>
+</div>
+{% endblock content %}

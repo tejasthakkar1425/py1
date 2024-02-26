@@ -1,4 +1,6 @@
-{% load static %}
+
+{% extends 'authentication\masterpage.html' %}
+{% block content %}{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -144,4 +146,36 @@
 </div>
 <a href="/vehrout">Add</a>
 </body>
-</html>
+</html> {% endcomment %}
+
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Veh Rout Id</th>
+            <th>From State Id</th>
+            <th>To State Id</th>
+            <th>Veh Rout Det</th>
+            <th>Veh Rout Det Id</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ vehrout.veh_rout_id }}</td>
+            <td>{{ vehrout.from_state }} </td>
+            <td>{{ vehrout.to_state }} </td>
+            <td>{{ vehrout.vehc_rout_det }} </td>
+            <td>{{ vehrout.veh_rout_details_id }}</td>
+            <td><a href="/vehroutedit/{{vehrout.veh_rout_id}}">Edit</a></td>
+            <td><a href="/vehroutdelete/{{vehrout.veh_rout_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/reviewadd">Add</a>
+</div>
+{% endblock content %}

@@ -1,4 +1,6 @@
-{% load static %}
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} {% load static %} 
 <!DOCTYPE html>
 <html>
     {% load static %}
@@ -121,6 +123,7 @@ footer {
         </ul>
     </aside>
     <div>
+        
         <table align="center" width="50%" border="2.5">
             <tr>
                 <th>Distriict Id</th>
@@ -145,3 +148,33 @@ footer {
     <a href="/dist">Add</a>
 </body>
 </html>
+{% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Distriict Id</th>
+            <th>District Name</th>
+            <th>State Id</th>
+            <th>Description </th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in stateobj %}
+        <tr>
+            <td> {{ dist.district_id }}</td>
+                <td>{{ dist.district_name }} </td>
+                <td>{{ dist.state }} </td>
+                <td>{{ dist.description }}</td>
+                <td><a href="/distedit/{{dist.district_id}}">Edit</a></td>
+                <td><a href="/distdelete/{{dist.district_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <a href="/distadd">Add</a>
+</div>
+{% endblock content %}
