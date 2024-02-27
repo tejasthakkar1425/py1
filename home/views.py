@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from home.models import *
 from home.forms import *
+import json
 
 """"
 def home(request):
@@ -173,13 +174,15 @@ def dist(request):
     return render(request, "authentication/distadd.html",{'distobj':distobj})
 
 def distsave(request):
+    disobj=DistrictMaster(request.POST)
+    print(disobj.state)
     did=request.POST.get('txtdid')
     dname=request.POST.get('txtdname')
-    #sid=StateMasterTable.objects.filter(State_id=request.POST.get('DisId')).first().state_id
-    sid=request.POST.get('txtsid')
+    sid=request.POST.get('DisId')
+    # sid=request.POST.get('txtsid')
     ddesc=request.POST.get('txtddesc')
-    dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
-    dist.save()
+    # dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
+    # dist.save()
     return redirect("/distView")
 
 def distedit(request,id):

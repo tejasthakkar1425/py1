@@ -164,14 +164,13 @@ footer {
 
             <label>Enter Distriict Id</label><input type="number" name="txtdid"><br>
 
-            <label>Enter Distriict Name</label><input type="text" name="txtdname"><br>
-{% comment %}             
+            <label>Enter Distriict Name</label><input type="text" name="txtdname"><br>         
             <label>Enter State Id</label>
             <select id=select_id name="dist_master_table">
                 {% for i in distobj %}
                 <option name="txtsid" value="{{i.state_id}}">{{i.stat_name}}</option>
                 {% endfor %}
-            </select><br> {% endcomment %}
+            </select><br> 
 
             <label>Enter Description</label><input type="text" name="txtddesc"><br>
             {% comment %}
