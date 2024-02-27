@@ -164,7 +164,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for review in reviewobj %}
         <tr>
             <td> {{ review.review_id }}</td>
             <td>{{ review.user }} </td>
@@ -177,6 +177,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/reviewadd">Add</a>
+    <a href="/review">Add</a>
 </div>
 {% endblock content %}

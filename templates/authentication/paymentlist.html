@@ -169,7 +169,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for payment in paymentobj %}
         <tr>
             <td> {{ payment.doc_pay_detail }}</td>
                 <td>{{ payment.doc_pay_detail_id }} </td>
@@ -184,6 +184,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/paymentadd">Add</a>
+    <a href="/payment">Add</a>
 </div>
 {% endblock content %}

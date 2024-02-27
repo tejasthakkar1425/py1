@@ -159,7 +159,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for gst in gstobj %}
         <tr>
             <td> {{ gst.gst_char_id }}</td>
             <td>{{ gst.year }} </td>
@@ -171,6 +171,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/gstadd">Add</a>
+    <a href="/gst">Add</a>
 </div>
 {% endblock content %}

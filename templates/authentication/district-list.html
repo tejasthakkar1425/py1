@@ -163,7 +163,7 @@ footer {
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for dist in distobj %}
         <tr>
             <td> {{ dist.district_id }}</td>
                 <td>{{ dist.district_name }} </td>
@@ -175,6 +175,9 @@ footer {
         {% endfor %}
     </tbody>
     </table>
-    <a href="/distadd">Add</a>
+    <a href="/dist">Add</a>
 </div>
+{% comment %} </div>
+</body>
+</html> {% endcomment %}
 {% endblock content %}

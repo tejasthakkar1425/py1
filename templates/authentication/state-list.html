@@ -8,6 +8,13 @@
     {% comment %} <title>State Master View</title> {% endcomment %}
 {% comment %} </head> {% endcomment %} 
 {% comment %} <body class="sub_page"> {% endcomment %}
+{% comment %} <style>
+    .dtWidgets
+    {
+        display:none;
+        visiblity:hidden;
+    }
+</style> {% endcomment %}
 <div>
     <table class="table">
         <thead>
@@ -25,7 +32,7 @@
             <td> {{ state.state_id }}</td>
             <td>{{ state.stat_name }} </td>
             <td>{{ state.description }}</td>
-            <td><a href="/stateedit/{{state.id}}">Edit</a></td>
+            <td><a href="/stateedit{{state.id}}">Edit</a></td>
             <td><a href="/statedelete/{{state.id}}">Delete</a></td>
         </tr>
         {% endfor %}

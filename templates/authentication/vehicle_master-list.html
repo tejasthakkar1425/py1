@@ -176,7 +176,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for veh in vehobj %}
         <tr>
             <td> {{ veh.vehicle_id }}</td>
             <td>{{ veh.vehicle_name }} </td>
@@ -193,6 +193,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/reviewadd">Add</a>
+    <a href="/veh">Add</a>
 </div>
 {% endblock content %}

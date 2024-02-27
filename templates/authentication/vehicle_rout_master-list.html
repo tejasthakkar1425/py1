@@ -163,7 +163,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for vehrout in vehroutobj %}
         <tr>
             <td> {{ vehrout.veh_rout_id }}</td>
             <td>{{ vehrout.from_state }} </td>
@@ -176,6 +176,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/reviewadd">Add</a>
+    <a href="/vehrout">Add</a>
 </div>
 {% endblock content %}

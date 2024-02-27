@@ -160,7 +160,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for user in userobj %}
         <tr>
             <td> {{ user.user_master_id }}</td>
             <td>{{ user.user_email_id }} </td>
@@ -172,6 +172,6 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/useradd">Add</a>
+    <a href="/user">Add</a>
 </div>
 {% endblock content %}

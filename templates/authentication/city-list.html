@@ -163,7 +163,7 @@ footer {
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for city in cityobj %}
         <tr>
             <td>{{ city.city_village_id }}</td>
             <td>{{ city.district }} </td>
@@ -176,6 +176,6 @@ footer {
         {% endfor %}
     </tbody>
     </table>
-    <a href="/cityadd">Add</a>
+    <a href="/city">Add</a>
 </div>
 {% endblock content %}
