@@ -5,12 +5,16 @@ from home.models import *
 from home.forms import *
 import json
 
-""""
 def home(request):
     return render(request, "authentication/index.html")
 
+
+
 def about(request):
     return render(request, "authentication/about.html")
+
+def dashboard(request):
+    return render(request, "authentication/dashboard.html")
 
 def contact(request):
     return render(request, "authentication/contact.html")
@@ -20,7 +24,7 @@ def service(request):
 
 def login(request):
     return render(request, "authentication/login.html")
-"""
+
 def admin(request):
     return render(request, "authentication/masterpage.html")
 
@@ -40,7 +44,26 @@ def statesave(request):
     state=StateMasterTable(state_id=id,stat_name=name,description=desc)#(created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
     state.save()
     return redirect("/stateView")
-
+def login(request):
+  #  modeldt = adminModel.objects.all()
+        
+        if request.method == 'POST':
+            email_id = request.POST['email']
+            passw = request.POST['password']
+            try:
+                 user_instance = UserMasterTable.objects.get(user_email_id = email_id)
+                 if user_instance.user_password == passw:
+                          print(user_instance.user_password)
+                          user_details = UserDetails.objects.get(user_master = user_instance.user_master_id )
+                          print("login done")
+                          if user_details.user_type == 1:
+                              print("checked the type")
+                              return home(request)
+                 else:
+                          return render(request, 'authentication/login.html', {'error': 'Incorrect password'})
+            except:
+                    return render(request, 'authentication/login.html', {'error': 'User not found'})
+        return HttpResponse(render(request,'authentication/login.html'))
 def stateView(request):
     objStateMaster = StateMasterTable.objects.all()
     print(objStateMaster)
