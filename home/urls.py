@@ -6,6 +6,8 @@ app_name = "home"
 
 urlpatterns = [
     path('home',views.home, name="home"),
+    path('curior-close',views.curior_close, name="curior-close"),
+    path('update_distict',views.get_district, name="update_distict"),
     path('dashboard',views.dashboard, name="dashboard"),
     path('about',views.about, name="about"),
     path('contact',views.contact, name="contact"),

@@ -1,0 +1,46 @@
+{% extends 'authentication\employee.html' %}
+{% block content %}
+{% comment %} <html>{% endcomment %}
+{% comment %} <head>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
+    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
+    {% comment %} <title>State Master View</title> {% endcomment %}
+{% comment %} </head> {% endcomment %} 
+{% comment %} <body class="sub_page"> {% endcomment %}
+{% comment %} <style>
+    .dtWidgets
+    {
+        display:none;
+        visiblity:hidden;
+    }
+</style> {% endcomment %}
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Doc-Id</th>
+            <th>Pick-Up Location</th>
+            <th>Drop Location</th>
+            <th>Status</th>
+            <th>Total Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for state in update_district %}
+        <tr>
+            <td> {{ state.doc_detail_id }}</td>
+            <td>{{ state.doc_address }} </td>
+            <td>{{ state.vehc_rout }}</td>
+            <td>{{ state.total_amount }}</td>
+            <td><a href="/stateedit/{{state.id}}">Edit</a></td>
+        
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+   
+</div>
+{% comment %} </body>
+</html> {% endcomment %}
+{% endblock content %}

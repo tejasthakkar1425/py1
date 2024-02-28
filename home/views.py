@@ -151,6 +151,21 @@ def cityView(request):
     objCityMaster = CityVillageMaster.objects.all()
     print(objCityMaster)
     return render(request, "authentication/city-list.html",{'cityobj':objCityMaster})
+def curior_close(request):
+     if request.method == 'GET':
+        category = DocMaster.objects.all()
+        return render(request,'authentication/curior-close.html',{"docIds":category})
+     if request.method == 'POST':
+        ids= DocMaster.objects.all()
+        id=request.POST['id']
+        print("post done")
+        category = DocMaster.objects.get(doc_id=id)
+        return render(request,'authentication/curior-close.html',{"docIds":ids,"docDetail":category})
+   
+def get_district(request):
+    get_district_obj=DocDetail.objects.all()
+    return render(request, "authentication/update-district.html",{'update_district':get_district_obj})
+
 
 def gst(request):
     gstobj=Gstcharges.objects.all()

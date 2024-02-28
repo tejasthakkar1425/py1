@@ -1,0 +1,37 @@
+{% extends 'authentication\employee.html' %}
+{% block content %}
+{% comment %} <html>{% endcomment %}
+{% comment %} <head>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
+    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
+    {% comment %} <title>State Master View</title> {% endcomment %}
+{% comment %} </head> {% endcomment %} 
+{% comment %} <body class="sub_page"> {% endcomment %}
+{% comment %} <style>
+    .dtWidgets
+    {
+        display:none;
+        visiblity:hidden;
+    }
+</style> {% endcomment %}
+<form method="POST" action="">
+    {% csrf_token %}
+<span class="input-group-text" id="inputGroup-sizing-default">  Doc id</span>
+      &nbsp; <select name="id">
+        {% for id in docIds %}
+          <option name="id" value="{{ id.doc_id }}">{{ id.doc_id}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" value="save">Submit</button>
+</form>
+<hr>
+<div>
+    doc Id : {{docDetail.doc_number}} </br> 
+    LR number : {{docDetail.lr_number}}</br>
+    Net Amount : {{docDetail.net_amount}}</br>
+    <button name="close">Close</button>
+</div>
+{% comment %} </body>
+</html> {% endcomment %}
+{% endblock content %}
