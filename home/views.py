@@ -432,17 +432,17 @@ def userView(request):
     return render(request, "authentication/user_master-list.html",{'userobj':objUserMaster})
 
 def review(request):
-    reviewobj1=ReviewFeedback.objects.all()
-    print(reviewobj1)
-    return render(request, "authentication/reviewadd.html",{'reviewobj1':reviewobj1})
+    reviewobj=ReviewFeedback.objects.all()
+    print(reviewobj)
+    return render(request, "authentication/reviewadd.html",{'reviewobj1':reviewobj})
 
 def reviewsave(request):
     rid=request.POST.get('txtrid')
-    ruid=request.POST.get('txtruid')
+    uid=request.POST.get('txtuid')
     img=request.POST.get('txtrimg')
     rdesc=request.POST.get('txtrdesc')
     rstar=request.POST.get('txtrstar')
-    review=ReviewFeedback(review_id=rid,user=ruid,review_image=img,review_description=rdesc,review_star=rstar)
+    review=ReviewFeedback(review_id=rid,user=uid,review_image=img,review_description=rdesc,review_star=rstar)
     review.save()
     return redirect("/reviewView")
 
@@ -699,13 +699,11 @@ def paymentedit(request,id):
 def paymentupdate(request,id):
     payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
     detail=request.POST.get('txtpdet')
-    did=request.POST.get('txtdid')
     paysta=request.POST.get('txtpaysta')
     paymet=request.POST.get('txtpaymet')
     transid=request.POST.get('txttransid')
     resp=request.POST.get('txtresp')
     payment.doc_pay_detail=detail
-    payment.doc=did
     payment.pay_status=paysta
     payment.pay_method=paymet
     payment.pay_tran_id=transid

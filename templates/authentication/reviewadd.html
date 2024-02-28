@@ -13,8 +13,8 @@
 
             <label>Enter User Id</label>
             <select name="review&feedback">
-                {% for i in reviewobj1 %}
-                <option name="txtruid" value="{{i.user_id}}">{{i.user}}</option>
+                {% for i in reviewobj %}
+                <option name="txtuid" value="{{i.user}}">{{i.user}}</option>
                 {% endfor %}
             </select><br>
 

@@ -1,15 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-
-  <title>Complain View</title>
-
-</head>
-<body class="sub_page">
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+{% comment %} <html>{% endcomment %}
+{% comment %} <head>
+    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
+    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
+    {% comment %} <title>State Master View</title> {% endcomment %}
+{% comment %} </head> {% endcomment %} 
+{% comment %} <body class="sub_page"> {% endcomment %}
+{% comment %} <style>
+    .dtWidgets
+    {
+        display:none;
+        visiblity:hidden;
+    }
+</style> {% endcomment %}
 <div>
-    <table align="center" width="50%" border="2.5">
+    <table class="table">
         <tr>
             <th>Complain Id</th>
             <th>Complain Status Id</th>
@@ -31,5 +38,6 @@
     </table>
     <a href="/complainstatus">Add</a>
 </div>
-</body>
-</html>
+{% comment %} </body>
+</html> {% endcomment %}
+{% endblock content %}
