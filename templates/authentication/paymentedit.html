@@ -11,13 +11,6 @@
 
             <label>Payment Details</label><input type="text" name="txtpdet" value="{{payment.doc_pay_detail}}""><br>
 
-            <label>Doc Id</label>
-            <select name="doc_detail_table">
-                {% for i in paymentobj %}
-                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
-                {% endfor %}
-            </select><br>
-
             <label>Enter Payment Status</label><input type="text" name="txtpaysta" value="{{payment.pay_status}}"><br>
 
             <label>Enter Payment Method</label><input type="text" name="txtpaymet" value="{{payment.pay_method}}"><br>

@@ -7,7 +7,7 @@
         <form method="post" action="/vehupdate/{{veh.vehicle_id}}">
             <br>
             {% csrf_token %}
-            <h3>Enter Details</h3>
+            <h3>Update Details</h3>
 
             <label>Enter Vehicle Name</label><input type="text" name="txtvname" value="{{veh.vehicle_name}}""><br>
 
