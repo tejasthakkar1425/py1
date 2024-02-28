@@ -8,9 +8,28 @@ import json
 def home(request,done=0):
     return render(request, "authentication/index.html",{"done":done})
 
+
 def about(request):
     return render(request, "authentication/about.html")
 
+def success_order(request):
+
+    return render(request, "authentication/success_order.html")
+
+def payment_option(request):
+    name = request.POST["name"]
+    price = request.POST["estimatePrice"]
+    weight = request.POST["weight"]
+    lr = request.POST["LRNumber"]
+    phonenumber = request.POST["phoneNumber"]
+    passdone=1
+    return render(request, "authentication/payment_option.html",{"name":name})
+    
+    
+
+def order(request):
+    return render(request, "authentication/order.html")
+  
 def estimate(request):
     return render(request, "authentication/estimate.html")
 

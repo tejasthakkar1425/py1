@@ -6,6 +6,9 @@ app_name = "home"
 
 urlpatterns = [
     path('home',views.home, name="home"),
+    path('order',views.order, name="order"),
+    path('success_order',views.success_order, name="success_order"),
+    path('payment_option',views.payment_option, name="payment_option"),
     path('estimate',views.estimate, name="estimate"),
     path('curior-close',views.curior_close, name="curior-close"),
     path('update_distict',views.get_district, name="update_distict"),

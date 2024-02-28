@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Transport Estimate Form</title>
+  
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,21 +57,38 @@
 
 <div class="container">
   <h1>Transport Estimate Form</h1>
-  <form id="estimateForm">
+  <form id="estimateForm" method="POST" action="payment_option" >
+
+    {% csrf_token %} 
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
     </div>
 
     <div class="form-group">
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="text" id="phoneNumber" name="phoneNumber" required>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required>
+      </div>
+
+    <div class="form-group">
+      <label for="LRNumber">LR Number:</label>
+      <input type="text" id="LRNumber" name="LRNumber">
     </div>
 
     <div class="form-group">
       <label for="pickUpLocation">Pick Up Location:</label>
       <input type="text" id="pickUpLocation" name="pickUpLocation" required>
     </div>
+
+    <div class="form-group">
+        <label for="transportType">Drop Location</label>
+        <select id="transportType" name="transportType" required>
+          <option value="100">Gujrat</option>
+          <option value="200">Vadodara</option>
+          <option value="140">Rajsthan</option>
+          <option value="600">Pune</option>
+        </select>
+      </div>
 
     <div class="form-group">
       <label for="weight">Weight (kg):</label>
@@ -81,15 +100,7 @@
       <input type="number" id="distance" name="distance" required>
     </div>
 
-    <div class="form-group">
-      <label for="transportType">Drop Location</label>
-      <select id="transportType" name="transportType" required>
-        <option value="100">Gujrat</option>
-        <option value="200">Vadodara</option>
-        <option value="140">Rajsthan</option>
-        <option value="600">Pune</option>
-      </select>
-    </div>
+   
 
     <div class="form-group">
       <label for="estimatePrice">Estimated Price:</label>
@@ -97,6 +108,12 @@
     </div>
 
     <input type="button" value="Get Estimate" onclick="calculatePrice()">
+
+   
+
+    <input type="submit" value="COMFIRM">
+
+
   </form>
 </div>
 
@@ -117,5 +134,27 @@ if (weight <= 100) {
   }
 </script>
 
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} 
+
+<form>
+  <label> Cash  </lable><input type="radio" name="rdo_btn1">
+ <label> Online </lable> <input type="radio" name="rdo_btn1">
+
+</form>
+<h3>UNDER THE MAINTENANCE</h3> {% endcomment %}
