@@ -5,13 +5,14 @@ from home.models import *
 from home.forms import *
 import json
 
-def home(request):
-    return render(request, "authentication/index.html")
-
-
+def home(request,done=0):
+    return render(request, "authentication/index.html",{"done":done})
 
 def about(request):
     return render(request, "authentication/about.html")
+
+def estimate(request):
+    return render(request, "authentication/estimate.html")
 
 def dashboard(request):
     return render(request, "authentication/dashboard.html")
@@ -58,7 +59,11 @@ def login(request):
                           print("login done")
                           if user_details.user_type == 1:
                               print("checked the type")
-                              return home(request)
+                              return dashboard(request)
+                          if user_details.user_type == 2:
+                              print("checked the type")
+                              done=1
+                              return home(request,done)
                  else:
                           return render(request, 'authentication/login.html', {'error': 'Incorrect password'})
             except:
