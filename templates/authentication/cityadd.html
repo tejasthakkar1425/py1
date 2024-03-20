@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/citysave">
             <br>
@@ -14,14 +11,14 @@
             <label>Enter District Id:</label>
             <select name="city_village_master_table">
                 {% for i in cityobj %}
-                <option name="txtdid" value="{{i.district_id}}">{{i.district}}</option>
+                <option name="txtdid" value="{{i.district_name}}">{{i.district_id}}</option>
                 {% endfor %}
             </select><br>
 
             <label>Enter State Id</label>
             <select name="city_village_master_table">
                 {% for i in cityobj %}
-                <option name="txtsid" value="{{i.state_id}}">{{i.state}}</option>
+                <option name="txtsid" value="{{i.state_name}}">{{i.state_id}}</option>
                 {% endfor %}
             </select><br>
 
@@ -52,4 +49,4 @@
             <button type="submit" value="save">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

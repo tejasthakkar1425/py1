@@ -42,7 +42,7 @@ def contact(request):
 def service(request):
     return render(request, "authentication/service.html")
 
-def login(request):
+def login1(request):
     return render(request, "authentication/login.html")
 
 def admin(request):
@@ -78,11 +78,14 @@ def login(request):
                           print("login done")
                           if user_details.user_type == 1:
                               print("checked the type")
-                              return dashboard(request)
+                              return admin(request)
                           if user_details.user_type == 2:
                               print("checked the type")
                               done=1
                               return home(request,done)
+                          if user_details.user_type == 3:
+                              print("checked the type")
+                              return employee(request)
                  else:
                           return render(request, 'authentication/login.html', {'error': 'Incorrect password'})
             except:
@@ -185,6 +188,9 @@ def curior_close(request):
         print("post done")
         category = DocMaster.objects.get(doc_id=id)
         return render(request,'authentication/curior-close.html',{"docIds":ids,"docDetail":category})
+
+def employee(request):
+    return render(request, "authentication/curior-close.html")
    
 def get_district(request):
     get_district_obj=DocDetail.objects.all()
@@ -236,15 +242,17 @@ def dist(request):
     return render(request, "authentication/distadd.html",{'distobj':distobj})
 
 def distsave(request):
-    disobj=DistrictMaster(request.POST)
-    print(disobj.state)
+    form = DisForm(request.POST)
+    data = form.cleaned_data['data_field']
+    print(data)
     did=request.POST.get('txtdid')
     dname=request.POST.get('txtdname')
     sid=request.POST.get('DisId')
-    # sid=request.POST.get('txtsid')
+    print(sid)
+    sid=request.POST.get('txtsid')
     ddesc=request.POST.get('txtddesc')
-    # dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
-    # dist.save()
+    dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
+    dist.save()
     return redirect("/distView")
 
 def distedit(request,id):
@@ -458,7 +466,7 @@ def userView(request):
 def review(request):
     reviewobj=ReviewFeedback.objects.all()
     print(reviewobj)
-    return render(request, "authentication/reviewadd.html",{'reviewobj1':reviewobj})
+    return render(request, "authentication/reviewadd.html",{'reviewobj':reviewobj})
 
 def reviewsave(request):
     rid=request.POST.get('txtrid')
@@ -784,7 +792,7 @@ def userdetupdate(request,id):
     return redirect("/userdetView")
 
 def userdetdelete(request,id):
-    userdet=UserDetails.objects.all()
+    userdet=UserDetails.objects.get(user_deatil_id=id)
     userdet.delete()
     return redirect("/userdetView")
 
@@ -846,3 +854,6 @@ def vehroutdetView(request):
     vehroutdetobj=VehRoutDetalis.objects.all()
     print(vehroutdetobj)
     return render(request, "authentication/vehroutdetlist.html",{'vehroutdetobj':vehroutdetobj})
+
+def product(request):
+    return render(request ,"authentication/services.html")

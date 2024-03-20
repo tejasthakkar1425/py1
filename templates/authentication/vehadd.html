@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Vehicle Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/vehsave">
             <br>
@@ -30,4 +27,4 @@
             <button type="submit">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

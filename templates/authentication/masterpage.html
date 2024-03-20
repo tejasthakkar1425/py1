@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <title>Transport Admin Dashboard</title>
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
     <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}">
     {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
 	<style>
@@ -95,7 +95,20 @@ footer {
     text-align: center;
     clear: both;
 }
-
+.icon-button {
+    /* Add any styles you want for the link */
+    display: inline-block; /* Ensures the link behaves like a block element */
+    text-decoration: none; /* Removes default underline */
+  }
+  
+  .icon-button i {
+    font-size: 50px;
+    display: block;
+    text-align: center;
+    margin: 25px 0px;
+    color: #f9004d;
+  }
+  
 
 	</style>
 </head>

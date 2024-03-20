@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/reviewsave">
             <br>
@@ -14,7 +11,7 @@
             <label>Enter User Id</label>
             <select name="review&feedback">
                 {% for i in reviewobj %}
-                <option name="txtuid" value="{{i.user}}">{{i.user}}</option>
+                <option name="txtuid" value="{{i.user}}">{{i.user_id}}</option>
                 {% endfor %}
             </select><br>
 
@@ -27,4 +24,4 @@
             <button type="submit" value="save">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

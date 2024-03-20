@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Vehicle Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/paymentsave">
             <br>
@@ -16,7 +13,7 @@
             <label>Enter Doc Id</label>
             <select name="doc_detail_table">
                 {% for i in paymentobj %}
-                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
+                <option name="txtdid" value="{{i.doc}}">{{i.doc_id}}</option>
                 {% endfor %}
             </select><br>
 
@@ -31,4 +28,4 @@
             <button type="submit">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

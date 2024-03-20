@@ -16,8 +16,9 @@ urlpatterns = [
     path('about',views.about, name="about"),
     path('contact',views.contact, name="contact"),
     path('service',views.service, name="service"),
-    path('login',views.login, name="login"),
-    path('',views.admin),
+    path('',views.login1, name="login"),
+    path('login',views.login),
+    path('admin',views.admin),
     path('citysave',views.citysave),
     path('city',views.city),
     path('cityedit/<int:id>',views.cityedit),
@@ -120,4 +121,5 @@ urlpatterns = [
     path('vehroutdetedit/<int:id>',views.vehroudetedit),
     path('vehroutdetupdate/<int:id>',views.vehroutdetupdate),
     path('vehroutdetdelete/<int:id>',views.vehroutdetdelete),
+    path('product',views.product),
 ]

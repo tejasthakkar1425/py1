@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/gstsave">
             <br>
@@ -20,4 +17,4 @@
             <button type="submit" value="save">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

@@ -161,7 +161,7 @@
         {% for complain in complainobj %}
         <tr> 
             <td> {{ complain.com_id }}</td>
-            <td>{{ complain.user_master }} </td>
+            <td>{{ complain.user_master_id }} </td>
             <td>{{ complain.com_description }} </td>
             <td><a href="/complainedit/{{complain.com_id}}">Edit</a></td>
             <td><a href="/complaindelete/{{complain.com_id}}">Delete</a></td>

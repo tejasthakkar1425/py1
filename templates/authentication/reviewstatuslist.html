@@ -17,7 +17,7 @@
     }
 </style> {% endcomment %}
 <div>
-    <table align="center" width="50%" border="2.5">
+    <table class="table">
         <tr>
             <th>Review Status Id</th>
             <th>Review Id</th>
@@ -29,9 +29,9 @@
         {% for revsta in revstaobj %}
         <tr>
             <td> {{ revsta.review_status_id }}</td>
-            <td>{{ revsta.review }} </td>
+            <td>{{ revsta.review_id }} </td>
             <td>{{ revsta.status }} </td>
-            <td>{{ revsta.user }} </td>
+            <td>{{ revsta.user_id }} </td>
             <td><a href="/reviewstatusedit/{{revstaobj.id}}">Edit</a></td>
             <td><a href="/reviewstatusdelete/{{revstaobj.id}}">Delete</a></td>
         </tr>

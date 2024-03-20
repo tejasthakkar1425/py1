@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Edit Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form action="/reviewupdate/{{review.review_id}}" method="POST">
             <br>
@@ -18,4 +15,4 @@
             <button type="submit">Update</button>
         </form>
     </body>
-</html>
+{% endblock content %}

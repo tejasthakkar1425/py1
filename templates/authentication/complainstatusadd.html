@@ -1,9 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Add Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/complainstatussave">
             <br>
@@ -13,7 +9,7 @@
             <label>Complain Id</label>
             <select name="complain_status_table">
                 {% for i in complainstatusobj %}
-                <option name="txtcid" value="{{i.com}}"> {{i.com}} </option>
+                <option name="txtcid" value="{{i.com}}"> {{i.com_id}} </option>
                 {% endfor %}
             </select><br>
 
@@ -26,4 +22,4 @@
             <button type="submit" value="save">Submit</button>
         </form>
     </body>
-</html>
+{% endblock content %}

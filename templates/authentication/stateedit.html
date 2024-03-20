@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Edit Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form action="/stateupdate/{{state.state_id}}" method="POST">
             <br>
             {% csrf_token %}
             <h3>Update Details</h3>
             
-            <label>Enter State Name:</label><input type="text" name="txtname" value="{{state.stat_name}}"><br>
+            <label>Enter State Name</label><input type="text" name="txtname" value="{{state.stat_name}}"><br>
 
             <label>Enter Description</label><input type="text" name="txtsdesc" value="{{state.description}}"><br>
 
@@ -36,4 +33,4 @@
             <button type="submit">Update</button>
         </form>
     </body>
-</html>
+{% endblock content %}

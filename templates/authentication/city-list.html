@@ -166,8 +166,8 @@ footer {
         {% for city in cityobj %}
         <tr>
             <td>{{ city.city_village_id }}</td>
-            <td>{{ city.district }} </td>
-            <td>{{ city.state }} </td>
+            <td>{{ city.district_id }} </td>
+            <td>{{ city.state_id }} </td>
             <td>{{ city.city_village_name }} </td>
             <td>{{ city.description }}</td>
             <td><a href="/cityedit/{{city.city_village_id}}">Edit</a></td>

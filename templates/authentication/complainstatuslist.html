@@ -27,12 +27,12 @@
         </tr>
         {% for complain in complainstatusobj %}
         <tr>
-            <td> {{ complain.com }}</td>
+            <td> {{ complain.com_id }}</td>
             <td>{{ complain.com_status_id }} </td>
             <td>{{ complain.com_status_date }} </td>
             <td>{{ complain.com_status }}
-            <td><a href="/complainstatusedit/{{complainstatus.id}}">Edit</a></td>
-            <td><a href="/complainstatusdelete/{{complainstatus.id}}">Delete</a></td>
+            <td><a href="/complainstatusedit/{{complain.com_status_id}}">Edit</a></td>
+            <td><a href="/complainstatusdelete/{{complain.com_status_id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>

@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Vehicle Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/vehupdate/{{veh.vehicle_id}}">
             <br>
@@ -28,4 +25,4 @@
             <button type="submit">Update</button>
         </form>
     </body>
-</html>
+{% endblock content %}
