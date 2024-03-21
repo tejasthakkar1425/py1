@@ -199,6 +199,18 @@ class DocVehDetailsTable(models.Model):
         db_table = 'doc_veh_details_table'
 
 
+class User(models.Model):
+    user_master_id = models.IntegerField(primary_key=True)
+    user_email_id = models.TextField()
+    user_name = models.TextField()
+    user_password = models.TextField()
+
+    def __str__(self):   
+        managed = False
+        db_table = 'user_master_tabel'
+
+
+
 class Gstcharges(models.Model):
     gst_char_id = models.IntegerField(primary_key=True)
     year = models.TextField(blank=True, null=True)  # This field type is a guess.
@@ -288,7 +300,6 @@ class UserMasterTable(models.Model):
     class Meta:
         managed = False
         db_table = 'user_master_table'
-
 
 class VehRoutDetalis(models.Model):
     veh_rout_det_id = models.IntegerField(primary_key=True)

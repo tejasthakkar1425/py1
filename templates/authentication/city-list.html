@@ -1,5 +1,6 @@
 {% extends 'authentication\masterpage.html' %}
-{% block content %}{% comment %} {% load static %}
+{% block content %}
+{% load static %}{% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
     {% load static %}
@@ -170,8 +171,8 @@ footer {
             <td>{{ city.state_id }} </td>
             <td>{{ city.city_village_name }} </td>
             <td>{{ city.description }}</td>
-            <td><a href="/cityedit/{{city.city_village_id}}">Edit</a></td>
-            <td><a href="/citydelete/{{city.city_village_id}}">Delete</a></td>
+            <td><a href="/cityedit/{{city.city_village_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/citydelete/{{city.city_village_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
           </tr>
         {% endfor %}
     </tbody>

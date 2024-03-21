@@ -1,6 +1,7 @@
 
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
@@ -171,8 +172,8 @@
             <td>{{ review.review_image }} </td>
             <td>{{ review.review_description }} </td>
             <td>{{ review.review_star }}</td>
-            <td><a href="/reviewedit/{{review.review_id}}">Edit</a></td>
-            <td><a href="/reviewdelete/{{review.review_id}}">Delete</a></td>
+            <td><a href="/reviewedit/{{review.review_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/reviewdelete/{{review.review_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>

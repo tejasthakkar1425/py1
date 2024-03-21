@@ -210,7 +210,19 @@ def gstsave(request):
     gst=Gstcharges(gst_char_id=gid,year=gyear,cgst_per=gcgst,sgst_per=gsgst)
     gst.save()
     return redirect("/gstView")
-    
+
+def UserMasterTable(request):
+    if request.method == 'POST':
+        user_email_id=request.POST.get('email')
+        user_name=request.POST.get('username')
+        user_password=request.POST.get('userpassword')
+        umt=UserMasterTable(user_email_id=user_email_id,user_name=user_name,user_password=user_password)
+        umt.save()
+        print("registered")
+        return home(request,done)
+    return render(request,"authentication/registration.html")
+
+        
 def gstedit(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
     return render(request, "authentication/gstedit.html",{'gst':gst})
@@ -235,6 +247,11 @@ def gstView(request):
     objGstMaster = Gstcharges.objects.all()
     print(objGstMaster)
     return render(request, "authentication/gst-list.html",{'gstobj':objGstMaster})
+
+def report(request):
+    objreport = DocDetail.objects.all()
+    print(objreport)
+    return render(request, "authentication/report.html",{'reportobj':objreport})
 
 def dist(request):
     distobj=StateMasterTable.objects.all()

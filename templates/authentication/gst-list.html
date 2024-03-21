@@ -1,5 +1,6 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
@@ -165,8 +166,8 @@
             <td>{{ gst.year }} </td>
             <td>{{ gst.cgst_per }} </td>
             <td>{{ gst.sgst_per }} </td>
-            <td><a href="/gstedit/{{gst.gst_char_id}}">Edit</a></td>
-            <td><a href="/gstdelete/{{gst.gst_char_id}}">Delete</a></td>
+            <td><a href="/gstedit/{{gst.gst_char_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/gstdelete/{{gst.gst_char_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
           </tr>
         {% endfor %}
     </tbody>

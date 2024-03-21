@@ -1,5 +1,6 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} <html>{% endcomment %}
 {% comment %} <head>
     <link rel="stylesheet" href="{% static 'styles.css'%}">
@@ -20,26 +21,31 @@
     <table class="table">
         <thead>
         <tr>
-            <th>State Id</th>
-            <th>State Name </th>
-            <th>Description </th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Doc Detail Id</th>
+            <th>Doc </th>
+            <th>Doc Address </th>
+            <th>Vehicle Route</th>
+            <th>Vehicle Route</th>
+            <th>Doc Weight</th>
+            <th>Total Amount</th>
+            
         </tr>
     </thead>
     <tbody>
-        {% for state in stateobj %}
+        {% for state in reportobj %}
         <tr>
-            <td> {{ state.state_id }}</td>
-            <td>{{ state.stat_name }} </td>
-            <td>{{ state.description }}</td>
-            <td><a href="/stateedit/{{state.state_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-            <td><a href="/statedelete/{{state.state_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td> {{ state.doc_detail_id }}</td>
+            <td>{{ state.doc }} </td>
+            <td>{{ state.doc_address }}</td>
+            <td>{{ state.vehc_rout }}</td>
+            <td>{{ state.doc_weight }}</td>
+            <td>{{ state.vehc_rout_det }}</td>
+            <td>{{ state.total_amount }}</td>
+          
         </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/stateadd">Add</a>
 </div>
 {% comment %} </body>
 </html> {% endcomment %}

@@ -1,5 +1,7 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
+
 {% comment %} {% load static %} 
 <!DOCTYPE html>
 <html>
@@ -169,8 +171,8 @@ footer {
                 <td>{{ dist.district_name }} </td>
                 <td>{{ dist.state_id }} </td>
                 <td>{{ dist.description }}</td>
-                <td><a href="/distedit/{{dist.district_id}}">Edit</a></td>
-                <td><a href="/distdelete/{{dist.district_id}}">Delete</a></td>
+                <td><a href="/distedit/{{dist.district_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/distdelete/{{dist.district_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
