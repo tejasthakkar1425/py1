@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Vehicle Details</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
         <form method="post" action="/userdetupdate/{{userdet.user_deatil_id}}">
             <br>
             {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>User Master Id</label>
-            <select name="user_detail_table">
-                {% for i in userdetobj %}
-                <option name="txtdid" value="{{i.user_master}}">{{i.user_master}}</option>
-                {% endfor %}
-            </select><br>
+            <h3>Update Details</h3>
 
             <label>User Type</label>
             <select name="usertype">
@@ -39,4 +29,4 @@
             <button type="submit">Update</button>
         </form>
     </body>
-</html>
+{% endblock content %}

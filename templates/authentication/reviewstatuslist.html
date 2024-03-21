@@ -32,12 +32,12 @@
             <td>{{ revsta.review_id }} </td>
             <td>{{ revsta.status }} </td>
             <td>{{ revsta.user_id }} </td>
-            <td><a href="/reviewstatusedit/{{revstaobj.id}}">Edit</a></td>
-            <td><a href="/reviewstatusdelete/{{revstaobj.id}}">Delete</a></td>
+            <td><a href="/reviewstatusedit/{{revsta.review_status_id}}">Edit</a></td>
+            <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
-    <a href="/review">Add</a>
+    <a href="/reviewstatus">Add</a>
 </div>
 {% comment %} </body>
 </html> {% endcomment %}
