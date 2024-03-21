@@ -78,13 +78,13 @@ def login(request):
                           print("login done")
                           if user_details.user_type == 1:
                               print("checked the type")
-                              return admin(request)
+                              return dashboard(request)
                           if user_details.user_type == 2:
                               print("checked the type")
                               done=1
                               return home(request,done)
                           if user_details.user_type == 3:
-                              print("checked the type")
+                              print("checked the type") 
                               return employee(request)
                  else:
                           return render(request, 'authentication/login.html', {'error': 'Incorrect password'})
@@ -700,17 +700,13 @@ def reviewstatussave(request):
     return redirect("/reviewstatusView")
 
 def reviewstatusedit(request,id):
-    revsta=ReviewFeedbackStatus.objects.get(review_status_id=id)
-    return render(request, "authentication/reviewstatusedit.html",{'revstaobj':revsta})
+    revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
+    return render(request, "authentication/reviewstatusedit.html",{'revstaobj':revstaobj})
 
 def reviewstatusupdate(request,id):
     revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
-    rid=request.POST.get('txtrid')
     stat=request.POST.get('txtstatus')
-    uid=request.POST.get('txtuid')
-    revstaobj.review=rid
     revstaobj.status=stat
-    revstaobj.user=uid
     revstaobj.save()
     return redirect("/reviewstatusView")
 
@@ -793,17 +789,11 @@ def userdetedit(request,id):
 
 def userdetupdate(request,id):
     userdet=UserDetails.objects.get(user_deatil_id=id)
-    uid=request.POST.get('txtuid')
-    typ=request.POST.get('txttyp')
     pic=request.POST.get('txtpic')
     con=request.POST.get('txtcon')
-    gen=request.POST.get('txtgen')
     add=request.POST.get('txtadd')
-    userdet.user_master=uid
-    userdet.user_type=typ
     userdet.profile_pic=pic
     userdet.contact=con
-    userdet.gender=gen
     userdet.address=add
     userdet.save()
     return redirect("/userdetView")
