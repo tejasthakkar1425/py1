@@ -153,7 +153,6 @@
             <th>Complain Id</th>
             <th>User Id</th>
             <th>Description</th>
-            <th>Edit</th>
             <th>Delete</th>
 
         </tr>
@@ -164,12 +163,11 @@
             <td> {{ complain.com_id }}</td>
             <td>{{ complain.user_master_id }} </td>
             <td>{{ complain.com_description }} </td>
-            <td><a href="/complainedit/{{complain.com_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/complaindelete/{{complain.com_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/complain"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
+    {% comment %} <a href="/complain"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a> {% endcomment %}
 </div>
 {% endblock content %}

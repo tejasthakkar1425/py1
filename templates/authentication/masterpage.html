@@ -116,7 +116,7 @@ footer {
 
     <header>
         <h1 >Transport Admin Dashboard</h1>
-   
+        <div border="2px" padding="5px"><a href="/stateadd"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px" align="right"/></a></div>
     </header>
 
     <aside>
@@ -131,11 +131,49 @@ footer {
 			<li><a href="/vehView">VehicleDetails</a></li>
 			<li><a href="/complainsView">ComplainStatus</a></li>
 			<li><a href="/complainView">Complains</a></li>
-            <li><a href="/reviewstatusView" >ReviewStatus</a></li>
+			<li><a href="/report">Report</a></li>
+            {% comment %} <li><a href="/reviewstatusView" >ReviewStatus</a></li> {% endcomment %}
             
         </ul>
     </aside>
-
+    
+    <center><input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/> </center>
+    
+    {% comment %} S E A R C H B A R  {% endcomment %}
+    {% comment %} <style>
+        /* Optional CSS for styling the search bar */
+        .search-container {
+            margin: auto;
+            width: 50%;
+            padding: 20px;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    
+    
+    <div class="search-container">
+    <form action="/report.html" method="get">
+        <input type="text" placeholder="Search..." name="search">
+        <input type="submit" value="Search">
+    </form>
+    </div> {% endcomment %}
     <main>
         {% block content %}
 

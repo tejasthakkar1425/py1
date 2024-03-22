@@ -15,8 +15,11 @@
         visiblity:hidden;
     }
 </style> {% endcomment %}
+
+
 {% load static %}
 <div>
+    
     <table class="table">
         <thead>
         <tr>
@@ -39,7 +42,7 @@
         {% endfor %}
     </tbody>
     </table>
-    <a href="/stateadd"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
+    {% comment %} <a href="/stateadd"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a> {% endcomment %}
 </div>
 {% comment %} </body>
 </html> {% endcomment %}
