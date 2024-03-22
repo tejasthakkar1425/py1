@@ -34,12 +34,12 @@
             <td>{{ state.stat_name }} </td>
             <td>{{ state.description }}</td>
             <td><a href="/stateedit/{{state.state_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-            <td><a href="/statedelete/{{state.state_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/statedelete/{{state.state_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/stateadd">Add</a>
+    <a href="/stateadd"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% comment %} </body>
 </html> {% endcomment %}

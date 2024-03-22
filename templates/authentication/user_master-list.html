@@ -168,11 +168,11 @@
             <td>{{ user.user_name }} </td>
             <td>{{ user.user_password }}</td>
             <td><a href="/useredit/{{user.user_master_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-            <td><a href="/userdelete/{{user.user_master_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/userdelete/{{user.user_master_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
           </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="user">Add</a>
+    <a href="user"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% endblock content %}

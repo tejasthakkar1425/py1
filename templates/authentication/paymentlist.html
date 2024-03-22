@@ -1,6 +1,7 @@
 
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
@@ -178,12 +179,12 @@
                 <td>{{ payment.pay_method }}</td>
                 <td>{{ payment.pay_tran_id }}</td>
                 <td>{{ payment.pay_response }}</td>
-                <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}">Edit</a></td>
-                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}">Delete</a></td>
+                <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
              </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/payment">Add</a>
+    <a href="/payment"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% endblock content %}

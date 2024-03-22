@@ -172,12 +172,12 @@ footer {
                 <td>{{ dist.state_id }} </td>
                 <td>{{ dist.description }}</td>
                 <td><a href="/distedit/{{dist.district_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-                <td><a href="/distdelete/{{dist.district_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/distdelete/{{dist.district_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/dist">Add</a>
+    <a href="/dist"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% comment %} </div>
 </body>

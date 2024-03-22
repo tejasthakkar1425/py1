@@ -1,6 +1,7 @@
 
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} <html>{% endcomment %}
 {% comment %} <head>
     <link rel="stylesheet" href="{% static 'styles.css'%}">
@@ -32,12 +33,12 @@
             <td>{{ revsta.review_id }} </td>
             <td>{{ revsta.status }} </td>
             <td>{{ revsta.user_id }} </td>
-            <td><a href="/reviewstatusedit/{{revsta.review_status_id}}">Edit</a></td>
-            <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}">Delete</a></td>
+            <td><a href="/reviewstatusedit/{{revsta.review_status_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </table>
-    <a href="/reviewstatus">Add</a>
+    <a href="/reviewstatus"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% comment %} </body>
 </html> {% endcomment %}

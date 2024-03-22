@@ -1,6 +1,7 @@
 
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
+{% load static %}
 {% comment %} {% load static %}
 <!DOCTYPE html>
 <html>
@@ -163,12 +164,12 @@
             <td> {{ complain.com_id }}</td>
             <td>{{ complain.user_master_id }} </td>
             <td>{{ complain.com_description }} </td>
-            <td><a href="/complainedit/{{complain.com_id}}">Edit</a></td>
-            <td><a href="/complaindelete/{{complain.com_id}}">Delete</a></td>
+            <td><a href="/complainedit/{{complain.com_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/complaindelete/{{complain.com_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/complain">Add</a>
+    <a href="/complain"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% endblock content %}

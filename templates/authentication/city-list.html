@@ -172,11 +172,11 @@ footer {
             <td>{{ city.city_village_name }} </td>
             <td>{{ city.description }}</td>
             <td><a href="/cityedit/{{city.city_village_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-            <td><a href="/citydelete/{{city.city_village_id}}"><img src="{% static 'trash3.svg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/citydelete/{{city.city_village_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
           </tr>
         {% endfor %}
     </tbody>
     </table>
-    <a href="/city">Add</a>
+    <a href="/city"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% endblock content %}

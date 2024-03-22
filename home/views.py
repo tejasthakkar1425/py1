@@ -1,4 +1,5 @@
 from sre_parse import State
+from turtle import done
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from home.models import *
@@ -210,7 +211,7 @@ def gstsave(request):
     gst=Gstcharges(gst_char_id=gid,year=gyear,cgst_per=gcgst,sgst_per=gsgst)
     gst.save()
     return redirect("/gstView")
-
+""""
 def UserMasterTable(request):
     if request.method == 'POST':
         user_email_id=request.POST.get('email')
@@ -221,7 +222,7 @@ def UserMasterTable(request):
         print("registered")
         return home(request,done)
     return render(request,"authentication/registration.html")
-
+"""
         
 def gstedit(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
@@ -476,9 +477,9 @@ def userdelete(request,id):
     return redirect("/userView")
 
 def userView(request):
-    objUserMaster = UserMasterTable.objects.all()
-    print(objUserMaster)
-    return render(request, "authentication/user_master-list.html",{'userobj':objUserMaster})
+    userobj = UserMasterTable.objects.all()
+    print(userobj)
+    return render(request, "authentication/user_master-list.html",{'userobj':userobj})
 
 def review(request):
     reviewobj=ReviewFeedback.objects.all()
