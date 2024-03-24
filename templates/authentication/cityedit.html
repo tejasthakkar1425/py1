@@ -1,52 +1,34 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
-        <form action="/cityupdate/{{city.city_village_id}}" method="POST">
-            <br>
-            {% csrf_token %}
-            <h3>Update Details</h3>
 
-            {% comment %}
-            <label>Enter District Id:</label>
-            <select name="city_village_master_table">
-                {% for i in cityobj %}
-                <option name="txtdid" value="{{i.district}}">{{i.district}}</option>
-                {% endfor %}
-            </select><br>
-            
-            <label>Enter State Id:</label><input type="number" name="txtsid" value="{{city.state}}"/><br>
-            <select name="city_village_master_table">
-                {% for i in cityobj %}
-                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
-                {% endfor %}
-            </select><br>
-            {% endcomment %}
-
-            <label>Enter City Name:</label><input type="text" name="txtcname" value="{{city.city_village_name}}"/><br>
-
-            <label>Enter Description</label><input type="text" name="txtcdesc" value="{{city.description}}"/><br>
-
-             {% comment %}
-            <label>Created By User Id</label>
-            <select name="state_master_table">
-                {% for i in cityobj %}
-                <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Created Date</label><input type="date" name="txtuserdate"><br>
-
-            <label>Updated By User Id</label>
-            <select name="state_master_table">
-                {% for i in cityobj %}
-                <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Updated Date</label><input type="date" name="txtup"><br>
-            {% endcomment %}
-
-            <button type="submit">Update</button>
-        </form>
+<body>
+        <div class="form-container">
+            <form class="needs-validation" id="bookingForm" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update</button>
+            </form>
+        </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_district').change(function() {
+                var distId = $(this).val();
+                var urlobj="/getState/"+distId
+                $.ajax({
+                    url: urlobj,
+                    dataType: 'json',
+                    success: function(data) {
+                        //$('#id_state').empty();
+                        console.log(data);
+                        $.each(data.statedata, function(index, statedata) {
+                            $('#id_state').val(statedata.id);
+                            //$('#id_state').append('<option value="' + statedata.id + '">' + statedata.name + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock content %}

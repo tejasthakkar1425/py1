@@ -1,68 +1,22 @@
 {% extends 'authentication\masterpage.html' %}
+{% load static %}
 {% block content %}
     <body>
-        <form method="post" action="/distsave">
-            <br>
-            {% csrf_token %}
-            {{ form.as_p }}
-
-            {% comment %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Distriict Id</label><input type="number" name="txtdid"><br>
-
-            <label>Enter Distriict Name</label><input type="text" name="txtdname"><br>         
-            <label>Enter State Id</label>
-            <select id=select_id name="dist_master_table" id="DisId">
-                {% for i in distobj %}
-                <option name="txtsid" value="{{i.state_id}}">{{i.stat_name}}</option>
-                {% endfor %}
-            </select><br> 
-
-            <label>Enter Description</label><input type="text" name="txtddesc"><br>
-            {% endcomment %}
-    
-            {% comment %}
-            <label>Created By User Id</label>
-            <select name="state_master_table">
-                {% for i in stateobj %}
-                <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Created Date</label><input type="date" name="txtuserdate"><br>
-
-            <label>Updated By User Id</label>
-            <select name="state_master_table">
-                {% for i in stateobj %}
-                <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Updated Date</label><input type="date" name="txtup"><br>
-            <label>Enter State Id</label>
-            <select id=select_id name="dist_master_table">
-                {% for i in distobj %}
-                <option name="txtsid" value="{{i.state_id}}">{{i.stat_name}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Description</label><input type="text" name="txtddesc"><br>
-
-            <button type="submit">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/distsave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
-</html>
-<script src="{% static 'jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'main.js' %}"></script> 
-<script src="{% static 'bootstrap.min.js' %}"></script>
-<script>
-    $('#select_id').change(function(){
-        $('#DisId').val($(this).val());
-    });
-</script> {% endcomment %}
-
-        <button type="submit" value="save">Submit</button>
-        </form>
-    </body>
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'main.js' %}"></script> 
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script>
+        $('#select_id').change(function(){
+            $('#DisId').val($(this).val());
+        });
+    </script>
 {% endblock content %}

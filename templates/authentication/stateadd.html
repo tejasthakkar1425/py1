@@ -1,38 +1,12 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/statesave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter State Id:</label><input type="number" name="txtsid"><br>
-
-            <label>Enter State Name:</label><input type="text" name="txtsname"><br>
-
-            <label>Enter Description</label><input type="text" name="txtdesc"><br>
-
-            {% comment %}
-            <label>Created By User Id</label>
-            <select name="state_master_table">
-                {% for i in stateobj %}
-                <option name="txtuser" value="{{i.created_by_user}}">{{i.created_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Created Date</label><input type="date" name="txtuserdate"><br>
-
-            <label>Updated By User Id</label>
-            <select name="state_master_table">
-                {% for i in stateobj %}
-                <option name="txtupdate" value="{{i.updated_by_user}}">{{i.updated_by_user}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Updated Date</label><input type="date" name="txtup"><br>
-            {% endcomment %}
-
-            <button type="submit" value="save">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/statesave">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" value="save">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

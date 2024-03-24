@@ -1,7 +1,7 @@
 from sre_parse import State
 from turtle import done
 from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from home.models import *
 from home.forms import *
 import json
@@ -52,19 +52,20 @@ def admin(request):
 def stateadd(request):
     stateobj=StateMasterTable.objects.all()
     print(stateobj)
-    return render(request, "authentication/stateadd.html",{'stateobj':stateobj})
+    form = stateForm()
+    return render(request, "authentication/stateadd.html",{'form':form,'stateobj':stateobj})
 
 def statesave(request):
-    id=request.POST.get('txtsid')
-    name=request.POST.get('txtsname')
-    desc=request.POST.get('txtdesc')
-    #cbui=request.POST.get('txtuser')
-    #cd=request.POST.get('txtuserdate')
-    #ubui=request.POST.get('txtupdate')
-    #ud=request.POST.get('txtup')
-    state=StateMasterTable(state_id=id,stat_name=name,description=desc)#(created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
-    state.save()
+    form = stateForm()
+    if request.method == 'POST':
+        form = stateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/stateView")
+        else:
+            return redirect("/stateView")
     return redirect("/stateView")
+    
 def login(request):
   #  modeldt = adminModel.objects.all()
         
@@ -101,8 +102,15 @@ def stateView(request):
     return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
 
 def stateedit(request,id):
-    state=StateMasterTable.objects.get(state_id=id)
-    return render(request, "authentication/stateedit.html",{"state":state})
+    instance = get_object_or_404(StateMasterTable, state_id=id)
+    if request.method == 'POST':
+        form = stateForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/stateView')  # Redirect to a success page
+    else:
+        form = stateForm(instance=instance)
+    return render(request, "authentication/stateedit.html",{'form':form})
 
 def stateupdate(request,id):
     if request.method=="POST":
@@ -128,50 +136,42 @@ def statedelete(request,id):
     return redirect("/stateView")
 
 def city(request):
+    form = cityVilageForm()
     cityobj=CityVillageMaster.objects.all()
     print(cityobj)
-    return render(request, "authentication/cityadd.html",{'cityobj':cityobj})
+    return render(request, "authentication/cityadd.html",{'form':form,'cityobj':cityobj})
 
 def citysave(request):
-    cid=request.POST.get('txtcid')
-    did=request.POST.get('txtdid')
-    sid=request.POST.get('txtsid')
-    name=request.POST.get('txtcname')
-    desc=request.POST.get('txtcdesc')
-    #cbui=request.POST.get('txtuser')
-    #cd=request.POST.get('txtuserdate')
-    #ubui=request.POST.get('txtupdate')
-    #ud=request.POST.get('txtup')
-    city=CityVillageMaster(city_village_id=cid,district=did,state=sid,city_village_name=name,description=desc)#created_by_user=cbui,created_date=cd,updated_by_user=ubui,updated_date=ud)
-    city.save()
+    form=cityVilageForm()
+    if request.method == 'POST':
+        form = cityVilageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/cityView")
+        else:
+            return redirect("/cityView")
     return redirect("/cityView")
 
 def cityedit(request,id):
-    city=CityVillageMaster.objects.get(city_village_id=id)
-    return render(request, "authentication/cityedit.html",{'city':city})
+    instance = get_object_or_404(CityVillageMaster, city_village_id=id)
+    if request.method == 'POST':
+        form = cityVilageForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/cityView')  # Redirect to a success page
+    else:
+        form = cityVilageForm(instance=instance)
+    return render(request, "authentication/cityedit.html",{'form':form})
 
-def cityupdate(request,id):
-        city=CityVillageMaster.objects.get(city_village_id=id)
-        #cid=request.POST.get('txtcid')
-        #did=request.POST.get('txtdid')
-        #sid=request.POST.get('txtsid')
-        name=request.POST.get('txtcname')
-        desc=request.POST.get('txtcdesc')
-        #cbui=request.POST.get('txtuser')
-        #cd=request.POST.get('txtuserdate')
-        #ubui=request.POST.get('txtupdate')
-        #ud=request.POST.get('txtup')
-        #city.city_village_id=cid
-        #city.district=did
-        #city.state=sid
-        city.city_village_name=name
-        city.description=desc
-        #city.created_by_user=cbui
-        #city.created_date=cd
-        #city.updated_by_user=ubui
-        #city.updated_date=ud
-        city.save()
-        return redirect("/cityView")
+def getState(request,id):
+    DistId =id
+    disobj = DistrictMaster.objects.filter(district_id=DistId)
+    state=disobj.first().state
+    print(state.state_id)
+    stateobj = StateMasterTable.objects.filter(state_id=state.state_id)
+    statedata = [{'id': sub.state_id, 'name': sub.stat_name} for sub in stateobj]
+    print(statedata)
+    return JsonResponse({'statedata': statedata})
 
 def citydelete(request,id):
     city=CityVillageMaster.objects.get(city_village_id=id)
@@ -260,14 +260,6 @@ def distsave(request):
             return redirect("/distView")
         else:
             return redirect("/distView")
-    # did=request.POST.get('txtdid')
-    # dname=request.POST.get('txtdname')
-    # sid=request.POST.get('DisId')
-    # print(sid)
-    # sid=request.POST.get('txtsid')
-    # ddesc=request.POST.get('txtddesc')
-    # dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
-    # dist.save()
     return redirect("/distView")
 
 def distedit(request,id):

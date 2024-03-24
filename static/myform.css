@@ -1,0 +1,57 @@
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-container h2 {
+    text-align: center;
+}
+
+.form-container form {
+    margin-top: 20px;
+}
+
+.form-container form label {
+    color: black;
+    padding: 10px;
+    margin: 3px;
+    font-size: medium;
+}
+
+.form-container form input[type="text"],
+.form-container form input[type="email"],
+.form-container form input[type="number"],
+.form-container form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-container form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container form button:hover {
+    background-color: #45a049;
+}
+
+.form-container form select { 
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

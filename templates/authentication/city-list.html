@@ -167,8 +167,10 @@ footer {
         <thead>
         <tr>
             <th>City Id</th>
-            <th>District Id</th>
-            <th>State Id</th>
+            <th style="display: none;">District Id</th>
+            <th>District</th>
+            <th style="display: none;">State Id</th>
+            <th>State</th>
             <th>City Name</th>
             <th>Description </th>
             <th>Edit</th>
@@ -180,8 +182,10 @@ footer {
         {% for city in cityobj %}
         <tr>
             <td>{{ city.city_village_id }}</td>
-            <td>{{ city.district_id }} </td>
-            <td>{{ city.state_id }} </td>
+            <td style="display: none;">{{ city.district.district_id }} </td>
+            <td>{{city.district.district_name}}</td>
+            <td style="display: none;">{{city.state.state_id}}</td>
+            <td>{{ city.state.stat_name }} </td>
             <td>{{ city.city_village_name }} </td>
             <td>{{ city.description }}</td>
             <td><a href="/cityedit/{{city.city_village_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>

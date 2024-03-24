@@ -76,7 +76,7 @@ class CityVillageMaster(models.Model):
     city_village_id = models.IntegerField(primary_key=True)
     district = models.ForeignKey('DistrictMaster', models.DO_NOTHING, blank=True, null=True)
     state = models.ForeignKey('StateMasterTable', models.DO_NOTHING, blank=True, null=True)
-    city_village_name = models.TextField(blank=True, null=True)
+    city_village_name = models.CharField(blank=True, null=True,max_length=50)
     description = models.CharField(max_length=50)
     created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
@@ -265,7 +265,7 @@ class ReviewFeedbackStatus(models.Model):
 
 class StateMasterTable(models.Model):
     state_id = models.IntegerField(primary_key=True)
-    stat_name = models.TextField(blank=True, null=True)
+    stat_name = models.CharField(blank=True, null=True,max_length=50)
     description = models.CharField(db_column='Description', max_length=50)  # Field name made lowercase.
     created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)

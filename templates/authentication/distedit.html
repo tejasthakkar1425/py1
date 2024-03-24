@@ -1,40 +1,12 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
+        <div class="form-container">
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Save Changes</button>
             </form>
-        <!-- <form action="/distupdate/{{dist.district_id}}" method="POST">
-            <br>
-            {% csrf_token %}
-            <h3>Update Details</h3>
-
-            <label>Enter District Name:</label>
-            {% comment %} {{form.district_name}} {% endcomment %}
-            <input type="text" name="txtdname" value="{{dist.district_name}}"><br> 
-            <label>Enter State Id</label>
-             <select name="dist_master_table">
-                {% for i in distobj %}
-                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
-                {% endfor %}
-            </select>
-            <br>
-
-            <label>Enter Description</label>
-            {% comment %} {{form.description}} {% endcomment %}
-            <input type="text" name="txtddesc" value="{{dist.description}}"><br> 
-            <select name="dist_master_table">
-                {% for i in distobj %}
-                <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
-                {% endfor %}
-            </select>
-            <br>
-
-            <label>Enter Description</label>
-            <input type="text" name="txtddesc" value="{{dist.description}}"><br>
-            <button type="submit">Update</button>
-        </form> -->
+        </div>
     </body>
 {% endblock content %}
