@@ -9,17 +9,16 @@ class Gst(forms.ModelForm):
 
 
 class DisForm(forms.ModelForm):
-    class Meta:
+      def __init__(self, *args, **kwargs):
+        super(DisForm, self).__init__(*args, **kwargs)
+        self.fields['state'].choices = [(obj.state_id, obj.stat_name) for obj in StateMasterTable.objects.all()]
+      class Meta:
         model = DistrictMaster
-        fields = ('district_id','district_name','state','description')
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field in self.fields:
-            self.fields[field].widget.attrs = {
-            'class': "mt-1 form-input", 
-            }
-        self.fields['district_id'].widget.attrs['required'] = True
-        self.fields['district_name'].widget.attrs['required'] = True
-        self.fields['state'].widget.attrs['required'] = True
-        self.fields['description'].widget.attrs['required'] = True
+        fields = '__all__'
+        fields = ['district_id', 'district_name','state','description']
+        labels = {
+            'district_id': 'district ID',
+            'district_name' : 'District Name',
+            'state' : 'State Name.' ,
+            'description' : 'Description'
+        }

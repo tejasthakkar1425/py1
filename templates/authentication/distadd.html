@@ -4,7 +4,9 @@
         <form method="post" action="/distsave">
             <br>
             {% csrf_token %}
-           
+            {{ form.as_p }}
+
+            {% comment %}
             <h3>Enter Details</h3>
 
             <label>Enter Distriict Id</label><input type="number" name="txtdid"><br>
@@ -18,6 +20,8 @@
             </select><br> 
 
             <label>Enter Description</label><input type="text" name="txtddesc"><br>
+            {% endcomment %}
+    
             {% comment %}
             <label>Created By User Id</label>
             <select name="state_master_table">
@@ -55,7 +59,7 @@
 <script>
     $('#select_id').change(function(){
         $('#DisId').val($(this).val());
-    })
+    });
 </script> {% endcomment %}
 
         <button type="submit" value="save">Submit</button>

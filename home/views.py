@@ -1,6 +1,6 @@
 from sre_parse import State
 from turtle import done
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from home.models import *
 from home.forms import *
@@ -71,8 +71,10 @@ def login(request):
         if request.method == 'POST':
             email_id = request.POST['email']
             passw = request.POST['password']
+            print(email_id)
             try:
                  user_instance = UserMasterTable.objects.get(user_email_id = email_id)
+                 print(user_instance)
                  if user_instance.user_password == passw:
                           print(user_instance.user_password)
                           user_details = UserDetails.objects.get(user_master = user_instance.user_master_id )
@@ -89,8 +91,9 @@ def login(request):
                               return employee(request)
                  else:
                           return render(request, 'authentication/login.html', {'error': 'Incorrect password'})
-            except:
-                    return render(request, 'authentication/login.html', {'error': 'User not found'})
+            except  Exception as e: 
+                print(e)
+                return render(request, 'authentication/login.html', {'error': 'User not found'})
         return HttpResponse(render(request,'authentication/login.html'))
 def stateView(request):
     objStateMaster = StateMasterTable.objects.all()
@@ -245,25 +248,38 @@ def report(request):
 def dist(request):
     distobj=StateMasterTable.objects.all()
     print(distobj)
-    return render(request, "authentication/distadd.html",{'distobj':distobj})
+    form = DisForm()
+    return render(request, "authentication/distadd.html",{'form':form,'distobj':distobj})
 
 def distsave(request):
-    form = DisForm(request.POST)
-    data = request.POST.get('DisId') 
-    print(data)
-    did=request.POST.get('txtdid')
-    dname=request.POST.get('txtdname')
-    sid=request.POST.get('DisId')
+    form = DisForm()
+    if request.method == 'POST':
+        form = DisForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/distView")
+        else:
+            return redirect("/distView")
+    # did=request.POST.get('txtdid')
+    # dname=request.POST.get('txtdname')
+    # sid=request.POST.get('DisId')
     # print(sid)
-    sid=request.POST.get('txtsid')
-    ddesc=request.POST.get('txtddesc')
-    dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
-    dist.save()
+    # sid=request.POST.get('txtsid')
+    # ddesc=request.POST.get('txtddesc')
+    # dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)
+    # dist.save()
     return redirect("/distView")
 
 def distedit(request,id):
-    dist=DistrictMaster.objects.get(district_id=id)
-    return render(request, "authentication/distedit.html",{'dist':dist})
+    instance = get_object_or_404(DistrictMaster, district_id=id)
+    if request.method == 'POST':
+        form = DisForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/distView')  # Redirect to a success page
+    else:
+        form = DisForm(instance=instance)
+    return render(request, "authentication/distedit.html",{'form':form})
 
 def distupdate(request,id):
     dist=DistrictMaster.objects.get(district_id=id)
@@ -283,7 +299,6 @@ def distdelete(request,id):
 
 def distView(request):
     objDistMaster = DistrictMaster.objects.all()
-    print(objDistMaster)
     return render(request, "authentication/district-list.html",{'distobj':objDistMaster})
 
 def doc(request):

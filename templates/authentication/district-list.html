@@ -131,15 +131,17 @@ footer {
                 <th>Distriict Id</th>
                 <th>District Name</th>
                 <th>State Id</th>
+                <th>State Name</th>
                 <th>Description </th>
                 <th>Edit</th>
                 <th>Delete</th>
-            </tr>
+            </tr> 
             {% for dist in distobj %}
             <tr>
                 <td> {{ dist.district_id }}</td>
                 <td>{{ dist.district_name }} </td>
                 <td>{{ dist.state }} </td>
+                <td>{{ dist.state_Name}}</td>
                 <td>{{ dist.description }}</td>
                 <td><a href="/distedit/{{dist.district_id}}">Edit</a></td>
                 <td><a href="/distdelete/{{dist.district_id}}">Delete</a></td>
@@ -171,7 +173,8 @@ footer {
         <tr>
             <th>Distriict Id</th>
             <th>District Name</th>
-            <th>State Id</th>
+            <th style="display: none;">State Id</th>
+            <th>State Name</th>
             <th>Description </th>
             <th>Edit</th>
             <th>Delete</th>
@@ -183,7 +186,8 @@ footer {
         <tr>
             <td> {{ dist.district_id }}</td>
                 <td>{{ dist.district_name }} </td>
-                <td>{{ dist.state_id }} </td>
+                <td style="display: none;">{{ dist.state.state_id }} </td>
+                <td>{{ dist.state.stat_name}}</td>
                 <td>{{ dist.description }}</td>
                 <td><a href="/distedit/{{dist.district_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
                 <td><a href="/distdelete/{{dist.district_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
