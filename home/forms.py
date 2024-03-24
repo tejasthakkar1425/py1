@@ -7,12 +7,19 @@ class Gst(forms.ModelForm):
         model=Gstcharges
         fields="__all__"
 
+
 class DisForm(forms.ModelForm):
-    district_id = models.IntegerField(primary_key=True)
-    district_name = models.TextField(blank=True, null=True)
-    state = models.ForeignKey('StateMasterTable',on_delete=models.CASCADE, null=True)
-    description = models.CharField(max_length=50)
-    created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
-    created_date = models.DateField(blank=True, null=True)
-    updated_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='districtmaster_updated_by_user_set', blank=True, null=True)
-    updated_date = models.DateField(blank=True, null=True)
+    class Meta:
+        model = DistrictMaster
+        fields = ('district_id','district_name','state','description')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            self.fields[field].widget.attrs = {
+            'class': "mt-1 form-input", 
+            }
+        self.fields['district_id'].widget.attrs['required'] = True
+        self.fields['district_name'].widget.attrs['required'] = True
+        self.fields['state'].widget.attrs['required'] = True
+        self.fields['description'].widget.attrs['required'] = True

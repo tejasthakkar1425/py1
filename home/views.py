@@ -211,18 +211,6 @@ def gstsave(request):
     gst=Gstcharges(gst_char_id=gid,year=gyear,cgst_per=gcgst,sgst_per=gsgst)
     gst.save()
     return redirect("/gstView")
-
-def UserMasterTable(request):
-    if request.method == 'POST':
-        user_email_id=request.POST.get('email')
-        user_name=request.POST.get('username')
-        user_password=request.POST.get('userpassword')
-        umt=UserMasterTable(user_email_id=user_email_id,user_name=user_name,user_password=user_password)
-        umt.save()
-        print("registered")
-        return home(request,done)
-    return render(request,"authentication/registration.html")
-
         
 def gstedit(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
@@ -261,12 +249,12 @@ def dist(request):
 
 def distsave(request):
     form = DisForm(request.POST)
-    data = form.cleaned_data['data_field']
+    data = request.POST.get('DisId') 
     print(data)
     did=request.POST.get('txtdid')
     dname=request.POST.get('txtdname')
     sid=request.POST.get('DisId')
-    print(sid)
+    # print(sid)
     sid=request.POST.get('txtsid')
     ddesc=request.POST.get('txtddesc')
     dist=DistrictMaster(district_id=did,district_name=dname,state=sid,description=ddesc)

@@ -6,18 +6,21 @@
             {% csrf_token %}
             <h3>Update Details</h3>
 
-            <label>Enter District Name:</label><input type="text" name="txtdname" value="{{dist.district_name}}"><br>
+            <label>Enter District Name:</label>
+            {% comment %} {{form.district_name}} {% endcomment %}
+            <input type="text" name="txtdname" value="{{dist.district_name}}"><br> 
 
-            {% comment %}
             <label>Enter State Id</label>
-            <select name="dist_master_table">
+             <select name="dist_master_table">
                 {% for i in distobj %}
                 <option name="txtsid" value="{{i.state}}">{{i.state}}</option>
                 {% endfor %}
-            </select><br>
-            {% endcomment %}
+            </select>
+            <br>
 
-            <label>Enter Description</label><input type="text" name="txtddesc" value="{{dist.description}}"><br>
+            <label>Enter Description</label>
+            {% comment %} {{form.description}} {% endcomment %}
+            <input type="text" name="txtddesc" value="{{dist.description}}"><br> 
             
             <button type="submit">Update</button>
         </form>

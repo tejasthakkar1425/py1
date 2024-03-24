@@ -11,7 +11,7 @@
 
             <label>Enter Distriict Name</label><input type="text" name="txtdname"><br>         
             <label>Enter State Id</label>
-            <select id=select_id name="dist_master_table">
+            <select id=select_id name="dist_master_table" id="DisId">
                 {% for i in distobj %}
                 <option name="txtsid" value="{{i.state_id}}">{{i.stat_name}}</option>
                 {% endfor %}
