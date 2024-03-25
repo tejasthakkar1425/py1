@@ -1,23 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
-        <form method="post" action="/complainsave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Complain Id</label><input type="number" name="txtcid"><br>
-
-            <label>Enter User Id</label>
-            <select name="complain_master_table">
-                {% for i in complainobj %}
-                <option name="txtuid" value="{{i.user_master}}">{{i.user_master_id}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Complain Description</label><input type="text" name="txtcdesc"><br>
-
-            <button type="submit" value="save">Submit</button>
-        </form>
-    </body>
+<body>
+    <div class="form-container">
+       <form method="post" action="/complainsave">
+           <br>
+           {% csrf_token %}
+           {{ form.as_p }}
+           <button type="submit">Submit</button>
+       </form>
+   </div>
+</body>
 {% endblock content %}

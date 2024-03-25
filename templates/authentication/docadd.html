@@ -1,35 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
+<body>
+    <div class="form-container">
         <form method="post" action="/docsave">
             <br>
             {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Doc Id</label><input type="number" name="txtdocid"><br>
-
-            <label>Enter Doc Number</label><input type="text" name="txtdnum"><br>
-
-            <label>Enter Doc Date</label><input type="date" name="txtddate"><br>
-
-            <label>Enter LR Number</label><input type="number" name="txtlnum"><br>
-
-            <label>Gst Charges Id</label>
-            <select name="doc_master_table">
-                {% for i in docobj %}
-                <option name="txtgid" value="{{i.gst_charges_id}}">{{i.gst_charges_id}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Net Amount</label><input type="number" name="txtnet"><br>
-
-            <label>Is Cancel</label>
-            <select>
-                <option name="txtis" value="">1.Yes</option>
-                <option name="txtis" value="">2.No</option>
-            </select><br>
-
-            <button type="submit" value="save">Submit</button>
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
         </form>
-    </body>
+    </div>
+</body>
 {% endblock content %}

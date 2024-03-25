@@ -1,14 +1,12 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
-        <form action="/reviewstatusupdate/{{revstaobj.review_status_id}}" method="POST">
-            <br>
+<body>
+    <div class="form-container">
+        <form method="post">
             {% csrf_token %}
-            <h3>Update Details</h3>
-
-            <label>Enter Status</label><input type="text" name="txtstatus" value="{{revstaobj.status}}"><br>
-            
-            <button type="submit">Update</button>
+            {{ form.as_p }}
+            <button type="submit" value="save">Update</button>
         </form>
-    </body>
+    </div>
+</body>
 {% endblock content %}

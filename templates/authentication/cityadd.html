@@ -11,4 +11,25 @@
             </form>
         </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#id_district').change(function() {
+                var distId = $(this).val();
+                var urlobj="/getState/"+distId
+                $.ajax({
+                    url: urlobj,
+                    dataType: 'json',
+                    success: function(data) {
+                        //$('#id_state').empty();
+                        console.log(data);
+                        $.each(data.statedata, function(index, statedata) {
+                            $('#id_state').val(statedata.id);
+                            //$('#id_state').append('<option value="' + statedata.id + '">' + statedata.name + '</option>');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock content %}

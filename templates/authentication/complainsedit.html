@@ -1,16 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form action="/complainstatusupdate/{{complainstatus.com_status_id}}" method="POST">
-            <br>
-            {% csrf_token %}
-            <h3>Update Details</h3>
-
-            <label>Complain Date</label><input type="date" name="txtcsdate" value="{{complainstatus.com_status_date}}"><br>
-
-            <label>Complain Status</label><input type="text" name="txtcstatus" value="{{complainstatus.com_status}}"><br>
-            
-            <button type="submit">Update</button>
-        </form>
+        <div class="form-container">
+            <form method="post">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

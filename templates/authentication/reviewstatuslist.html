@@ -2,44 +2,45 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
 {% load static %}
-{% comment %} <html>{% endcomment %}
-{% comment %} <head>
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
-    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
-    {% comment %} <title>State Master View</title> {% endcomment %}
-{% comment %} </head> {% endcomment %} 
-{% comment %} <body class="sub_page"> {% endcomment %}
-{% comment %} <style>
-    .dtWidgets
-    {
-        display:none;
-        visiblity:hidden;
-    }
-</style> {% endcomment %}
 <div>
+    <center>
+        <h2><b>Review Status Details</b></h2>
+        <br>
+    <div>
+        <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+        <button  style="color:black;
+        padding: 7px 50px 5px 50px;
+        float: right;
+        font-size: 16px;" onclick="location.href = '/reviewstatus';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+    </div>
+    <br>
+    <h2></h2>
+</center>
 
     <table class="table">
         <tr>
             <th>Review Status Id</th>
-            <th>Review Id</th>
+            <th style="display:none;">Review Id</th>
+            <th>Review Description</th>
             <th>Status</th>
             <th>User Id</th>
+            <th style="display:none;">User Name</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
         {% for revsta in revstaobj %}
         <tr>
             <td> {{ revsta.review_status_id }}</td>
-            <td>{{ revsta.review_id }} </td>
+            <td style="display:none;">{{ revsta.review_id }} </td>
+            <td>{{ revsta.review.review_description }}</td>
             <td>{{ revsta.status }} </td>
-            <td>{{ revsta.user_id }} </td>
+            <td style="display:none;">{{ revsta.user_id }} </td>
+            <td>{{ revsta.user.user_name}}
             <td><a href="/reviewstatusedit/{{revsta.review_status_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </table>
-    <a href="/reviewstatus"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a>
 </div>
 {% comment %} </body>
 </html> {% endcomment %}

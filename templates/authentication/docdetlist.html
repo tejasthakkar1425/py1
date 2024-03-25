@@ -1,11 +1,22 @@
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-
-<head></head>
 <body class="sub_page">
     <div>
-        <table align="center" width="50%" border="2.5">
+        <center>
+            <h2><b>Review Status Details</b></h2>
+            <br>
+        <div>
+            <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+            <button  style="color:black;
+            padding: 7px 50px 5px 50px;
+            float: right;
+            font-size: 16px;" onclick="location.href = '/docdetail';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        </div>
+        <br>
+        <h2></h2>
+    </center>
+        <table class="table">
             <tr>
                 <th>Doc Det Id</th>
                 <th>Doc Id</th>
@@ -20,18 +31,17 @@
             {% for docdet in docdetobj %}
             <tr>
                 <td> {{ docdet.doc_detail_id }}</td>
-                <td>{{ docdet.doc }} </td>
+                <td>{{ docdet.doc_id }} </td>
                 <td>{{ docdet.doc_address }} </td>
-                <td>{{ docdet.vehc_rout }}</td>
+                <td>{{ docdet.vehc_rout_id }}</td>
                 <td>{{ docdet.doc_weight }}</td>
-                <td>{{ docdet.veh_rout_det }}</td>
+                <td>{{ docdet.veh_rout_det_id }}</td>
                 <td>{{ docdet.total_amount }}</td>
-                <td><a href="/docdetedit/{{docdet.doc_detail_id}}">Edit</a></td>
-                <td><a href="/docdetdelete/{{docdet.doc_detail_id}}">Delete</a></td>
+                <td><a href="/docdetedit/{{docdet.doc_detail_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/docdetdelete/{{docdet.doc_detail_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
-    <a href="/docdet">Add</a>
 </body>
-</html>
+{% endblock content %}

@@ -1,20 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/usersave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter User Master Id</label><input type="number" name="txtuid"><br>
-
-            <label>Enter Email Id</label><input type="Email" name="txtemail"><br>
-
-            <label>Enter User Name</label><input type="text" name="txtuname"><br>
-
-            <label>Enter User Password</label><input type="Password" name="txtpass"><br>
-
-            <button type="submit" value="save">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/usersave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

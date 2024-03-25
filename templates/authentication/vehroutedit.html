@@ -1,38 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Enter Deatils</title>
-    </head>
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
     <body>
-        <form method="post" action="/vehroutupdate/{{vehrout.veh_rout_id}}">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>From State Id</label>
-            <select name="veh_rout_master_table">
-                {% for i in vehroutobj %}
-                <option name="txtfsid" value="{{i.from_state}}">{{i.from_state}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>To State Id</label>
-            <select name="veh_rout_master_table">
-                {% for i in vehroutobj %}
-                <option name="txttsid" value="{{i.to_state}}">{{i.to_state}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Vehicle Rout Details</label><input type="text" name="txtvrd" value="{{vehrout.vehc_rout_det}}"><br>
-
-            <label>Enter Vehicle Rout Details Id</label>
-            <select name="veh_rout_master_table">
-                {% for i in vehroutobj %}
-                <option name="txtvrdid" value="{{i.veh_rout_details}}">{{i.veh_rout_details}}</option>
-                {% endfor %}
-            </select><br>
-            
-            <button type="submit">Update</button>
-        </form>
+         <div class="form-container">
+            <form method="post">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
-</html>
+{% endblock content %}

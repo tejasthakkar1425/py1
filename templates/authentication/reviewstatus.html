@@ -1,30 +1,12 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
+<body>
+    <div class="form-container">
         <form method="post" action="/reviewstatussave">
-            <br>
             {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Review Status Id</label><input type="number" name="txtrsid"><br>
-
-            <label>Enter Review Id</label>
-            <select name="review&feedback_status">
-                {% for i in revstaobj %}
-                <option name="txtrid" value="{{i.review}}">{{i.review_id}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Status</label><input type="text" name="txtstatus"><br>
-
-            <label>Enter User Id</label>
-            <select name="review&feedback_status">
-                {% for i in revstaobj %}
-                <option name="txtuid" value="{{i.user}}">{{i.user_id}}</option>
-                {% endfor %}
-            </select><br>
-
+            {{ form.as_p }}
             <button type="submit" value="save">Submit</button>
         </form>
-    </body>
+    </div>
+</body>
 {% endblock content %}

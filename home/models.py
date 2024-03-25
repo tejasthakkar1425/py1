@@ -102,7 +102,7 @@ class ComplainStatus(models.Model):
     com = models.ForeignKey(ComplainMaster, models.DO_NOTHING)
     com_status_id = models.IntegerField(primary_key=True)
     com_status_date = models.DateField(blank=True, null=True)
-    com_status = models.TextField(blank=True, null=True)
+    com_status = models.CharField(blank=True, null=True,max_length=50)
 
     class Meta:
         managed = False
@@ -161,11 +161,11 @@ class DjangoMigrations(models.Model):
 
 class DocDetail(models.Model):
     doc_detail_id = models.IntegerField(primary_key=True)
-    doc = models.ForeignKey('DocMaster', models.DO_NOTHING,null=True)
+    doc = models.ForeignKey('DocMaster', models.DO_NOTHING, blank=True, null=True)
     doc_address = models.CharField(max_length=100, blank=True, null=True)
-    vehc_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING,null=True)
+    vehc_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING, blank=True, null=True)
     doc_weight = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
-    veh_rout_det = models.ForeignKey('VehRoutDetalis', models.DO_NOTHING,null=True)
+    veh_rout_det = models.ForeignKey('VehRoutDetalis', models.DO_NOTHING, blank=True, null=True)
     total_amount = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
 
     class Meta:
@@ -192,7 +192,7 @@ class DocVehDetailsTable(models.Model):
     doc = models.ForeignKey(DocMaster, models.DO_NOTHING,null=True)
     veh = models.ForeignKey('VehicleMaster', models.DO_NOTHING,null=True)
     vehc_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING,null=True)
-    description = models.TextField(null=True)
+    description = models.CharField(null=True,max_length=50)
 
     class Meta:
         managed = False
@@ -213,7 +213,7 @@ class User(models.Model):
 
 class Gstcharges(models.Model):
     gst_char_id = models.IntegerField(primary_key=True)
-    year = models.TextField(blank=True, null=True)  # This field type is a guess.
+    year = models.CharField(blank=True, null=True,max_length=50)  # This field type is a guess.
     cgst_per = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     sgst_per = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
 
@@ -223,13 +223,13 @@ class Gstcharges(models.Model):
 
 
 class PaymentMaster(models.Model):
-    doc_pay_detail = models.TextField(blank=True)
+    doc_pay_detail = models.CharField(blank=True,max_length=50)
     doc_pay_detail_id = models.IntegerField(primary_key=True)
     doc = models.ForeignKey(DocMaster, models.DO_NOTHING,null=True)
-    pay_status = models.TextField(blank=True, null=True)
-    pay_method = models.TextField(blank=True, null=True)
+    pay_status = models.CharField(blank=True, null=True,max_length=50)
+    pay_method = models.CharField(blank=True, null=True,max_length=50)
     pay_tran_id = models.IntegerField(blank=True, null=True)
-    pay_response = models.TextField()
+    pay_response = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -240,7 +240,7 @@ class ReviewFeedback(models.Model):
     review_id = models.IntegerField(db_column='Review_id', primary_key=True)  # Field name made lowercase.
     user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, blank=True, null=True)
     review_image = models.CharField(db_column='Review_image', max_length=10)  # Field name made lowercase.
-    review_description = models.TextField(db_column='Review_description')  # Field name made lowercase.
+    review_description = models.CharField(db_column='Review_description',max_length=50)  # Field name made lowercase.
     review_star = models.IntegerField(db_column='Review_star')  # Field name made lowercase.
 
     class Meta:
@@ -251,7 +251,7 @@ class ReviewFeedback(models.Model):
 class ReviewFeedbackStatus(models.Model):
     review_status_id = models.IntegerField(db_column='Review_status_id', primary_key=True)  # Field name made lowercase.
     review = models.ForeignKey(ReviewFeedback, models.DO_NOTHING, db_column='Review_id',null=True)  # Field name made lowercase.
-    status = models.TextField(blank=True, null=True)
+    status = models.CharField(blank=True, null=True,max_length=50)
     user = models.ForeignKey('UserMasterTable', models.DO_NOTHING,null=True)
     created_by_user = models.ForeignKey('UserMasterTable', models.DO_NOTHING, related_name='reviewfeedbackstatus_created_by_user_set', blank=True, null=True)
     created_date = models.DateField(blank=True, null=True)
@@ -281,10 +281,10 @@ class UserDetails(models.Model):
     user_deatil_id = models.IntegerField(primary_key=True)
     user_master = models.ForeignKey('UserMasterTable', models.DO_NOTHING,null=True)
     user_type = models.IntegerField(blank=True, null=True)
-    profile_pic = models.TextField()
+    profile_pic = models.ImageField()
     contact = models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=1, blank=True, null=True)
-    address = models.TextField(db_column='Address', blank=True, null=True)  # Field name made lowercase.
+    address = models.CharField(db_column='Address', blank=True, null=True,max_length=50)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -293,9 +293,9 @@ class UserDetails(models.Model):
 
 class UserMasterTable(models.Model):
     user_master_id = models.IntegerField(primary_key=True)
-    user_email_id = models.TextField()
-    user_name = models.TextField()
-    user_password = models.TextField()
+    user_email_id = models.CharField(max_length=50)
+    user_name = models.CharField(max_length=50)
+    user_password = models.CharField(max_length=50)
 
     class Meta:
         managed = False
@@ -303,11 +303,11 @@ class UserMasterTable(models.Model):
 
 class VehRoutDetalis(models.Model):
     veh_rout_det_id = models.IntegerField(primary_key=True)
-    veh_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING,null=True)
-    state = models.ForeignKey(StateMasterTable, models.DO_NOTHING,null=True)
-    ditrict = models.ForeignKey(DistrictMaster, models.DO_NOTHING,null=True)
-    city_village = models.ForeignKey(CityVillageMaster, models.DO_NOTHING,null=True)
-    decription = models.TextField()
+    veh_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING, blank=True, null=True)
+    state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, blank=True, null=True)
+    ditrict = models.ForeignKey(DistrictMaster, models.DO_NOTHING, blank=True, null=True)
+    city_village = models.ForeignKey(CityVillageMaster, models.DO_NOTHING, blank=True, null=True)
+    decription = models.CharField(max_length=50)
     char_bel_50 = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     char_bel_150 = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     char_abo_150 = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
@@ -319,14 +319,14 @@ class VehRoutDetalis(models.Model):
 
 class VehicleMaster(models.Model):
     vehicle_id = models.IntegerField(primary_key=True)
-    vehicle_name = models.TextField()
-    rc_book_number = models.CharField(db_column='RC_book_number', max_length=50, blank=True, null=True)  # Field name made lowercase.
+    vehicle_name = models.CharField(max_length=50)
+    rc_book_number = models.CharField(db_column='RC_book_number', max_length=50, blank=True, null=True,)  # Field name made lowercase.
     reg_no = models.IntegerField(db_column='Reg_no', blank=True, null=True)  # Field name made lowercase.
     capacity = models.IntegerField(blank=True, null=True)
-    insurance_from = models.DateTimeField(blank=True, null=True)
-    insurance_to = models.DateTimeField(blank=True, null=True)
-    insurance_company_name = models.TextField(blank=True, null=True)
-    owner_name = models.TextField(blank=True, null=True)
+    insurance_from = models.DateField(blank=True, null=True)
+    insurance_to = models.DateField(blank=True, null=True)
+    insurance_company_name = models.CharField(blank=True, null=True,max_length=50)
+    owner_name = models.CharField(blank=True, null=True,max_length=50)
 
     class Meta:
         managed = False
@@ -336,9 +336,8 @@ class VehicleMaster(models.Model):
 class VehicleRoutMaster(models.Model):
     veh_rout_id = models.IntegerField(primary_key=True)
     from_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, blank=True, null=True)
-    to_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, related_name='vehicleroutmaster_to_state_set', blank=True, null=True)   
-    vehc_rout_det = models.TextField(blank=True, null=True)
-    veh_rout_details = models.ForeignKey(VehRoutDetalis, models.DO_NOTHING, blank=True, null=True)
+    to_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, related_name='vehicleroutmaster_to_state_set', blank=True, null=True)  
+    vehc_rout_det = models.CharField(blank=True, null=True,max_length=50)
 
     class Meta:
         managed = False

@@ -1,41 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/userdetsave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter User Detail Id</label><input type="number" name="txtudid"><br>
-
-            <label>Enter User Master Id</label>
-            <select name="user_detail_table">
-                {% for i in userdetobj %}
-                <option name="txtuid" value="{{i.user_master_id}}">{{i.user_master_id}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>User Type</label>
-            <select name="usertype">
-                <option name="txttyp" value="1">Admin</option>
-                <option name="txttyp" value="2">Customer</option>
-                <option name="txttyp" value="3">Employee</option>
-            </select><br>
-
-            <label>Enter Profile Pic</label><input type="text" name="txtpic"><br>
-
-            <label>Enter Conatact No</label><input type="number" name="txtcon"><br>
-
-            <label>Enter Gender</label>
-            <select>
-                <option value="txtgen">M</option>
-                <option value="txtgen">F</option>
-                <option value="txtgen">O</option>
-            </select><br>
-
-            <label>Enter Address</label><input type="text" name="txtadd"><br>
-
-            <button type="submit">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/userdetsave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

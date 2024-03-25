@@ -1,11 +1,21 @@
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-
-<head></head>
-<body class="sub_page">
-    <div>
-        <table align="center" width="50%" border="2.5">
+<div>
+    <center>
+        <h2><b>Doc Vehicle Details</b></h2>
+        <br>
+        <div>
+            <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+            <button  style="color:black;
+            padding: 7px 50px 5px 50px;
+            float: right;
+            font-size: 16px;" onclick="location.href = '/docvehdet';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        </div>
+        <br>
+        <h2></h2>
+    </center>
+        <table class="table">
             <tr>
                 <th>Doc Veh Det Id</th>
                 <th>Doc Id</th>
@@ -18,16 +28,15 @@
             {% for docvehdet in docvehdet %}
             <tr>
                 <td> {{ docvehdet.doc_veh_det_id }}</td>
-                <td>{{ docvehdet.doc }} </td>
-                <td>{{ docvehdet.veh }} </td>
-                <td>{{ docvehdet.vehc_rout }}</td>
+                <td>{{ docvehdet.doc_id }} </td>
+                <td>{{ docvehdet.veh_id }} </td>
+                <td>{{ docvehdet.vehc_rout_id }}</td>
                 <td>{{ docvehdet.description }}</td>
-                <td><a href="/docvehdetedit/{{docvehdet.doc_veh_det_id}}">Edit</a></td>
-                <td><a href="/docvehdetdelete/{{docvehdet.doc_veh_det_id}}">Delete</a></td>
+                <td><a href="/docvehdetedit/{{docvehdet.doc_veh_det_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/docvehdetdelete/{{docvehdet.doc_veh_det_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
-    <a href="/docvehdet">Add</a>
 </body>
-</html>
+{% endblock content %}

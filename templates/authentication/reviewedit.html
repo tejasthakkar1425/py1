@@ -1,18 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form action="/reviewupdate/{{review.review_id}}" method="POST">
-            <br>
-            {% csrf_token %}
-            <h3>Update Details</h3>
-
-            <label>Enter Image</label><input type="text" name="txtrimg" value="{{review.review_image}}"><br>
-
-            <label>Enter Description</label><input type="text" name="txtrdesc" value="{{review.review_description}}"><br>
-
-            <label>Enter Star</label><input type="number" name="txtrstar" value="{{review.review_star}}"><br>
-            
-            <button type="submit">Update</button>
-        </form>
+        <div class="form-container">
+            <form method="post">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Update</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

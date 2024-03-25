@@ -1,38 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add Vehicle Details</title>
-    </head>
-    <body>
-        <form method="post" action="/docvehdetupdate/{{docvehdet.doc_veh_det_id}}">
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
+<body>
+    <div class="form-container">
+        <form method="post">
             <br>
             {% csrf_token %}
-            <h3>Edit Details</h3>
-
-            <label>Enter Doc Id</label>
-            <select name="doc_veh_details_table">
-                {% for i in docvehdetobj %}
-                <option name="txtdid" value="{{i.doc}}">{{i.doc}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Vehicle Id</label>
-            <select name="doc_veh_details_table">
-                {% for i in docvehdetobj %}
-                <option name="txtvid" value="{{i.veh}}">{{i.veh}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Veh Rout Id</label>
-            <select name="doc_veh_details_table">
-                {% for i in docvehdetobj %}
-                <option name="txtvrid" value="{{i.vehc_rout}}">{{i.vehc_rout}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Description</label><input type="text" name="txtdesc"><br>
-
-            <button type="submit">Submit</button>
+            {{ form.as_p }}
+            <button type="submit">Edit</button>
         </form>
-    </body>
-</html>
+    </div>
+</body>
+{% endblock content %}

@@ -1,13 +1,20 @@
+{% extends 'authentication\masterpage.html' %}
+{% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Vehicle Master View</title>
-</head>
-<body class="sub_page">
-    <div>
-        <table align="center" width="50%" border="2.5">
+<div>
+    <center>
+        <h2><b>Vehicle Rout Details</b></h2>
+        <br>
+        <div>
+        <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+        <button  style="color:black;
+        padding: 7px 50px 5px 50px;
+        float: right;
+        font-size: 16px;" onclick="location.href = '/vehroutdet';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+    </div>
+        <br>
+    </center>
+        <table class="table">
             <tr>
                 <th>Veh Rout Det Id</th>
                 <th>Veh Rout Id</th>
@@ -24,20 +31,19 @@
             {% for vehroutdet in vehroutdetobj %}
             <tr>
                 <td> {{ vehroutdet.veh_rout_det_id }}</td>
-                <td>{{ vehroutdet.veh_rout }} </td>
-                <td>{{ vehroutdet.state }} </td>
-                <td>{{ vehroutdet.ditrict }}</td>
-                <td>{{ vehroutdet.city_village}}</td>
+                <td>{{ vehroutdet.veh_rout_id }} </td>
+                <td>{{ vehroutdet.state_id }} </td>
+                <td>{{ vehroutdet.ditrict_id }}</td>
+                <td>{{ vehroutdet.city_village_id}}</td>
                 <td>{{ vehroutdet.decription }}</td>
                 <td>{{ vehroutdet.char_bel_50 }}</td>
                 <td>{{ vehroutdet.char_bel_150 }}</td>
                 <td>{{ vehroutdet.char_abo_150 }}</td>
-                <td><a href="/vehroutdetedit/{{vehroutdet.veh_rout_det_id}}">Edit</a></td>
-                <td><a href="/vehroutdetdelete/{{vehroutdet.veh_rout_det_id}}">Delete</a></td>
+                <td><a href="/vehroutdetedit/{{vehroutdet.veh_rout_det_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/vehroutdetdelete/{{vehroutdet.veh_rout_det_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
         </table>
     </div>
-    <a href="/vehroutdet">Add</a>
 </body>
-</html>
+{% endblock content %}

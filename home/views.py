@@ -6,8 +6,8 @@ from home.models import *
 from home.forms import *
 import json
 
-def home(request,done=0):
-    return render(request, "authentication/index.html",{"done":done})
+def home(request):
+    return render(request, "authentication/index.html")
 
 
 def about(request):
@@ -202,33 +202,32 @@ def get_district(request):
 
 
 def gst(request):
+    form=Gstform()
     gstobj=Gstcharges.objects.all()
     print(gstobj)
-    return render(request, "authentication/gstadd.html",{'gstobj':gstobj})
+    return render(request, "authentication/gstadd.html",{'form':form,'gstobj':gstobj})
 
 def gstsave(request):
-    gid=request.POST.get('txtgid')
-    gyear=request.POST.get('txtgyear')
-    gcgst=request.POST.get('txtcgst')
-    gsgst=request.POST.get('txtsgst')
-    gst=Gstcharges(gst_char_id=gid,year=gyear,cgst_per=gcgst,sgst_per=gsgst)
-    gst.save()
+    form = Gstform()
+    if request.method == 'POST':
+        form = Gstform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/gstView")
+        else:
+            return redirect("/gstView")
     return redirect("/gstView")
         
 def gstedit(request,id):
-    gst=Gstcharges.objects.get(gst_char_id=id)
-    return render(request, "authentication/gstedit.html",{'gst':gst})
-
-def gstupdate(request,id):
-    gst=Gstcharges.objects.get(gst_char_id=id)
-    gyear=request.POST.get('txtgyear')
-    gcgst=request.POST.get('txtcgst')
-    gsgst=request.POST.get('txtsgst')
-    gst.year=gyear
-    gst.cgst_per=gcgst
-    gst.sgst_per=gsgst
-    gst.save()
-    return redirect("/gstView")
+    instance = get_object_or_404(Gstcharges, gst_char_id=id)
+    if request.method == 'POST':
+        form = Gstform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/gstView')  # Redirect to a success page
+    else:
+        form = Gstform(instance=instance)
+    return render(request, "authentication/gstedit.html",{'form':form})
 
 def gstdelete(request,id):
     gst=Gstcharges.objects.get(gst_char_id=id)
@@ -294,25 +293,32 @@ def distView(request):
     return render(request, "authentication/district-list.html",{'distobj':objDistMaster})
 
 def doc(request):
+    form=Docform()
     docobj=DocMaster.objects.all()
     print(docobj)
-    return render(request, "authentication/docadd.html",{'docobj':docobj})
+    return render(request, "authentication/docadd.html",{'form':form,'docobj':docobj})
 
 def docsave(request):
-    id=request.POST.get('txtdocid')
-    num=request.POST.get('txtdnum')
-    date=request.POST.get('txtddate')
-    lnum=request.POST.get('txtlnum')
-    gid=request.POST.get('txtgid')
-    net=request.POST.get('txtnet')
-    cancel=request.POST.get('txtis')
-    doc=DocMaster(doc_id=id,doc_number=num,doc_date=date,lr_number=lnum,gst_charges=gid,net_amount=net,is_cancel=cancel)
-    doc.save()
+    form = Docform()
+    if request.method == 'POST':
+        form = Docform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/docView")
+        else:
+            return redirect("/docView")
     return redirect("/docView")
 
 def docedit(request,id):
-    doc=DocMaster.objects.get(doc_id=id)
-    return render(request, "authentication/docedit.html",{'doc':doc})
+    instance = get_object_or_404(DocMaster, doc_id=id)
+    if request.method == 'POST':
+        form = Docform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/docView')  # Redirect to a success page
+    else:
+        form = Docform(instance=instance)
+    return render(request, "authentication/docedit.html",{'form':form})
 
 def docupdate(request,id):
     doc=DocMaster.objects.get(doc_id=id)
@@ -342,29 +348,34 @@ def docView(request):
     return render(request, "authentication/doc-list.html",{'docobj':objDocMaster})
 
 def veh(request):
+    form=Vehicleform()
     vehobj=VehicleMaster.objects.all()
     print(vehobj)
-    return render(request, "authentication/vehadd.html",{'vehobj':vehobj})
+    return render(request, "authentication/vehadd.html",{'form':form,'vehobj':vehobj})
 
 def vehsave(request):
-    id=request.POST.get('txtvid')
-    name=request.POST.get('txtvname')
-    rcnum=request.POST.get('txtrcnum')
-    rnum=request.POST.get('txtrnum')
-    cap=request.POST.get('txtcap')
-    insf=request.POST.get('txtfdate')
-    inst=request.POST.get('txttdate')
-    com=request.POST.get('txtcom')
-    own=request.POST.get('txtown')
-    veh=VehicleMaster(vehicle_id=id,vehicle_name=name,rc_book_number=rcnum,reg_no=rnum,capacity=cap,insurance_from=insf,insurance_to=inst,insurance_company_name=com,owner_name=own)
-    veh.save()
+    form = Vehicleform()
+    if request.method == 'POST':
+        form = Vehicleform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/vehView")
+        else:
+            return redirect("/vehView")
     return redirect("/vehView")
 
 def vehedit(request,id):
-    veh=VehicleMaster.objects.get(vehicle_id=id)
-    return render(request,"authentication/vehedit.html",{'veh':veh})
+    instance = get_object_or_404(VehicleMaster, vehicle_id=id)
+    if request.method == 'POST':
+        form = Vehicleform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/vehView')  # Redirect to a success page
+    else:
+        form = Vehicleform(instance=instance)
+    return render(request, "authentication/vehedit.html",{'form':form})
 
-def vehupdate(request,id):
+#def vehupdate(request,id):
     veh=VehicleMaster.objects.get(vehicle_id=id)
     name=request.POST.get('txtvname')
     rcnum=request.POST.get('txtrcnum')
@@ -396,23 +407,32 @@ def vehView(request):
     return render(request, "authentication/vehicle_master-list.html",{'vehobj':objVehMaster})
 
 def vehrout(request):
+    form=vehroutmasterform()
     vehroutobj=VehicleRoutMaster.objects.all()
     print(vehroutobj)
-    return render(request, "authentication/vehroutadd.html",{'vehroutobj':vehroutobj})
+    return render(request, "authentication/vehroutadd.html",{'form':form,'vehroutobj':vehroutobj})
 
 def vehroutsave(request):
-    id=request.POST.get('txtvrid')
-    fsid=request.POST.get('txtfsid')
-    tsid=request.POST.get('txttsid')
-    vrd=request.POST.get('txtvrd')
-    vrdid=request.POST.get('txtvrdid')
-    vehrout=VehicleRoutMaster(veh_rout_id=id,from_state=fsid,to_state=tsid,vehc_rout_det=vrd,veh_rout_details=vrdid)
-    vehrout.save()
+    form = vehroutmasterform()
+    if request.method == 'POST':
+        form = vehroutmasterform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/vehroutView")
+        else:
+            return redirect("/vehroutView")
     return redirect("/vehroutView")
 
 def vehroutedit(request,id):
-    vehrout=VehicleRoutMaster.objects.get(veh_rout_id=id)
-    return render(request, "authentication/vehroutedit.html",{'vehrout':vehrout})
+    instance = get_object_or_404(VehicleRoutMaster, veh_rout_id=id)
+    if request.method == 'POST':
+        form = vehroutmasterform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/vehroutView')  # Redirect to a success page
+    else:
+        form = vehroutmasterform(instance=instance)
+    return render(request, "authentication/vehroutedit.html",{'form':form})
 
 def vehroutupdate(request,id):
     vehrout=VehicleRoutMaster.objects.get(veh_rout_id=id)
@@ -438,33 +458,32 @@ def vehroutView(request):
     return render(request, "authentication/vehicle_rout_master-list.html",{'vehroutobj':objVehroutMaster})
 
 def user(request):
+    form=Userform()
     userobj=UserMasterTable.objects.all()
     print(userobj)
-    return render(request, "authentication/useradd.html",{'userobj':userobj})
+    return render(request, "authentication/useradd.html",{'form':form,'userobj':userobj})
 
 def usersave(request):
-    id=request.POST.get('txtuid')
-    mail=request.POST.get('txtemail')
-    name=request.POST.get('txtuname')
-    pas=request.POST.get('txtpass')
-    user=UserMasterTable(user_master_id=id,user_email_id=mail,user_name=name,user_password=pas)
-    user.save()
+    form = Userform()
+    if request.method == 'POST':
+        form = Userform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/userView")
+        else:
+            return redirect("/userView")
     return redirect("/userView")
 
 def useredit(request,id):
-    user=UserMasterTable.objects.get(user_master_id=id)
-    return render(request, "authentication/useredit.html",{'user':user})
-
-def userupdate(request,id):
-    user=UserMasterTable.objects.get(user_master_id=id)
-    email=request.POST.get('txtemail')
-    name=request.POST.get('txtuname')
-    pas=request.POST.get('txtpass')
-    user.user_email_id=email
-    user.user_name=name
-    user.user_password=pas
-    user.save()
-    return redirect("/userView")
+    instance = get_object_or_404(UserMasterTable, user_master_id=id)
+    if request.method == 'POST':
+        form = Userform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/userView')  # Redirect to a success page
+    else:
+        form = Userform(instance=instance)
+    return render(request, "authentication/useredit.html",{'form':form})
 
 def userdelete(request,id):
     user=UserMasterTable.objects.get(user_master_id=id)
@@ -477,25 +496,34 @@ def userView(request):
     return render(request, "authentication/user_master-list.html",{'userobj':userobj})
 
 def review(request):
+    form=Reviewform()
     reviewobj=ReviewFeedback.objects.all()
     print(reviewobj)
-    return render(request, "authentication/reviewadd.html",{'reviewobj':reviewobj})
+    return render(request, "authentication/reviewadd.html",{'form':form,'reviewobj':reviewobj})
 
 def reviewsave(request):
-    rid=request.POST.get('txtrid')
-    uid=request.POST.get('txtuid')
-    img=request.POST.get('txtrimg')
-    rdesc=request.POST.get('txtrdesc')
-    rstar=request.POST.get('txtrstar')
-    review=ReviewFeedback(review_id=rid,user=uid,review_image=img,review_description=rdesc,review_star=rstar)
-    review.save()
+    form = Reviewform()
+    if request.method == 'POST':
+        form = Reviewform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/reviewView")
+        else:
+            return redirect("/reviewView")
     return redirect("/reviewView")
 
 def reviewedit(request,id):
-    review=ReviewFeedback.objects.get(review_id=id)
-    return render(request, "authentication/reviewedit.html",{'review':review})
+    instance = get_object_or_404(ReviewFeedback, review_id=id)
+    if request.method == 'POST':
+        form = Reviewform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/reviewView')  # Redirect to a success page
+    else:
+        form = Reviewform(instance=instance)
+    return render(request, "authentication/reviewedit.html",{'form':form})
 
-def reviewupdate(request,id):
+# def reviewupdate(request,id):
     review=ReviewFeedback.objects.get(review_id=id)
     rimg=request.POST.get('txtrimg')
     rdesc=request.POST.get('txtrdesc')
@@ -517,23 +545,34 @@ def reviewView(request):
     return render(request, "authentication/review&feedback-list.html",{'reviewobj':objReviewMaster})
 
 def complain(request):
+    form=Complainform()
     complainobj=ComplainMaster.objects.all()
     print(complainobj)
-    return render(request, "authentication/complainadd.html",{'complainobj':complainobj})
+    return render(request, "authentication/complainadd.html",{'form':form,'complainobj':complainobj})
 
 def complainsave(request):
-    id=request.POST.get('txtcid')
-    uid=request.POST.get('txtuid')
-    desc=request.POST.get('txtcdesc')
-    complain=ComplainMaster(com_id=id,user_master=uid,com_description=desc)
-    complain.save()
+    form = Complainform()
+    if request.method == 'POST':
+        form = Complainform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/complainView")
+        else:
+            return redirect("/complainView")
     return redirect("/complainView")
 
 def complainedit(request,id):
-    complain=ComplainMaster.objects.get(com_id=id)
-    return render(request, "authentication/complainedit.html",{'complain':complain})
+    instance = get_object_or_404(ComplainMaster, com_id=id)
+    if request.method == 'POST':
+        form = Complainform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/complainView')  # Redirect to a success page
+    else:
+        form = Complainform(instance=instance)
+    return render(request, "authentication/complainedit.html",{'form':form})
 
-def complainupdate(request,id):
+# def complainupdate(request,id):
     complain=ComplainMaster.objects.get(com_id=id)
     uid=request.POST.get('txtuid')
     desc=request.POST.get('txtcdesc')
@@ -553,24 +592,34 @@ def complainView(request):
     return render(request, "authentication/complainlist.html",{'complainobj':complainobj})
 
 def complainstatus(request):
-    complainstatusobj=ComplainStatus.objects.all()
-    print(complainstatusobj)
-    return render(request, "authentication/complainstatusadd.html",{'complainstatusobj':complainstatusobj})
+    form = Complainstatusform()
+    complainstatusobj = ComplainStatus.objects.all()
+    print(complainstatusobj)    
+    return render(request, "authentication/complainstatusadd.html", {'form': form, 'complainstatusobj': complainstatusobj})
 
 def complainstatussave(request):
-    cid=request.POST.get('txtcid')
-    id=request.POST.get('txtcsid')
-    date=request.POST.get('txtcsdate')
-    status=request.POST.get('txtcstatus')
-    complainstatus=ComplainStatus(com=cid,com_status_id=id,com_status_date=date,com_status=status)
-    complainstatus.save()
+    form = Complainstatusform()
+    if request.method == 'POST':
+        form = Complainstatusform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/complainsView")
+        else:
+            return redirect("/complainsView")
     return redirect("/complainsView")
 
 def complainstatusedit(request,id):
-    complainstatus=ComplainStatus.objects.get(com_status_id=id)
-    return render(request, "authentication/complainsedit.html",{'complainstatus':complainstatus})
+    instance = get_object_or_404(ComplainStatus, com_status_id=id)
+    if request.method == 'POST':
+        form = Complainstatusform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/complainView')  # Redirect to a success page
+    else:
+        form = Complainstatusform(instance=instance)
+    return render(request, "authentication/complainsedit.html",{'form':form})
 
-def complainstatusupdate(request,id):
+# def complainstatusupdate(request,id):
     complainstatus=ComplainStatus.objects.get(com_status_id=id)
     cid=request.POST.get('txtcid')
     date=request.POST.get('txtcsdate')
@@ -592,25 +641,32 @@ def complainsView(request):
     return render(request, "authentication/complainstatuslist.html",{'complainstatusobj':complainstatusobj})
 
 def docdetail(request):
+    form=Docdetform()
     docdetobj=DocDetail.objects.all()
     print(docdetobj)
-    return render(request, "authentication/docdetadd.html",{'docdetobj':docdetobj})
+    return render(request, "authentication/docdetadd.html",{'form':form,'docdetobj':docdetobj})
 
 def docdetsave(request):
-    did=request.POST.get('txtddid')
-    id=request.POST.get('txtdid')
-    addre=request.POST.get('txtdadd')
-    vrid=request.POST.get('txtvrid')
-    wet=request.POST.get('txtwet')
-    vrdid=request.POST.get('txtvrdid')
-    amount=request.POST.get('txtamount')
-    docdet=DocDetail(doc_detail_id=did,doc=id,doc_address=addre,vehc_rout=vrid,doc_weight=wet,veh_rout_det=vrdid,total_amount=amount)
-    docdet.save()
+    form = Docdetform()
+    if request.method == 'POST':
+        form = Docdetform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/docdetView")
+        else:
+            return redirect("/docdetView")
     return redirect("/docdetView")
 
 def docdetedit(request,id):
-    docdet=DocDetail.objects.get(doc_detail_id=id)
-    return render(request, "authentication/docdetedit.html",{'docdet':docdet})
+    instance = get_object_or_404(DocDetail, doc_detail_id=id)
+    if request.method == 'POST':
+        form = Docdetform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/docdetView')  # Redirect to a success page
+    else:
+        form = Docdetform(instance=instance)
+    return render(request, "authentication/complainsedit.html",{'form':form})
 
 def docdetupdate(request,id):
     docdet=DocDetail.objects.get(doc_detail_id=id)
@@ -640,23 +696,32 @@ def docdetView(request):
     return render(request, "authentication/docdetlist.html",{'docdetobj':docdetobj})
 
 def docvehdet(request):
+    form=docvehdetform()
     docvehdet=DocVehDetailsTable.objects.all()
     print(docvehdet)
-    return render(request, "authentication/docvehdet.html",{'docvehdet':docvehdet})
+    return render(request, "authentication/docvehdet.html",{'form':form,'docvehdet':docvehdet})
 
 def docvehdetsave(request):
-    id=request.POST.get('txtdvdid')
-    did=request.POST.get('txtdid')
-    vid=request.POST.get('txtvid')
-    vrid=request.POST.get('txtvrid')
-    desc=request.POST.get('txtdesc')
-    docvehdet=DocVehDetailsTable(doc_veh_det_id=id,doc=did,veh=vid,vehc_rout=vrid,description=desc)
-    docvehdet.save()
+    form = docvehdetform()
+    if request.method == 'POST':
+        form = docvehdetform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/c")
+        else:
+            return redirect("/docvehdetView")
     return redirect("/docvehdetView")
 
 def docvehdetedit(request,id):
-    docvehdet=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
-    return render(request, "authentication/docvehdetedit.html",{'docvehdet':docvehdet})
+    instance = get_object_or_404(DocVehDetailsTable, doc_veh_det_id=id)
+    if request.method == 'POST':
+        form = docvehdetform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/docvehdetView')  # Redirect to a success page
+    else:
+        form = docvehdetform(instance=instance)
+    return render(request, "authentication/docvehdetedit.html",{'form':form})
 
 def docvehdetupdate(request,id):
     docvehdetobj=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
@@ -682,22 +747,32 @@ def docvehdetView(request):
     return render(request, "authentication/docvehdetlist.html",{'docvehdet':docvehdet})
 
 def reviewstatus(request):
+    form=Reviewstatusform()
     revstaobj=ReviewFeedbackStatus.objects.all()
     print(revstaobj)
-    return render(request, "authentication/reviewstatus.html",{'revstaobj':revstaobj})
+    return render(request, "authentication/reviewstatus.html",{'form':form,'revstaobj':revstaobj})
 
 def reviewstatussave(request):
-    id=request.POST.get('txtrsid')
-    rid=request.POST.get('txtrid')
-    stat=request.POST.get('txtstatus')
-    uid=request.POST.get('txtuid')
-    reviewstatus=ReviewFeedbackStatus(review_status_id=id,review=rid,status=stat,user=uid)
-    reviewstatus.save()
+    form = Reviewstatusform()
+    if request.method == 'POST':
+        form = Reviewstatusform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/reviewstatusView")
+        else:
+            return redirect("/reviewstatusView")
     return redirect("/reviewstatusView")
 
 def reviewstatusedit(request,id):
-    revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
-    return render(request, "authentication/reviewstatusedit.html",{'revstaobj':revstaobj})
+    instance = get_object_or_404(ReviewFeedbackStatus, review_status_id=id)
+    if request.method == 'POST':
+        form = Reviewstatusform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/reviewstatusView')  # Redirect to a success page
+    else:
+        form = Reviewstatusform(instance=instance)
+    return render(request, "authentication/complainsedit.html",{'form':form})
 
 def reviewstatusupdate(request,id):
     revstaobj=ReviewFeedbackStatus.objects.get(review_status_id=id)
@@ -717,27 +792,34 @@ def reviewstatusView(request):
     return render(request, "authentication/reviewstatuslist.html",{'revstaobj':revstaobj})
 
 def payment(request):
+    form=Paymentform()
     paymentobj=PaymentMaster.objects.all()
     print(paymentobj)
-    return render(request, "authentication/paymentadd.html",{'paymentobj':paymentobj})
+    return render(request, "authentication/paymentadd.html",{'form':form,'paymentobj':paymentobj})
 
 def paymentsave(request):
-    detail=request.POST.get('txtpdet')
-    payid=request.POST.get('txtpayid')
-    did=request.POST.get('txtdid')
-    paysta=request.POST.get('txtpaysta')
-    paymet=request.POST.get('txtpaymet')
-    transid=request.POST.get('txttransid')
-    resp=request.POST.get('txtresp')
-    payment=PaymentMaster(doc_pay_detail=detail,doc_pay_detail_id=payid,doc=did,pay_status=paysta,pay_method=paymet,pay_tran_id=transid,pay_response=resp)
-    payment.save()
+    form = Paymentform()
+    if request.method == 'POST':
+        form = Paymentform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/paymentView")
+        else:
+            return redirect("/paymentView")
     return redirect("/paymentView")
 
 def paymentedit(request,id):
-    payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
-    return render(request, "authentication/paymentedit.html",{'payment':payment})
+    instance = get_object_or_404(PaymentMaster, doc_pay_detail_id=id)
+    if request.method == 'POST':
+        form = Paymentform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/paymentView')  # Redirect to a success page
+    else:
+        form = Paymentform(instance=instance)
+    return render(request, "authentication/useredit.html",{'form':form})
 
-def paymentupdate(request,id):
+#def paymentupdate(request,id):
     payment=PaymentMaster.objects.get(doc_pay_detail_id=id)
     detail=request.POST.get('txtpdet')
     paysta=request.POST.get('txtpaysta')
@@ -763,25 +845,32 @@ def paymentView(request):
     return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
 
 def userdet(request):
+    form=userdetform()
     userdetobj=UserDetails.objects.all()
     print(userdetobj)
-    return render(request, "authentication/userdetail.html",{'userdetobj':userdetobj})
+    return render(request, "authentication/userdetail.html",{'form':form,'userdetobj':userdetobj})
 
 def userdetsave(request):
-    id=request.POST.get('txtudid')
-    uid=request.POST.get('txtuid')
-    typ=request.POST.get('txttyp')
-    pic=request.POST.get('txtpic')
-    con=request.POST.get('txtcon')
-    gen=request.POST.get('txtgen')
-    add=request.POST.get('txtadd')
-    userdet=UserDetails(user_deatil_id=id,user_master=uid,user_type=typ,profile_pic=pic,contact=con,gender=gen,address=add)
-    userdet.save()
+    form = userdetform()
+    if request.method == 'POST':
+        form = userdetform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/userdetView")
+        else:
+            return redirect("/userdetView")
     return redirect("/userdetView")
 
 def userdetedit(request,id):
-    userdet=UserDetails.objects.get(user_deatil_id=id)
-    return render(request, "authentication/userdetedit.html",{'userdet':userdet})
+    instance = get_object_or_404(UserDetails, user_deatil_id=id)
+    if request.method == 'POST':
+        form = userdetform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/userdetView')  # Redirect to a success page
+    else:
+        form = userdetform(instance=instance)
+    return render(request, "authentication/userdetedit.html",{'form':form})
 
 def userdetupdate(request,id):
     userdet=UserDetails.objects.get(user_deatil_id=id)
@@ -805,27 +894,32 @@ def userdetView(request):
     return render(request, "authentication/userdetlist.html",{'userdetobj':userdetobj})
 
 def vehroutdet(request):
+    form=vehroutdetform()
     vehroutdetobj=VehRoutDetalis.objects.all()
     print(vehroutdetobj)
-    return render(request, "authentication/vehroutdet.html",{'vehroutdetobj':vehroutdetobj})
+    return render(request, "authentication/vehroutdet.html",{'form':form,'vehroutdetobj':vehroutdetobj})
 
 def vehroutdetsave(request):
-    id=request.POST.get('txtvrdid')
-    vrid=request.POST.get('txtvrid')
-    sid=request.POST.get('txtsid')
-    did=request.POST.get('txtdid')
-    cid=request.POST.get('txtcid')
-    desc=request.POST.get('txtdesc')
-    chbe50=request.POST.get('txtchbe50')
-    chbe150=request.POST.get('txtchbe150')
-    chab150=request.POST.get('txtchab150')
-    vehroutdet=VehRoutDetalis(veh_rout_det_id=id,veh_rout=vrid,state=sid,ditrict=did,city_village=cid,decription=desc,char_bel_50=chbe50,char_bel_150=chbe150,char_abo_150=chab150)
-    vehroutdet.save()
+    form = vehroutdetform()
+    if request.method == 'POST':
+        form = vehroutdetform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/vehroutdetView")
+        else:
+            return redirect("/vehroutdetView")
     return redirect("/vehroutdetView")
 
 def vehroudetedit(request,id):
-    vehroutdet=VehRoutDetalis.objects.get(veh_rout_det_id=id)
-    return render(request, "authentication/vehroutdetedit.html",{'vehroutdet':vehroutdet})
+    instance = get_object_or_404(VehRoutDetalis, veh_rout_det_id=id)
+    if request.method == 'POST':
+        form = vehroutdetform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/vehroutdetView')  # Redirect to a success page
+    else:
+        form = vehroutdetform(instance=instance)
+    return render(request, "authentication/vehroutdetedit.html",{'form':form})
 
 def vehroutdetupdate(request,id):
     vehroutdet=VehRoutDetalis.objects.get(veh_rout_det_id=id)

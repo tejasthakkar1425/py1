@@ -1,36 +1,21 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
 {% load static %}
-{% comment %} <html>{% endcomment %}
-{% comment %} <head>
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
-    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
-    {% comment %} <title>State Master View</title> {% endcomment %}
-{% comment %} </head> {% endcomment %} 
-{% comment %} <body class="sub_page"> {% endcomment %}
-{% comment %} <style>
-    .dtWidgets
-    {
-        display:none;
-        visiblity:hidden;
-    }
-</style> {% endcomment %}
-
+<body class="sub_page">
     <div>
-    
-            <center><div>
-                <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-                <button  style="color:black;
-                padding: 7px 50px 5px 50px;
-                float: right;
-                font-size: 16px;" onclick="location.href = '/userdetView';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
-            </div>
-                <br>
-                <h2>User Deatils</h2>
-                <br>
-                <h2></h2>
-            </center>
+        <center>
+            <h2><b>User Details</b></h2>
+            <br>
+        <div>
+            <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+            <button  style="color:black;
+            padding: 7px 50px 5px 50px;
+            float: right;
+            font-size: 16px;" onclick="location.href = '/userdet';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        </div>
+        <br>
+        <h2></h2>
+        </center>
         <table class="table">
             <tr>
                 <th>User Detail Id</th>

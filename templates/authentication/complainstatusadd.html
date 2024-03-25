@@ -1,25 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/complainstatussave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Complain Id</label>
-            <select name="complain_status_table">
-                {% for i in complainstatusobj %}
-                <option name="txtcid" value="{{i.com}}"> {{i.com_id}} </option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Complain Status Id</label><input type="number" name="txtcsid"><br>
-            
-            <label>Enter Complain Status Date</label><input type="date" name="txtcsdate"><br>
-
-            <label>Enter Complain Status</label><input type="text" name="txtcstatus"><br>
-
-            <button type="submit" value="save">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/complainstatussave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

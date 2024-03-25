@@ -1,26 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
-    <body>
-        <form method="post" action="/docupdate/{{doc.doc_id}}">
+<body>
+    <div class="form-container">
+        <form method="post">
             <br>
             {% csrf_token %}
-            <h3>Edit Details</h3>
-
-            <label>Enter Doc Number</label><input type="text" name="txtdnum" value={{doc.doc_number}}><br>
-
-            <label>Enter Doc Date</label><input type="date" name="txtddate" value={{doc.doc_date}}><br>
-
-            <label>Enter LR Number</label><input type="number" name="txtlnum" value={{doc.lr_number}}><br>
-
-            <label>Net Amount</label><input type="number" name="txtnet" value={{doc.net_amount}}><br>
-
-            <label>Is Cancel</label>
-            <select>
-                <option name="txtis" value="{{doc.is_cancel}}">1.Yes</option>
-                <option name="txtis" value="{{doc.is_cancel}}">2.No</option>
-            </select><br>
-
-            <button type="submit" value="save">Submit</button>
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
         </form>
-    </body>
+    </div>
+</body>
 {% endblock content %}

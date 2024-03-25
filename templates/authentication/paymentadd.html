@@ -1,31 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/paymentsave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Payment Detail</label><input type="text" name="txtpdet"><br>
-
-            <label>Enter Doc Payment Id</label><input type="number" name="txtpayid"><br>
-
-            <label>Enter Doc Id</label>
-            <select name="doc_detail_table">
-                {% for i in paymentobj %}
-                <option name="txtdid" value="{{i.doc}}">{{i.doc_id}}</option>
-                {% endfor %}
-            </select><br>
-
-            <label>Enter Payment Status</label><input type="text" name="txtpaysta"><br>
-
-            <label>Enter Payment Method</label><input type="text" name="txtpaymet"><br>
-
-            <label>Transection Id</label><input type="number" name="txttransid"><br>
-
-            <label>Payment Response</label><input type="text" name="txtresp"><br>
-
-            <button type="submit">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/paymentsave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}

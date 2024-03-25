@@ -1,20 +1,13 @@
 {% extends 'authentication\masterpage.html' %}
 {% block content %}
     <body>
-        <form method="post" action="/gstsave">
-            <br>
-            {% csrf_token %}
-            <h3>Enter Details</h3>
-
-            <label>Enter Gst Charges Id:</label><input type="number" name="txtgid"><br>
-
-            <label>Enter Year:</label><input type="text" name="txtgyear"><br>
-
-            <label>Enter CGST Percentage</label><input type="number" name="txtgcgst" step=".01"><br>
-
-            <label>Enter SGST Percentage</label><input type="number" name="txtgsgst" step=".01"><br>
-
-            <button type="submit" value="save">Submit</button>
-        </form>
+        <div class="form-container">
+            <form method="post" action="/gstsave">
+                <br>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </body>
 {% endblock content %}
