@@ -125,4 +125,6 @@ urlpatterns = [
     path('vehroutdetupdate/<int:id>',views.vehroutdetupdate),
     path('vehroutdetdelete/<int:id>',views.vehroutdetdelete),
     path('product',views.product),
+    path('newadmin',views.newadmin),
+    path('customerpanel',views.customerpanel),
 ]

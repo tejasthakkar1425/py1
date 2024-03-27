@@ -49,6 +49,11 @@ def login1(request):
 def admin(request):
     return render(request, "authentication/masterpage.html")
 
+def customerpanel(request):
+    userobj=UserMasterTable.objects.all()
+    print(userobj)
+    return render(request, "authentication/customerpanel.html",{'userobj':userobj})
+
 def stateadd(request):
     stateobj=StateMasterTable.objects.all()
     print(stateobj)
@@ -85,8 +90,7 @@ def login(request):
                               return dashboard(request)
                           if user_details.user_type == 2:
                               print("checked the type")
-                              done=1
-                              return home(request,done)
+                              return customerpanel(request)
                           if user_details.user_type == 3:
                               print("checked the type") 
                               return employee(request)
@@ -954,3 +958,7 @@ def vehroutdetView(request):
 
 def product(request):
     return render(request ,"authentication/services.html")
+
+def newadmin(request):
+    return render(request, "authentication/newadmin.html")
+
