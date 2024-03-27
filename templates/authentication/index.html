@@ -2,6 +2,32 @@
 <!DOCTYPE html>
 <html>
 
+<style>
+  .content {
+    margin-top: 1000px; 
+    
+}
+  .header_section{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Example background color */
+    color: #fff; /* Example text color */
+    padding: 0px 0; /* Example padding */
+    z-index: 1000; 
+  }
+  .header_section{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333; /* Example background color */
+    color: #fff; /* Example text color */
+    z-index: 1000; 
+  }
+</style>
+
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -84,16 +110,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent" style="position: sticky;">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#slider_section">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#Services">Services</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home:about' %}"> About</a>
+                  <a class="nav-link" href="#about"> About</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home:contact' %}">Contact Us</a>
+                  <a class="nav-link" href="#contect">Contact Us</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'home:login' %}"> <i class="fa fa-user" aria-hidden="true"></i> Sign In</a>
@@ -112,7 +138,7 @@
 
 
 
-  
+  <div class="centent">
     <section class="slider_section" id="home">
       <div class="slider_bg_box">
         <img src="{% static 'slider-bg.jpg' %}" alt="">
@@ -572,7 +598,7 @@
     </div>
   </section>
   <!-- footer section -->
-
+</div>
   <!-- jQery -->
   <script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script>
   <!-- popper js -->

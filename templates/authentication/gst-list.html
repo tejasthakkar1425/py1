@@ -138,7 +138,15 @@
             <td>{{ gst.cgst_per }} </td>
             <td>{{ gst.sgst_per }} </td>
             <td><a href="/gstedit/{{gst.gst_char_id}}">Edit</a></td>
-            <td><a href="/gstdelete/{{gst.gst_char_id}}">Delete</a></td>
+            <td><a href="#" onclick="confirmDelete('{{gst.gst_char_id}}')">Delete</a></td>
+            <script>
+                function confirmDelete(gst_char_id)
+                 {
+                    if (confirm("Are you sure you want to delete this district ?")) {
+                        window.location.href = "/gstdelete/" + gst_char_id; // Redirect if confirmed
+                    }
+                }
+          </script>
         </tr>
         {% endfor %}
     </table>

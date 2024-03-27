@@ -101,6 +101,10 @@ def login(request):
                 return render(request, 'authentication/login.html', {'error': 'User not found'})
         return HttpResponse(render(request,'authentication/login.html'))
 def stateView(request):
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = StateMasterTable.objects.filter(stat_name=search)
+        return render(request, "authentication/state-list.html",{'stateobj':objCity,"search":search})
     objStateMaster = StateMasterTable.objects.all()
     print(objStateMaster)
     return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
@@ -183,6 +187,10 @@ def citydelete(request,id):
     return redirect("/cityView")
 
 def cityView(request):
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = CityVillageMaster.objects.filter(city_village_name=search)
+        return render(request, "authentication/city-list.html",{'cityobj':objCity,"search":search})
     objCityMaster = CityVillageMaster.objects.all()
     print(objCityMaster)
     return render(request, "authentication/city-list.html",{'cityobj':objCityMaster})
@@ -293,6 +301,10 @@ def distdelete(request,id):
     return redirect("/distView")
 
 def distView(request):
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = DistrictMaster.objects.filter(district_name=search)
+        return render(request, "authentication/district-list.html",{'distobj':objCity,"search":search})
     objDistMaster = DistrictMaster.objects.all()
     return render(request, "authentication/district-list.html",{'distobj':objDistMaster})
 

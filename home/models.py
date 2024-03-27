@@ -277,6 +277,7 @@ class StateMasterTable(models.Model):
         db_table = 'state_master_table'
 
 
+
 class UserDetails(models.Model):
     user_deatil_id = models.IntegerField(primary_key=True)
     user_master = models.ForeignKey('UserMasterTable', models.DO_NOTHING,null=True)
