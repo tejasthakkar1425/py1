@@ -1,5 +1,4 @@
-
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
 <div>
@@ -8,38 +7,31 @@
         <br>
         <div>
             <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-            <button  style="color:black;
-            padding: 7px 50px 5px 50px;
-            float: right;
-            font-size: 16px;" onclick="location.href = '/vehrout';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/vehrout';">Add</button>
         </div>
         <br>
     </center>
-    <table class="table">
-        <thead>
+    <thead>
         <tr>
             <th>Veh Rout Id</th>
-            <th>From State Id</th>
-            <th>To State Id</th>
+            <th>From State Name</th>
+            <th>To State Name</th>
             <th>Veh Rout Det</th>
             <th>Edit</th>
             <th>Delete</th>
-
         </tr>
     </thead>
     <tbody>
         {% for vehrout in vehroutobj %}
         <tr>
             <td> {{ vehrout.veh_rout_id }}</td>
-            <td>{{ vehrout.from_state_id }} </td>
-            <td>{{ vehrout.to_state_id }} </td>
+            <td>{{ vehrout.from_state.stat_name }} </td>
+            <td>{{ vehrout.to_state.stat_name }} </td>
             <td>{{ vehrout.vehc_rout_det }} </td>
             <td><a href="/vehroutedit/{{vehrout.veh_rout_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/vehroutdelete/{{vehrout.veh_rout_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
     </tbody>
-    </table>
-    <a href="/vehrout">Add</a>
 </div>
 {% endblock content %}

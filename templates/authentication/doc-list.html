@@ -1,21 +1,16 @@
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
 <div>
     <center>
-        <h2><b>Doc Details</b></h2>
+        <h2><b>Doc Master Details</b></h2>
         <br>
         <div>
             <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-            <button  style="color:black;
-            padding: 7px 50px 5px 50px;
-            float: right;
-            font-size: 16px;" onclick="location.href = '/doc';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/doc';">Add</button>
         </div>
         <br>
-        <h2></h2>
     </center>
-        <table class="table">
             <tr>
                 <th>Doc Id</th>
                 <th>Doc Number</th>
@@ -27,22 +22,17 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
-            {% for doc in docobj %}
+            {% for doc in objDocMaster %}
             <tr>
                 <td> {{ doc.doc_id}}</td>
                 <td>{{ doc.doc_number }} </td>
                 <td>{{ doc.doc_date }} </td>
                 <td>{{ doc.lr_number }}</td>
-                <td>{{ doc.gst_charges_id }}</td>
+                <td>{{ doc.gst_charges.cgst_per }}</td>
                 <td>{{ doc.net_amount }}</td>
                 <td>{{ doc.is_cancel }}</td>
                 <td><a href="/docedit/{{doc.doc_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
                 <td><a href="/docdelete/{{doc.doc_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
-        </table>
-    </div>
-    <a href="/doc">Add</a>
-{% comment %} </body>
-</html> {% endcomment %}
 {% endblock content %}

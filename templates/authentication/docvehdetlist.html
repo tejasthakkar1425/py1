@@ -1,4 +1,4 @@
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
 <div>
@@ -7,19 +7,15 @@
         <br>
         <div>
             <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-            <button  style="color:black;
-            padding: 7px 50px 5px 50px;
-            float: right;
-            font-size: 16px;" onclick="location.href = '/docvehdet';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/docvehdet';">Add</button>
         </div>
         <br>
-        <h2></h2>
     </center>
-        <table class="table">
             <tr>
                 <th>Doc Veh Det Id</th>
                 <th>Doc Id</th>
-                <th>Vehicle Id</th>
+                <th style="display: none;">Vehicle Id</th>
+                <th>Vehicle Name</th>
                 <th>Veh Rout Id</th>
                 <th>Description</th>
                 <th>Edit</th>
@@ -29,14 +25,13 @@
             <tr>
                 <td> {{ docvehdet.doc_veh_det_id }}</td>
                 <td>{{ docvehdet.doc_id }} </td>
-                <td>{{ docvehdet.veh_id }} </td>
+                <td style="display: none;">{{ docvehdet.veh_id }} </td>
+                <td>{{ docvehdet.veh.vehicle_name }}</td>
                 <td>{{ docvehdet.vehc_rout_id }}</td>
                 <td>{{ docvehdet.description }}</td>
                 <td><a href="/docvehdetedit/{{docvehdet.doc_veh_det_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
                 <td><a href="/docvehdetdelete/{{docvehdet.doc_veh_det_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
-        </table>
-    </div>
-</body>
+</div>
 {% endblock content %}

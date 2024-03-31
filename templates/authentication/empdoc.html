@@ -1,0 +1,25 @@
+{% extends 'authentication\employee.html' %}
+{% block content %}
+{% load static %}
+<div>
+            <tr>
+                <th>Doc Details Id</th>
+                <th>Doc Number</th>
+                <th>Doc Address</th>
+                <th>Vehicle Rout</th>
+                <th>Doc Weight</th>
+                <th>Vehicle Rout Details</th>
+                <th>Total Amount</th>
+            </tr>
+            {% for doc in docobj2 %}
+            <tr>
+                <td> {{ doc.doc_detail_id}}</td>
+                <td>{{ doc.doc_id }} </td>
+                <td>{{ doc.doc_address }} </td>
+                <td>{{ doc.vehc_rout_id }}</td>
+                <td>{{ doc.doc_weight }}</td>
+                <td>{{ doc.veh_rout_det_id }}</td>
+                <td>{{ doc.total_amount }}</td>
+            </tr>
+            {% endfor %}
+{% endblock content %}

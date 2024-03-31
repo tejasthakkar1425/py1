@@ -1,25 +1,19 @@
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
-<body class="sub_page">
-    <div>
+<div>
         <center>
             <h2><b>User Details</b></h2>
-            <br>
         <div>
             <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-            <button  style="color:black;
-            padding: 7px 50px 5px 50px;
-            float: right;
-            font-size: 16px;" onclick="location.href = '/userdet';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/userdet';">Add</button>
         </div>
         <br>
-        <h2></h2>
         </center>
-        <table class="table">
             <tr>
                 <th>User Detail Id</th>
-                <th>User Master Id</th>
+                <th style="display: none;">User Master Id</th>
+                <th>User Name</th>
                 <th>User Type</th>
                 <th>Profile Pic</th>
                 <th>Conatact</th>
@@ -31,19 +25,16 @@
             {% for userdet in userdetobj %}
             <tr>
                 <td> {{ userdet.user_deatil_id }}</td>
-                <td>{{ userdet.user_master_id }} </td>
+                <td style="display: none;">{{ userdet.user_master_id }} </td>
+                <td>{{ userdet.user_master.user_name }}</td>
                 <td>{{ userdet.user_type }} </td>
                 <td>{{ userdet.profile_pic }}</td>
                 <td>{{ userdet.contact }}</td>
                 <td>{{ userdet.gender }}</td>
                 <td>{{ userdet.address }}</td>
-                <td><a href="/userdetedit/{{userdet.user_deatil_id}}">Edit</a></td>
-                <td><a href="/userdetdelete/{{userdet.user_deatil_id}}">Delete</a></td>
+                <td><a href="/userdetedit/{{userdet.user_deatil_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="/userdetdelete/{{userdet.user_deatil_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
-        </table>
-    </div>
-    <a href="/userdet">Add</a>
-{% comment %} </body>
-</html> {% endcomment %}
+</div>
 {% endblock content %}

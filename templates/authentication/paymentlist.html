@@ -1,178 +1,23 @@
 
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
-{% comment %} {% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Transport Admin Dashboard</title>
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    header {
-        background-color: #333;
-        color: #fff;
-        padding: 20px;
-        text-align: center;
-        hieght:"5px"
-    }
-    
-    aside {
-        width: 200px;
-        background-color: #2c3e50;
-        color: #ecf0f1;
-        padding: 20px;
-        box-sizing: border-box;
-        float: left;
-    }
-    
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    li {
-        margin-bottom: 10px;
-    }
-    
-    a {
-        color: #ecf0f1;
-        text-decoration: none;
-        display: block;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    
-    a.active {
-        background-color: #3498db;
-    }
-    
-    i {
-        margin-right: 10px;
-    }
-    
-    main {
-        margin-left: 220px;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-    
-    .widgets-container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-    
-    .widget {
-        flex: 1 1 calc(33.33% - 20px);
-        background-color: #ecf0f1;
-        padding: 20px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    h2 {
-        color: #333;
-    }
-    
-    p {
-        font-size: 24px;
-        font-weight: bold;
-        color: #3498db;
-    }
-    
-    footer {
-        background-color: #333;
-        color: #fff;
-        padding: 10px;
-        text-align: center;
-        clear: both;
-    }
-    
-    
-        </style>
-    </head>
-    <body>
-    
-        <header>
-            <h1 >Transport Admin Dashboard</h1>
-       
-        </header>
-    
-        <aside>
-            <ul>
-                <li><a href="/stateView">StateMaster</a></li>
-                <li><a href="/distView">DistrictMaster</a></li>
-                <li><a href="/cityView">City-VillageMaster</a></li>
-                <li><a href="/gstView"> GSTChargeMaster</a></li>
-                <li><a href="/userView"> UserMaster</a></li>
-                <li><a href="/paymentView"> PaymentStatus</a></li>
-                <li><a href="/reviewView"> ReviewAndFeedback</a></li>
-                <li><a href="/vehView">VehicleDetails</a></li>
-                <li><a href="/vehroutView">VehicleRouteMaster</a></li>
-                <li><a href="/complainView">Complains</a></li>
-               
-            </ul>
-        </aside>
-    <div>
-        <table align="center" width="50%" border="2.5">
-            <tr>
-                <th>Payment Details</th>
-                <th>Doc Payment Id</th>
-                <th>Doc Id</th>
-                <th>Payment Status</th>
-                <th>Payment Method</th>
-                <th>Transection Id</th>
-                <th>Payment Response</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            {% for payment in paymentobj %}
-            <tr>
-                <td> {{ payment.doc_pay_detail }}</td>
-                <td>{{ payment.doc_pay_detail_id }} </td>
-                <td>{{ payment.doc }} </td>
-                <td>{{ payment.pay_status }}</td>
-                <td>{{ payment.pay_method }}</td>
-                <td>{{ payment.pay_tran_id }}</td>
-                <td>{{ payment.pay_response }}</td>
-                <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}">Edit</a></td>
-                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}">Delete</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <a href="/payment">Add</a>
-</body>
-</html> {% endcomment %}
 <div>
     <center>
         <h2><b>Payment Details</b></h2>
         <br>
         <div>
         <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button  style="color:black;
-        padding: 7px 50px 5px 50px;
-        float: right;
-        font-size: 16px;" onclick="location.href = '/payment';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
-    </div>
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/payment';">Add</button>
+        </div>
         <br>
     </center>
-    <table class="table">
-        <thead>
+    <thead>
         <tr>
             <th>Payment Details</th>
             <th>Doc Payment Id</th>
             <th style="display: none;">Doc Id</th>
-            <th>Doc Name</th>
+            <th>Doc Number</th>
             <th>Payment Status</th>
             <th>Payment Method</th>
             <th>Transection Id</th>
@@ -188,7 +33,7 @@
             <td> {{ payment.doc_pay_detail }}</td>
                 <td>{{ payment.doc_pay_detail_id }} </td>
                 <td style="display: none;">{{ payment.doc_id }} </td>
-                <td>{{ payment.doc.doc_name }}
+                <td>{{ payment.doc.doc_number }}
                 <td>{{ payment.pay_status }}</td>
                 <td>{{ payment.pay_method }}</td>
                 <td>{{ payment.pay_tran_id }}</td>
@@ -198,7 +43,5 @@
              </tr>
         {% endfor %}
     </tbody>
-    </table>
-    {% comment %} <a href="/payment"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a> {% endcomment %}
 </div>
 {% endblock content %}

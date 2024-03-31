@@ -186,19 +186,31 @@ def cityView(request):
     objCityMaster = CityVillageMaster.objects.all()
     print(objCityMaster)
     return render(request, "authentication/city-list.html",{'cityobj':objCityMaster})
-def curior_close(request):
-     if request.method == 'GET':
-        category = DocMaster.objects.all()
-        return render(request,'authentication/curior-close.html',{"docIds":category})
-     if request.method == 'POST':
-        ids= DocMaster.objects.all()
-        id=request.POST['id']
-        print("post done")
-        category = DocMaster.objects.get(doc_id=id)
-        return render(request,'authentication/curior-close.html',{"docIds":ids,"docDetail":category})
 
+def empcomplain(request):
+    form=empcomplainform()
+    complain = ComplainStatus.objects.all()
+    print(complain)
+    return render(request,'authentication/empcomplain.html',{"complain":complain})
+     
+def empcomplainedit(request,id):
+    instance = get_object_or_404(ComplainStatus, com_status_id=id)
+    if request.method == 'POST':
+        form = empcomplainform(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect('/empcomplain')  # Redirect to a success page
+    else:
+        form = empcomplainform(instance=instance)
+    return render(request, "authentication/empcompedit.html",{'form':form})
+     
+def empdocview(request):
+    docobj2=DocDetail.objects.all()
+    print(docobj2)
+    return render(request, "authentication/empdoc.html",{'docobj2':docobj2})
+     
 def employee(request):
-    return render(request, "authentication/curior-close.html")
+    return render(request, "authentication/employee.html")
    
 def get_district(request):
     get_district_obj=DocDetail.objects.all()
@@ -324,7 +336,7 @@ def docedit(request,id):
         form = Docform(instance=instance)
     return render(request, "authentication/docedit.html",{'form':form})
 
-def docupdate(request,id):
+# def docupdate(request,id):
     doc=DocMaster.objects.get(doc_id=id)
     num=request.POST.get('txtdnum')
     date=request.POST.get('txtddate')
@@ -349,7 +361,7 @@ def docdelete(request,id):
 def docView(request):
     objDocMaster = DocMaster.objects.all()
     print(objDocMaster)
-    return render(request, "authentication/doc-list.html",{'docobj':objDocMaster})
+    return render(request, "authentication/doc-list.html",{'objDocMaster':objDocMaster})
 
 def veh(request):
     form=Vehicleform()
@@ -672,22 +684,6 @@ def docdetedit(request,id):
         form = Docdetform(instance=instance)
     return render(request, "authentication/complainsedit.html",{'form':form})
 
-def docdetupdate(request,id):
-    docdet=DocDetail.objects.get(doc_detail_id=id)
-    id=request.POST.get('txtdid')
-    addre=request.POST.get('txtdadd')
-    vrid=request.POST.get('txtvrid')
-    wet=request.POST.get('txtwet')
-    vrdid=request.POST.get('txtvrdid')
-    amount=request.POST.get('txtamount')
-    docdet.doc=id
-    docdet.doc_address=addre
-    docdet.vehc_rout=vrid
-    docdet.doc_weight=wet
-    docdet.veh_rout_det=vrdid
-    docdet.total_amount=amount
-    docdet.save()
-    return redirect("/docdetView")
 
 def docdetdelete(request,id):
     docdet=DocDetail.objects.get(doc_detail_id=id)
@@ -711,7 +707,7 @@ def docvehdetsave(request):
         form = docvehdetform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/c")
+            return redirect("/docvehdetView")
         else:
             return redirect("/docvehdetView")
     return redirect("/docvehdetView")
@@ -727,18 +723,6 @@ def docvehdetedit(request,id):
         form = docvehdetform(instance=instance)
     return render(request, "authentication/docvehdetedit.html",{'form':form})
 
-def docvehdetupdate(request,id):
-    docvehdetobj=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
-    did=request.POST.get('txtdid')
-    vid=request.POST.get('txtvid')
-    vrid=request.POST.get('txtvrid')
-    desc=request.POST.get('txtdesc')
-    docvehdetobj.doc=did
-    docvehdetobj.veh=vid
-    docvehdetobj.vehc_rout=vrid
-    docvehdetobj.description=desc
-    docvehdetobj.save()
-    return redirect("/docvehdetView")
 
 def docvehdetdelete(request,id):
     docvehdet=DocVehDetailsTable.objects.get(doc_veh_det_id=id)
@@ -962,3 +946,24 @@ def product(request):
 def newadmin(request):
     return render(request, "authentication/newadmin.html")
 
+def myorders(request):
+    form=Docform()
+    docob=DocMaster.objects.all()
+    print(docob)
+    return render(request, "authentication\myorders.html",{'form':form,'docob':docob})
+
+def myorderssave(request):
+    form = Docform()
+    if request.method == 'POST':
+        form = Docform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("/myordersview")
+        else:
+            return redirect("/myordersview")
+    return redirect("/myordersview")
+
+def myordersview(request):
+    docobj1 = DocMaster.objects.all()
+    print(docobj1)
+    return render(request, "authentication/myordersview.html",{'docobj1':docobj1})

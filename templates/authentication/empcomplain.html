@@ -1,0 +1,22 @@
+{% extends 'authentication\employee.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <thead>
+        <th>Complain Id</th>
+        <th>Complain Date</th>
+        <th>Complain Status</th>
+        <th>Edit</th>
+    </thead>
+    <tbody>
+        {% for com in complain %}
+        <tr>
+            <td>{{com.com_status_id}}</td>
+            <td>{{com.com_status_date}}</td>
+            <td>{{com.com_status}}</td>
+            <td><a href="/empcomplainedit/{{com.com_status_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</div>
+{% endblock content %}

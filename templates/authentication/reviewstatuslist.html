@@ -1,5 +1,4 @@
-
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
 <div>
@@ -8,16 +7,10 @@
         <br>
     <div>
         <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button  style="color:black;
-        padding: 7px 50px 5px 50px;
-        float: right;
-        font-size: 16px;" onclick="location.href = '/reviewstatus';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/reviewstatus';">Add</button>
     </div>
     <br>
-    <h2></h2>
-</center>
-
-    <table class="table">
+   </center>
         <tr>
             <th>Review Status Id</th>
             <th style="display:none;">Review Id</th>
@@ -40,8 +33,5 @@
             <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
-    </table>
 </div>
-{% comment %} </body>
-</html> {% endcomment %}
 {% endblock content %}

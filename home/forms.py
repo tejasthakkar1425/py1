@@ -293,3 +293,14 @@ class vehroutmasterform(forms.ModelForm):
             'to_state' : ' To State Id',
             'vehc_rout_det' : 'Veh Rout Det',
         }
+
+class empcomplainform(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(empcomplainform, self).__init__(*args, **kwargs)
+    class Meta:
+        model=ComplainStatus
+        fields="__all__"
+        fields= ['com_status']
+        labels = {
+            'com_status' : 'Complain Status'
+        }

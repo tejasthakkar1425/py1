@@ -1,0 +1,25 @@
+{% extends 'authentication\customerpanel.html' %}
+{% block content %}
+{% load static %}
+<div>
+            <tr>
+                <th>Doc Id</th>
+                <th>Doc Number</th>
+                <th>Doc Date</th>
+                <th>LR Number</th>
+                <th>GST Charges</th>
+                <th>Net Amount</th>
+                <th>Is Cancel</th>
+            </tr>
+            {% for doc in docobj1 %}
+            <tr>
+                <td> {{ doc.doc_id}}</td>
+                <td>{{ doc.doc_number }} </td>
+                <td>{{ doc.doc_date }} </td>
+                <td>{{ doc.lr_number }}</td>
+                <td>{{ doc.gst_charges.cgst_per }}</td>
+                <td>{{ doc.net_amount }}</td>
+                <td>{{ doc.is_cancel }}</td>
+            </tr>
+            {% endfor %}
+{% endblock content %}

@@ -1,35 +1,16 @@
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
-{% comment %} <html>{% endcomment %}
-{% comment %} <head>
-    <link rel="stylesheet" href="{% static 'styles.css'%}">
-    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}"> {% endcomment %}
-    {% comment %} <script src="{% static 'bootstrap.min.js'%}"> {% endcomment %}
-    {% comment %} <title>State Master View</title> {% endcomment %}
-{% comment %} </head> {% endcomment %} 
-{% comment %} <body class="sub_page"> {% endcomment %}
-{% comment %} <style>
-    .dtWidgets
-    {
-        display:none;
-        visiblity:hidden;
-    }
-</style> {% endcomment %}
 <div>
     <center>
         <h2><b>Complain Details</b></h2>
         <br>
         <div>
         <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button  style="color:black;
-        padding: 7px 50px 5px 50px;
-        float: right;
-        font-size: 16px;" onclick="location.href = '/complainstatus';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complainstatus';">Add</button>
     </div>
         <br>
     </center>
-    <table class="table">
         <tr>
             <th>Complain Id</th>
             <th>Complain Status Id</th>
@@ -48,8 +29,5 @@
             <td><a href="/complainstatusdelete/{{complain.com_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
-    </table>
 </div>
-{% comment %} </body>
-</html> {% endcomment %}
 {% endblock content %}

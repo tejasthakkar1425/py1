@@ -199,12 +199,19 @@
         {% csrf_token %}
         <div class="input-wrapper">
             
-            <input type="text" class="form-control" placeholder="Your Email" name="email"/>
+            <input type="text" class="form-control" placeholder="Your Email" name="email" id="email"/>
         </div>
         <div class="input-wrapper">
             <input type="password" class="form-control" placeholder="Password" name="password"/>
         </div>
-        <button id="continue" type="submit" class="btn btn-primary btnlogin">Login</button>
+        <button id="continue" onclick="showname()" type="submit" class="btn btn-primary btnlogin">Login</button>
+        <script>
+            function showname()
+            {
+                username=document.getElementById("email").value
+                alert("Welcome "+username)
+            }
+        </script>
     </form>
 
     {% if error %}

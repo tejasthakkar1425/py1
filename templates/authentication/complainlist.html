@@ -1,5 +1,5 @@
 
-{% extends 'authentication\masterpage.html' %}
+{% extends 'authentication\newadmin.html' %}
 {% block content %}
 {% load static %}
 <div>
@@ -8,15 +8,11 @@
         <br>
     <div>
         <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button  style="color:black;
-        padding: 7px 50px 5px 50px;
-        float: right;
-        font-size: 16px;" onclick="location.href = '/complain';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complain';">Add</button>
     </div>
     <br>
-</center>
-    <table class="table">
-        <thead>
+    </center>
+    <thead>
         <tr>
             <th>Complain Id</th>
             <th style="display: none;">User Id</th>
@@ -39,7 +35,5 @@
         </tr>
         {% endfor %}
     </tbody>
-    </table>
-    {% comment %} <a href="/complain"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/></a> {% endcomment %}
 </div>
 {% endblock content %}
