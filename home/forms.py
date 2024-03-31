@@ -241,6 +241,7 @@ class userdetform(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(userdetform, self).__init__(*args, **kwargs)
         self.fields['user_master'].choices = [(obj.user_master_id, obj.user_name) for obj in UserMasterTable.objects.all()]
+        # self.fields["user_type"].choices =[(obj.name , obj.value) for obj in UserDetails.USER_TYPES]
     class Meta:
         model=UserDetails
         fields="__all__"

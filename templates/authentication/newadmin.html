@@ -106,28 +106,22 @@
 	</div>
     <div id="page-wrapper" >
         <div id="page-inner">
-            <div class="row">
-                <div class="col-md-12">
-                </div>
-            </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        
-                        <main>
-                            {% block content %}
-                            
+                <main style="margin-left: 0px !important;">
+                    {% block content %}
+                    
 
-                            {% endblock content %}
-                        </main>
-                    </table>
-                </div>
+                    {% endblock content %}
+                </main>
             </div>
         </div>
     </div>
-    <footer>
+               
+<footer class="bg-body-tertiary">
+    <div class="container">
         <p>&copy; 2024 Darshan Transport Company. All rights reserved.</p>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>
 <style>

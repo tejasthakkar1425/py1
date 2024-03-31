@@ -16,6 +16,7 @@
 }
 
 .form-container form label {
+    width: 100%;
     color: black;
     padding: 10px;
     margin: 3px;

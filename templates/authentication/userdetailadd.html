@@ -2,11 +2,10 @@
 {% block content %}
     <body>
         <div class="form-container">
-            <form method="post" action="/usersave">
-                <br>
+            <form method="post" enctype="multipart/form-data" action="/userdetsave">
                 {% csrf_token %}
-                {{ form_master.as_p }}
-                <button type="submit">NEXT </button>
+                {{form.as_P}}
+                <button type="submit">Submit</button>
             </form>
         </div>
     </body>

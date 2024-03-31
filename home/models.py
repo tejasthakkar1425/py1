@@ -1,4 +1,5 @@
 import datetime
+from enum import Enum, IntEnum
 from django.db import models
 
 # Create your models here.
@@ -279,10 +280,17 @@ class StateMasterTable(models.Model):
 
 
 class UserDetails(models.Model):
+    
+    
+    class USER_TYPES(models.IntegerChoices):
+        ADMIN = 1 ,'ADMIN'
+        EMPLOYEE = 2,'EMPLOYEE'
+        CUSTOMER = 3,'CUSTOMER'
+
     user_deatil_id = models.IntegerField(primary_key=True)
-    user_master = models.ForeignKey('UserMasterTable', models.DO_NOTHING,null=True)
-    user_type = models.IntegerField(blank=True, null=True)
-    profile_pic = models.ImageField()
+    user_master = models.ForeignKey('UserMasterTable', on_delete=models.CASCADE)
+    user_type = models.IntegerField(choices=USER_TYPES.choices,blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='images/',blank=True)
     contact = models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=1, blank=True, null=True)
     address = models.CharField(db_column='Address', blank=True, null=True,max_length=50)  # Field name made lowercase.

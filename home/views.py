@@ -486,18 +486,18 @@ def vehroutView(request):
     return render(request, "authentication/vehicle_rout_master-list.html",{'vehroutobj':objVehroutMaster})
 
 def user(request):
-    form=Userform()
+    form_master = Userform()
     userobj=UserMasterTable.objects.all()
     print(userobj)
-    return render(request, "authentication/useradd.html",{'form':form,'userobj':userobj})
+    return render(request, "authentication/useradd.html",{'form_master':form_master,'userobj':userobj})
 
 def usersave(request):
-    form = Userform()
+    form_master = Userform()
     if request.method == 'POST':
-        form = Userform(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/userView")
+        form_master = Userform(request.POST)
+        if form_master.is_valid():
+            form_master.save()
+            return redirect("/userdet")
         else:
             return redirect("/userView")
     return redirect("/userView")
@@ -508,7 +508,10 @@ def useredit(request,id):
         form = Userform(request.POST, instance=instance)
         if form.is_valid():
             form.save()
-            return redirect('/userView')  # Redirect to a success page
+            userMaster = UserMasterTable.objects.filter(user_master_id=id).first().user_master_id
+
+            userDetailsId = UserDetails.objects.filter(user_master =userMaster ).first().user_deatil_id
+            return redirect('/userdetedit/'+ str(userDetailsId))  # Redirect to a success page
     else:
         form = Userform(instance=instance)
     return render(request, "authentication/useredit.html",{'form':form})
@@ -520,8 +523,20 @@ def userdelete(request,id):
 
 def userView(request):
     userobj = UserMasterTable.objects.all()
-    print(userobj)
-    return render(request, "authentication/user_master-list.html",{'userobj':userobj})
+    userdt =[]
+    for obj in userobj:
+        for itme in UserDetails.objects.filter(user_master=obj):
+            strenum = UserDetails.USER_TYPES(itme.user_type).name
+            userdt.append({
+                'user_master_id':obj.user_master_id,
+                'user_email_id':obj.user_email_id,
+                'user_password':obj.user_password,
+                'user_name':obj.user_name,
+                'user_type':strenum,
+                'contact':itme.contact,
+                'address':itme.address
+            })
+    return render(request, "authentication/user_master-list.html",{'userobj':userdt})
 
 def review(request):
     form=Reviewform()
@@ -852,22 +867,28 @@ def userdet(request):
 
 def userdetsave(request):
     form = userdetform()
-    if request.method == 'POST':
-        form = userdetform(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/userdetView")
-        else:
-            return redirect("/userdetView")
+    try:
+        if request.method == 'POST':
+            form = userdetform(request.POST,request.FILES)
+            if form.is_valid():
+                print(2)
+                form.save()
+                return redirect("/userdetView")
+            else:
+                print(form.errors)
+                return render(request, "authentication/userdetail.html",{'form':form})
+    except Exception as e:
+        print(e)
     return redirect("/userdetView")
 
 def userdetedit(request,id):
     instance = get_object_or_404(UserDetails, user_deatil_id=id)
     if request.method == 'POST':
-        form = userdetform(request.POST, instance=instance)
+        form = userdetform(request.POST, request.FILES,instance=instance)
+        print(form.errors)
         if form.is_valid():
             form.save()
-            return redirect('/userdetView')  # Redirect to a success page
+            return redirect('/userView')  # Redirect to a success page
     else:
         form = userdetform(instance=instance)
     return render(request, "authentication/userdetedit.html",{'form':form})
