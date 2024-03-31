@@ -87,7 +87,7 @@ DATABASES = {
         "HOST": 'localhost',
         "NAME": 'darshan',
         "USER":'root',
-        "PASSWORD": 'Admin@sky12',  
+        "PASSWORD": '', 
         "PORT": '3306',
     }
 }
