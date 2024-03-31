@@ -34,8 +34,14 @@
 			<div style="color: white;
 			padding: 15px 50px 5px 50px;
 			float: right;
-			font-size: 16px;"><a href="/login" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+			font-size: 16px;"><a href="/login" class="btn btn-danger square-btn-adjust" onclick="logout()">Logout</a> </div>
         </nav>
+        <script>
+            function logout()
+            {
+                alert("Do you want to logout ?");
+            }
+        </script>
 		<nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
