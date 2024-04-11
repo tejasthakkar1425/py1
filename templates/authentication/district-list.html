@@ -5,23 +5,16 @@
     <center>
         <h2><b>District Details</b></h2>
         <br>
-        <div>
-        <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/dist';">Add</button>
-        </div>
-        <form method="POST" action="">
+    <div>
         {% csrf_token %}
         <input type="text" placeholder="Search..." name="search">
         <input type="submit" placeholder="Search..." name="submit"> 
         <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        </form>
-        <button  style="color:black;
-        padding: 7px 50px 5px 50px;
-        float: right;
-        font-size: 16px;" onclick="location.href = '/dist';"><img src="{% static 'add-circle-line.png' %}" alt=" Happy SVG" height="30px"/> ADD   </button>
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/city';">Add</button>
     </div>
         <br>
     </center>
+    <table class="table">
     <thead>
         <tr>
             <th>Distriict Id</th>
@@ -54,5 +47,6 @@
         </tr>
         {% endfor %}
     </tbody>
+    </table>
 </div>
 {% endblock content %}+

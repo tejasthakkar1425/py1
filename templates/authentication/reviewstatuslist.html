@@ -11,6 +11,7 @@
     </div>
     <br>
    </center>
+   <table class="table">
         <tr>
             <th>Review Status Id</th>
             <th style="display:none;">Review Id</th>
@@ -33,5 +34,6 @@
             <td><a href="/reviewstatusdelete/{{revsta.review_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>
         {% endfor %}
+    </table>
 </div>
 {% endblock content %}

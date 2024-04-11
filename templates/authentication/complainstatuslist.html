@@ -11,6 +11,7 @@
     </div>
         <br>
     </center>
+    <table class="table">
         <tr>
             <th>Complain Id</th>
             <th>Complain Status Id</th>
@@ -19,15 +20,16 @@
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        {% for complain in complainstatusobj %}
         <tr>
+            {% for complain in complainstatusobj %}
             <td> {{ complain.com_id }}</td>
             <td>{{ complain.com_status_id }} </td>
             <td>{{ complain.com_status_date }} </td>
             <td>{{ complain.com_status }}
             <td><a href="/complainstatusedit/{{complain.com_status_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/complainstatusdelete/{{complain.com_status_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
+            {% endfor %}
         </tr>
-        {% endfor %}
+    </table>
 </div>
 {% endblock content %}
