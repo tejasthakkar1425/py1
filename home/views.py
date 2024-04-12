@@ -259,6 +259,10 @@ def gstdelete(request,id):
     return redirect("/gstView")
 
 def gstView(request):
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = Gstcharges.objects.filter(gst_char_id=search)
+        return render(request, "authentication/gst-list.html",{'gstobj':objCity,"search":search})
     objGstMaster = Gstcharges.objects.all()
     print(objGstMaster)
     return render(request, "authentication/gst-list.html",{'gstobj':objGstMaster})
@@ -858,6 +862,7 @@ def paymentView(request):
     paymentobj=PaymentMaster.objects.all()
     print(paymentobj)
     return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
+
 
 def userdet(request):
     form=userdetform()
