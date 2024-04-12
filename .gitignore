@@ -49,3 +49,4 @@ py1/__pycache__/wsgi.cpython-311.pyc
 templates/authentication/gst-list.html
 templates/authentication/user_master-list.html
 templates/authentication/userdetlist.html
+home/__pycache__/forms.cpython-311.pyc
