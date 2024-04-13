@@ -5,11 +5,13 @@
     <center>
         <h2><b>District Details</b></h2>
         <br>
-    <div>
+    <div><form method="POST" action="">
         {% csrf_token %}
         <input type="text" placeholder="Search..." name="search">
         <input type="submit" placeholder="Search..." name="submit"> 
         <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+        </form>
+    </div>
         <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/city';">Add</button>
     </div>
         <br>

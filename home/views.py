@@ -526,6 +526,16 @@ def userdelete(request,id):
     return redirect("/userView")
 
 def userView(request):
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = StateMasterTable.objects.filter(stat_name=search)
+        return render(request, "authentication/state-list.html",{'stateobj':objCity,"search":search})
+    objStateMaster = StateMasterTable.objects.all()
+    print(objStateMaster)
+    return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
+
+    
+    
     userobj = UserMasterTable.objects.all()
     userdt =[]
     for obj in userobj:
@@ -634,9 +644,17 @@ def complaindelete(request,id):
     return redirect("/complainView")
 
 def complainView(request):
-    complainobj=ComplainMaster.objects.all()
-    print(complainobj)
-    return render(request, "authentication/complainlist.html",{'complainobj':complainobj})
+    
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = ComplainMaster.objects.filter(com_id=search)
+        return render(request, "authentication/complainlist.html",{'complainobj':objCity,"search":search})
+    objComplainMaster = ComplainMaster.objects.all()
+    # print(objStateMaster)
+    return render(request, "authentication/complainlist.html",{'complainobj':objComplainMaster})
+    # complainobj=ComplainMaster.objects.all()
+    # print(complainobj)
+    # return render(request, "authentication/complainlist.html",{'complainobj':complainobj})
 
 def complainstatus(request):
     form = Complainstatusform()
