@@ -985,13 +985,13 @@ def newadmin(request):
     return render(request, "authentication/newadmin.html")
 
 def myorders(request):
-    form=Docform()
+    form=myorderform()
     docob=DocMaster.objects.all()
     print(docob)
     return render(request, "authentication\myorders.html",{'form':form,'docob':docob})
 
 def myorderssave(request):
-    form = Docform()
+    form = myorderform()
     if request.method == 'POST':
         form = Docform(request.POST)
         if form.is_valid():

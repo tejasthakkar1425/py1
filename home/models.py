@@ -182,7 +182,7 @@ class DocMaster(models.Model):
     gst_charges = models.ForeignKey('Gstcharges', models.DO_NOTHING, blank=True, null=True)
     net_amount = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     is_cancel = models.SmallIntegerField(blank=True, null=True)
-
+    
     class Meta:
         managed = False
         db_table = 'doc_master'
@@ -351,3 +351,18 @@ class VehicleRoutMaster(models.Model):
     class Meta:
         managed = False
         db_table = 'vehicle_rout_master'
+
+class myorderform1(models.Model):
+    doc_id = models.IntegerField(primary_key=True)
+    doc_number = models.IntegerField(blank=True, null=True)
+    doc_date = models.DateField(blank=True, null=True)
+    lr_number = models.IntegerField(db_column='LR_number', blank=True, null=True)  # Field name made lowercase.
+    gst_charges = models.ForeignKey('Gstcharges', models.DO_NOTHING, blank=True, null=True)
+    net_amount = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
+    veh = models.ForeignKey('VehicleMaster', models.DO_NOTHING,null=True)
+    vehc_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING, blank=True, null=True)
+    veh_rout_det = models.ForeignKey('VehRoutDetalis', models.DO_NOTHING, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'doc_master'

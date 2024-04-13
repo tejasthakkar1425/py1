@@ -305,3 +305,26 @@ class empcomplainform(forms.ModelForm):
         labels = {
             'com_status' : 'Complain Status'
         }
+
+class myorderform(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(myorderform, self).__init__(*args, **kwargs)
+        self.fields['gst_charges'].choices = [(obj.gst_char_id, obj.cgst_per) for obj in Gstcharges.objects.all()]
+        self.fields['veh'].choices = [(obj.vehicle_id, obj.vehicle_name) for obj in VehicleMaster.objects.all()]
+        self.fields['vehc_rout'].choices = [(obj.veh_rout_id, obj.to_state.stat_name) for obj in VehicleRoutMaster.objects.all()]
+        self.fields['veh_rout_det'].choices = [(obj.veh_rout_det_id, obj.decription) for obj in VehRoutDetalis.objects.all()]
+    class Meta:
+        model=myorderform1
+        fields="__all__"
+        fields= ['doc_id', 'doc_number','doc_date','lr_number','gst_charges','net_amount','veh','vehc_rout','veh_rout_det']
+        labels = {
+            'doc_id': 'Doc Id',
+            'doc_number' : 'Doc Number',
+            'doc_date' : 'Doc Date' ,
+            'lr_number':'LR Number',
+            'gst_charges' : 'GST Charges',
+            'net_amount' : 'Net Amount',
+            'veh' : 'Vehicle Name',
+            'vehc_rout' : 'To State',
+            'veh_rout_det' : 'Rout Description',
+        }
