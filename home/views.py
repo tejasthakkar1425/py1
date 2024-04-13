@@ -259,6 +259,7 @@ def gstdelete(request,id):
     return redirect("/gstView")
 
 def gstView(request):
+    
     if request.method=="POST":
         search = request.POST.get('search')
         objCity = Gstcharges.objects.filter(gst_char_id=search)
@@ -597,9 +598,17 @@ def reviewdelete(request,id):
     return redirect("/reviewView")
 
 def reviewView(request):
+    
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objReviewMaster = ReviewFeedback.objects.filter(review_id=search)
+        return render(request, "authentication/review&feedback-list.html",{'reviewobj':objReviewMaster,"search":search})
     objReviewMaster = ReviewFeedback.objects.all()
     print(objReviewMaster)
     return render(request, "authentication/review&feedback-list.html",{'reviewobj':objReviewMaster})
+    # objReviewMaster = ReviewFeedback.objects.all()
+    # print(objReviewMaster)
+    # return render(request, "authentication/review&feedback-list.html",{'reviewobj':objReviewMaster})
 
 def complain(request):
     form=Complainform()
@@ -877,9 +886,17 @@ def paymentdelete(request,id):
     return redirect("/paymentView")
 
 def paymentView(request):
-    paymentobj=PaymentMaster.objects.all()
+    
+    if request.method=="POST":
+        search = request.POST.get('search')
+        objCity = Gstcharges.objects.filter(doc_pay_detail_id=search)
+        return render(request, "authentication/paymentlist.html",{'paymentobj':objCity,"search":search})
+    paymentobj = Gstcharges.objects.all()
     print(paymentobj)
-    return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
+    return render(request, "authentication/paymentlist.html",{'gstobj':paymentobj})
+    # paymentobj=PaymentMaster.objects.all()
+    # print(paymentobj)
+    # return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
 
 
 def userdet(request):

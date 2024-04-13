@@ -6,9 +6,14 @@
         <h2><b>Vehicle Rout Details</b></h2>
         <br>
         <div>
-        <input type="text" placeholder="Search..." name="search"> <input type="submit" placeholder="Search..." name="search"> <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
-        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/vehroutdet';">Add</button>
-        </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" placeholder="Search..." name="search">
+                <input type="submit" placeholder="Search..." name="submit"> 
+                <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+                </form>
+                <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/gst';">Add</button>
+        
         <br>
     </center>
     <table class="table">
