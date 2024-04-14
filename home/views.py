@@ -527,13 +527,38 @@ def userdelete(request,id):
     return redirect("/userView")
 
 def userView(request):
+    userdt =[]
     if request.method=="POST":
         search = request.POST.get('search')
-        objCity = StateMasterTable.objects.filter(stat_name=search)
-        return render(request, "authentication/state-list.html",{'stateobj':objCity,"search":search})
-    objStateMaster = StateMasterTable.objects.all()
+        objCity = UserMasterTable.objects.filter(user_name=search)
+        for obj in objCity:
+            for itme in UserDetails.objects.filter(user_master=obj):
+                strenm = UserDetails.USER_TYPES(itme.user_type).name
+                userdt.append({
+                'user_master_id':obj.user_master_id,
+                'user_email_id':obj.user_email_id,
+                'user_password':obj.user_password,
+                'user_name':obj.user_name,
+                'user_type':strenm,
+                'contact':itme.contact,
+                'address':itme.address
+            })
+        return render(request, "authentication/user_master-list.html",{'userobj':userdt,"search":search})
+    objStateMaster = UserMasterTable.objects.all()
+    for obj in objStateMaster:
+            for itme in UserDetails.objects.filter(user_master=obj):
+                strenm = UserDetails.USER_TYPES(itme.user_type).name
+                userdt.append({
+                'user_master_id':obj.user_master_id,
+                'user_email_id':obj.user_email_id,
+                'user_password':obj.user_password,
+                'user_name':obj.user_name,
+                'user_type':strenm,
+                'contact':itme.contact,
+                'address':itme.address
+            })
     print(objStateMaster)
-    return render(request, "authentication/state-list.html",{'stateobj':objStateMaster})
+    return render(request, "authentication/user_master-list.html",{'userobj':userdt})
 
     
     

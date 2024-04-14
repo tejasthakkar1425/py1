@@ -347,6 +347,7 @@ class VehicleRoutMaster(models.Model):
     from_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, blank=True, null=True)
     to_state = models.ForeignKey(StateMasterTable, models.DO_NOTHING, related_name='vehicleroutmaster_to_state_set', blank=True, null=True)  
     vehc_rout_det = models.CharField(blank=True, null=True,max_length=50)
+    dist = models.ForeignKey(DistrictMaster, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -361,6 +362,7 @@ class myorderform1(models.Model):
     net_amount = models.DecimalField(max_digits=10, decimal_places=0, blank=True, null=True)
     veh = models.ForeignKey('VehicleMaster', models.DO_NOTHING,null=True)
     vehc_rout = models.ForeignKey('VehicleRoutMaster', models.DO_NOTHING, blank=True, null=True)
+    dist = models.ForeignKey(DistrictMaster, models.DO_NOTHING, blank=True, null=True)
     veh_rout_det = models.ForeignKey('VehRoutDetalis', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:

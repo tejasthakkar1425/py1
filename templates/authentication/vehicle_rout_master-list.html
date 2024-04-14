@@ -23,6 +23,7 @@
             <th>From State Name</th>
             <th>To State Name</th>
             <th>Veh Rout Det</th>
+            <th>District Name</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -34,6 +35,7 @@
             <td>{{ vehrout.from_state.stat_name }} </td>
             <td>{{ vehrout.to_state.stat_name }} </td>
             <td>{{ vehrout.vehc_rout_det }} </td>
+            <td>{{ vehrout.dist.district_name }}</td>
             <td><a href="/vehroutedit/{{vehrout.veh_rout_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/vehroutdelete/{{vehrout.veh_rout_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
         </tr>

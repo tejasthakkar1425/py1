@@ -284,15 +284,17 @@ class vehroutmasterform(forms.ModelForm):
         super(vehroutmasterform, self).__init__(*args, **kwargs)
         self.fields['from_state'].choices = [(obj.state_id, obj.stat_name) for obj in StateMasterTable.objects.all()]
         self.fields['to_state'].choices = [(obj.state_id, obj.stat_name) for obj in StateMasterTable.objects.all()]
+        self.fields['dist'].choices = [(obj.district_id, obj.district_name) for obj in DistrictMaster.objects.all()]
     class Meta:
         model=VehicleRoutMaster
         fields="__all__"
-        fields= ['veh_rout_id', 'from_state','to_state','vehc_rout_det']
+        fields= ['veh_rout_id', 'from_state','to_state','vehc_rout_det','dist']
         labels = {
             'veh_rout_id': 'Veh Rout Id',
             'from_state' : 'From State Id',
             'to_state' : ' To State Id',
             'vehc_rout_det' : 'Veh Rout Det',
+            'dist' : 'district_name',
         }
 
 class empcomplainform(forms.ModelForm):
@@ -311,12 +313,13 @@ class myorderform(forms.ModelForm):
         super(myorderform, self).__init__(*args, **kwargs)
         self.fields['gst_charges'].choices = [(obj.gst_char_id, obj.cgst_per) for obj in Gstcharges.objects.all()]
         self.fields['veh'].choices = [(obj.vehicle_id, obj.vehicle_name) for obj in VehicleMaster.objects.all()]
-        self.fields['vehc_rout'].choices = [(obj.veh_rout_id, obj.to_state.stat_name) for obj in VehicleRoutMaster.objects.all()]
+        self.fields['vehc_rout'].choices = [(obj.from_state, obj.from_state.stat_name+'-'+obj.to_state.stat_name) for obj in VehicleRoutMaster.objects.all()]
+        self.fields['dist'].choices = [(obj.district_id, obj.district_name) for obj in DistrictMaster.objects.all()]
         self.fields['veh_rout_det'].choices = [(obj.veh_rout_det_id, obj.decription) for obj in VehRoutDetalis.objects.all()]
     class Meta:
         model=myorderform1
         fields="__all__"
-        fields= ['doc_id', 'doc_number','doc_date','lr_number','gst_charges','net_amount','veh','vehc_rout','veh_rout_det']
+        fields= ['doc_id', 'doc_number','doc_date','lr_number','gst_charges','net_amount','veh','vehc_rout','dist','veh_rout_det']
         labels = {
             'doc_id': 'Doc Id',
             'doc_number' : 'Doc Number',
@@ -326,5 +329,6 @@ class myorderform(forms.ModelForm):
             'net_amount' : 'Net Amount',
             'veh' : 'Vehicle Name',
             'vehc_rout' : 'To State',
+            'dist' : 'District Name',
             'veh_rout_det' : 'Rout Description',
         }
