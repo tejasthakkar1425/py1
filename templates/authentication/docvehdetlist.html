@@ -6,18 +6,17 @@
         <h2><b>Doc Vehicle Details</b></h2>
         <br>
         <div>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/docvehdet';">Add</button>
             <form method="POST" action="">
                 {% csrf_token %}
                 <input type="text" placeholder="Search..." name="search">
                 <input type="submit" placeholder="Search..." name="submit"> 
                 <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
                 </form>
-                
-                <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/docveh';">Add</button>
-        
         <br>
     </center>
     <table class="table">
+        <thead>
             <tr>
                 <th>Doc Veh Det Id</th>
                 <th>Doc Id</th>
@@ -28,6 +27,8 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+        </thead>
+        <tbody>
             {% for docvehdet in docvehdet %}
             <tr>
                 <td> {{ docvehdet.doc_veh_det_id }}</td>
@@ -40,6 +41,7 @@
                 <td><a href="/docvehdetdelete/{{docvehdet.doc_veh_det_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
+        </tbody>
     </table>
 </div>
 {% endblock content %}

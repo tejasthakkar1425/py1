@@ -919,9 +919,11 @@ def paymentView(request):
     paymentobj = Gstcharges.objects.all()
     print(paymentobj)
     return render(request, "authentication/paymentlist.html",{'gstobj':paymentobj})
-    # paymentobj=PaymentMaster.objects.all()
-    # print(paymentobj)
-    # return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
+
+def paymentView(request):
+    paymentobj=PaymentMaster.objects.all()
+    print(paymentobj)
+    return render(request, "authentication/paymentlist.html",{'paymentobj':paymentobj})
 
 
 def userdet(request):

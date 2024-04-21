@@ -45,19 +45,19 @@
         <div class="container-fluid ">
           <div class="contact_nav">
             <a href="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
+              <i><img src="{% static 'phone-fill.png' %}"/></i>
               <span>
-                Call : +91 1234567890
+                Call : +91 9532325220
               </span>
             </a>
             <a href="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <i><img src="{% static 'mail-fill.png' %}" /></i>
               <span>
                 Email : darshantransport@gmail.com
               </span>
             </a>
             <a href="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <i><img src="{% static 'map-pin-fill.png' %}" /></i>
               <span>
                 Location
               </span>
@@ -80,11 +80,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav  ">
-                <li class="nav-item ">
-                  <a class="nav-link" href="">Home </a>
-                </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'home:service' %}">Services <span class="sr-only">(current)</span> </a>
+                  <a class="nav-link" href="{% url 'home:home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home:service' %}">Services</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'home:about' %}"> About</a>
@@ -93,11 +93,11 @@
                   <a class="nav-link" href="{% url 'home:contact' %}">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'home:login' %}"> <i class="fa fa-user" aria-hidden="true"></i>Sign In</a>
+                  <a class="nav-link" href="{% url 'home:login' %}"> <i><img src="{% static 'user-fill.png' %}" /></i> Sign In</a>
                 </li>
                 <form class="form-inline">
                   <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <i><img src="{% static 'search-line.png' %}" /></i>
                   </button>
                 </form>
               </ul>
@@ -135,8 +135,8 @@
                 <p>
                   Ensure the swift and secure transport of your entire shipment with our Full Truckload services. Benefit from dedicated trucks, direct routes, and timely deliveries, providing a cost-effective solution for large shipments.
                 </p>
-                <a href="/product">
-                  Order Now
+                <a href="">
+                  Read More
                 </a>
               </div>
             </div>
@@ -160,19 +160,19 @@
             </h4>
             <div class="contact_link_box">
               <a href="">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <i><img src="{% static 'map-pin-fill.png' %}" /></i>
                 <span>
                   Location
                 </span>
               </a>
               <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
+                <i><img src="{% static 'phone-fill.png' %}"/></i>
                 <span>
                   Call +91 1234567890
                 </span>
               </a>
               <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <i><img src="{% static 'mail-fill.png' %}" /></i>
                 <span>
                   darshantransport@gmail.com
                 </span>
@@ -181,13 +181,13 @@
           </div>
           <div class="info_social">
             <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
+              <i><img src="{% static 'facebook-circle-fill.png' %}" /></i>
             </a>
             <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
+              <i><img src="{% static 'instagram-line.png' %}" /></i>
             </a>
             <a href="">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
+              <i><img src="{% static 'twitter-line.png' %}" /></i>
             </a>
           </div>
         </div>
@@ -211,32 +211,20 @@
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Home
               </a>
-              <a class="" href="{% url 'home:about' %}">
+              <a class="" href="about.html">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 About
               </a>
-              <a class="" href="{% url 'home:service' %}">
+              <a class="" href="service.html">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Services
               </a>
-
-              <a class="" href="{% url 'home:contact' %}">
+              <a class="" href="contact.html">
                 <img src="{% static 'nav-bullet.png' %}" alt="">
                 Contact Us
               </a>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 col-lg-3 info_col ">
-          <h4>
-            Subscribe
-          </h4>
-          <form action="#">
-            <input type="text" placeholder="Enter email" />
-            <button type="submit">
-              Subscribe
-            </button>
-          </form>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@
         </div>
         <br>
         </center>
+        <table class="table">
             <tr>
                 <th>User Detail Id</th>
                 <th style="display: none;">User Master Id</th>
@@ -28,7 +29,7 @@
                 <td style="display: none;">{{ userdet.user_master_id }} </td>
                 <td>{{ userdet.user_master.user_name }}</td>
                 <td>{{ userdet.user_type }} </td>
-                {% comment %} <td>{{ userdet.profile_pic }}</td> {% endcomment %}
+                <td>{{ userdet.profile_pic }}</td>
                 <td>{{ userdet.contact }}</td>
                 <td>{{ userdet.gender }}</td>
                 <td>{{ userdet.address }}</td>
@@ -36,5 +37,6 @@
                 <td><a href="/userdetdelete/{{userdet.user_deatil_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
+        </table>
 </div>
 {% endblock content %}

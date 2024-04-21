@@ -157,14 +157,13 @@
         <h2><b>Payment Details</b></h2>
         <br>
         <div>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/payment';">Add</button>
             <form method="POST" action="">
                 {% csrf_token %}
                 <input type="text" placeholder="Search..." name="search">
                 <input type="submit" placeholder="Search..." name="submit"> 
                 <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
                 </form>
-                <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/payment';">Add</button>
-        
         <br>
     </center>
     <table class="table">
@@ -172,8 +171,7 @@
         <tr>
             <th>Payment Details</th>
             <th>Doc Payment Id</th>
-            <th style="display: none;">Doc Id</th>
-            <th>Doc Name</th>
+            <th>Doc Id</th>
             <th>Payment Status</th>
             <th>Payment Method</th>
             <th>Transection Id</th>
@@ -188,8 +186,7 @@
         <tr>
             <td> {{ payment.doc_pay_detail }}</td>
                 <td>{{ payment.doc_pay_detail_id }} </td>
-                <td style="display: none;">{{ payment.doc_id }} </td>
-                <td>{{ payment.doc.doc_name }}
+                <td>{{ payment.doc_id }} </td>
                 <td>{{ payment.pay_status }}</td>
                 <td>{{ payment.pay_method }}</td>
                 <td>{{ payment.pay_tran_id }}</td>

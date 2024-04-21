@@ -6,18 +6,17 @@
             <h2><b>Doc Details</b></h2>
             <br>
         <div>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/docdetail';">Add</button>
             <form method="POST" action="">
                 {% csrf_token %}
                 <input type="text" placeholder="Search..." name="search">
                 <input type="submit" placeholder="Search..." name="submit"> 
                 <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
                 </form>
-
-                {% comment %} <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/gst';">Add</button> {% endcomment %}
-        
         <br>
     </center>
     <table class="table">
+        <thead>
             <tr>
                 <th>Doc Det Id</th>
                 <th>Doc Id</th>
@@ -29,6 +28,8 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+        </thead>
+        <tbody>
             {% for docdet in docdetobj %}
             <tr>
                 <td> {{ docdet.doc_detail_id }}</td>
@@ -42,6 +43,7 @@
                 <td><a href="/docdetdelete/{{docdet.doc_detail_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
             {% endfor %}
+        </tbody>
     </table>
 </div>
 {% endblock content %}

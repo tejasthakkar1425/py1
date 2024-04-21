@@ -44,13 +44,10 @@
                         <img src="{% static 'find_user.png'%}" class="user-image img-responsive"/>
                     </li>
                     <li>
-                        <a href="/myorders">My Orders</a>
+                        <a href="/myorders">Add Orders</a>
                     </li>
                     <li>
-                        <a href="myordersview">Pending Orders</a>
-                    </li>
-                    <li>
-                        <a href="#">Reports</a>
+                        <a href="myordersview">My Orders</a>
                     </li>
                 </ul>
             </div>
@@ -60,10 +57,7 @@
         <div id="page-inner">
             <div class="row">
                 <div class="col-md-12">
-                    {% for user in userobj %}
-                        <h2>Welcome!</h2>   
-                        <h5>Welcome {{user.user_name}}, Love to see you back. </h5>
-                    {% endfor %}
+                        
                 </div>
             </div>
             <div class="panel-body">
