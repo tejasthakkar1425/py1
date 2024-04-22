@@ -368,3 +368,12 @@ class myorderform1(models.Model):
     class Meta:
         managed = False
         db_table = 'doc_master'
+
+class UserMasterTable1(models.Model):
+    user_email_id = models.CharField(max_length=50)
+    user_name = models.CharField(max_length=50)
+    user_password = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'user_master_table'

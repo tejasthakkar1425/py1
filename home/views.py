@@ -1067,3 +1067,26 @@ def myordersview(request):
     docobj1 = DocMaster.objects.all()
     print(docobj1)
     return render(request, "authentication/myordersview.html",{'docobj1':docobj1})
+
+def registration(request):
+    return render(request, "authentication/registration.html")
+
+def register(request):
+    uemail=request.POST.get('email')
+    uname=request.POST.get('username')
+    password=request.POST.get('userpassword')
+    user=UserMasterTable1(user_email_id=uemail,user_name=uname,user_password=password)
+    user.save()
+    return redirect("/home")
+
+def homepage(request):
+    return render(request, "authentication/homepage.html")
+
+def homeservice(request):
+    return render(request, "authentication/homeservice.html")
+
+def homeabout(request):
+    return render(request, "authentication/homeabout.html")
+
+def homecontact(request):
+    return render(request, "authentication/homecontact.html")
