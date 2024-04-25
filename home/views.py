@@ -1,9 +1,12 @@
+import os
+import requests
 from sre_parse import State
 from turtle import done
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, JsonResponse
 from home.models import *
 from home.forms import *
+from home.util import *
 import json
 
 def home(request):
@@ -1058,7 +1061,46 @@ def myorderssave(request):
         form = Docform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/myordersview")
+            objDoc = DocMaster.objects.last()
+            PAYMNETURL="https://secure-ptg.payphi.com/pg/api/v2/initiateSale"
+            ENDPOINTURL="https://secure-ptg.payphi.com/pg/api/v2/authRedirect?tranCtx=Rda76d3e8-a3f1-4281-aadf-2b1cc56b64c1"
+            MERCHANTID="T_21225"
+            CURRENCYCODE="356"
+
+            strurl=PAYMNETURL
+            endpoint=ENDPOINTURL
+            url = f"{strurl}/{endpoint}"
+            HASKEY="abc"
+            endpoint=""
+            tranNumber=datetime.now().strftime('%Y%m%d%H%M%S%f')
+            dtobj= datetime.now().strftime("%Y%m%d%H%M%S")
+            strValue=str(objDoc.net_amount)+CURRENCYCODE+"s.nikhil4@gmail.com"+ MERCHANTID+tranNumber+"0"+"http://localhost:8000/PayphiDonatesuccess/"+"SALE"+dtobj
+            hasValue = getShaStr(strValue)
+            print(hasValue)
+            payload =json.dumps({
+                        "merchantId": MERCHANTID,
+                        "merchantTxnNo": tranNumber,
+                        "amount": str(objDoc.net_amount),
+                        "currencyCode": "356",
+                        "payType": "0",
+                        "customerEmailID": "s.nikhil4@gmail.com",
+                        "transactionType": "SALE",
+                        "returnURL": "http://localhost:8000/myordersview/",
+                        "txnDate": dtobj,
+                        "secureHash": hasValue
+                    })
+            print(payload)
+            headers = {
+                    'Content-Type': 'application/json'
+            }
+            # ticket.payment_transaction_id=tranNumber
+            resData = requests.post(strurl, headers=headers, data=payload)
+            jsobj = resData.json()
+            redirectUrls= jsobj['redirectURI']+"?tranCtx="+jsobj['tranCtx']
+            print(redirectUrls)
+            # urlobj = resData.json()
+            request.success_url = redirectUrls
+            return redirect(resData)
         else:
             return redirect("/myordersview")
     return redirect("/myordersview")
@@ -1090,3 +1132,4 @@ def homeabout(request):
 
 def homecontact(request):
     return render(request, "authentication/homecontact.html")
+

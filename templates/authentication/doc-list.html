@@ -24,7 +24,6 @@
                 <th>LR Number</th>
                 <th>GST Charges</th>
                 <th>Net Amount</th>
-                <th>Is Cancel</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -38,7 +37,6 @@
                 <td>{{ doc.lr_number }}</td>
                 <td>{{ doc.gst_charges.cgst_per }}</td>
                 <td>{{ doc.net_amount }}</td>
-                <td>{{ doc.is_cancel }}</td>
                 <td><a href="/docedit/{{doc.doc_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
                 <td><a href="/docdelete/{{doc.doc_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
             </tr>
