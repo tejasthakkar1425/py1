@@ -1,0 +1,50 @@
+
+{% extends 'authentication\customerpanel.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <center>
+        <h2><b><u>Review Details</u></b></h2>
+        <br>
+        <div>
+            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/review';">Add</button>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" placeholder="Search..." name="search">
+                <input type="submit" placeholder="Search..." name="submit"> 
+                <img src="{% static 'icons8-search.gif' %}" alt=" Happy SVG" height="30px"/>
+                </form>
+        <br>
+    </center>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Review Id</th>
+            <th style="display: none;">User Id</th>
+            <th>User Name</th>
+            <th>Review Image</th>
+            <th>Review Description</th>
+            <th>Review Star</th>
+            {% comment %} <th>Edit</th>
+            <th>Delete</th> {% endcomment %}
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for review in obj %}
+        <tr>
+            <td> {{ review.review_id }}</td>
+            <td style="display: none;">{{ review.user_id }} </td>
+            <td>{{ review.user.user_name }}</td>
+            <td>{{ review.review_image }} </td>
+            <td>{{ review.review_description }} </td>
+            <td>{{ review.review_star }}</td>
+            {% comment %} <td><a href="/reviewedit/{{review.review_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            <td><a href="/reviewdelete/{{review.review_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
+         {% endcomment %} 
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+{% endblock content %}

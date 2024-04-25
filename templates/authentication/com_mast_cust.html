@@ -1,13 +1,13 @@
 
-{% extends 'authentication\newadmin.html' %}
+{% extends 'authentication\customerpanel.html' %}
 {% block content %}
 {% load static %}
 <div>
     <center>
-        <h2><b>Complain Details</b></h2>
+        <h2><b><u>Complain Details</b></u></h2>
         <br>
     <div>
-        {% comment %} <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complain';">Add</button> {% endcomment %}
+        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complain';">Add</button>
         <form method="POST" action="">
             {% csrf_token %}
             <input type="text" placeholder="Search..." name="search">
@@ -24,21 +24,20 @@
             <th style="display: none;">User Id</th>
             <th>User Name</th>
             <th>Description</th>
-            {% comment %} <th>Edit</th>
-            <th>Delete</th> {% endcomment %}
+            <!-- <th>Edit</th>-->
+            <th>Edit</th>  
 
         </tr>
     </thead>
     <tbody>
-        {% for complain in complainobj %}
+        {% for complain in obj %}
         <tr> 
             <td> {{ complain.com_id }}</td>
             <td style="display: none;">{{ complain.user_master_id }} </td>
             <td>{{ complain.user_master.user_name }}
             <td>{{ complain.com_description }} </td>
-            <!-- <td><a href="/complainedit/{{complain.com_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-            <td><a href="/complaindelete/{{complain.com_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>-->
-        </tr> 
+            <td><a href="/complainedit/{{complain.com_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+        </tr>
         {% endfor %}
     </tbody>
     </table>

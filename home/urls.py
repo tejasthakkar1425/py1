@@ -138,4 +138,6 @@ urlpatterns = [
     path('homeservice',views.homeservice,name="homeservice"),
     path('homeabout',views.homeabout,name="homeabout"),
     path('homecontact',views.homecontact,name="homecontact"),
+    path('com_mast_cust',views.com_mast_cust,name="com_mast_cust"),
+    path('review_cust',views.review_cust,name="review_cust"),
 ]

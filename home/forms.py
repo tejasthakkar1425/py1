@@ -108,9 +108,8 @@ class Reviewform(forms.ModelForm):
     class Meta:
         model=ReviewFeedback
         fields= "__all__"
-        fields = ['review_id','user','review_image','review_description','review_star']
+        fields = ['user','review_image','review_description','review_star']
         labels = {
-            'review_id': 'Review Id',
             'user' : 'User Id',
             'review_image' : 'Image',
             'review_description' : 'Description' ,
@@ -143,9 +142,8 @@ class Complainform(forms.ModelForm):
     class Meta:
         model=ComplainMaster
         fields="__all__"
-        fields= ['com_id', 'user_master','com_description']
+        fields= [ 'user_master','com_description']
         labels = {
-            'com_id': 'Complain Id',
             'user_master' : 'User Id',
             'com_description' : 'Description',
         }

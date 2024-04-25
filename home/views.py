@@ -593,10 +593,10 @@ def reviewsave(request):
         form = Reviewform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/reviewView")
+            return redirect("/review_cust")
         else:
-            return redirect("/reviewView")
-    return redirect("/reviewView")
+            return redirect("/review_cust")
+    return redirect("/review_cust")
 
 def reviewedit(request,id):
     instance = get_object_or_404(ReviewFeedback, review_id=id)
@@ -650,10 +650,10 @@ def complainsave(request):
         form = Complainform(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("/complainView")
+            return redirect("/com_mast_cust")
         else:
-            return redirect("/complainView")
-    return redirect("/complainView")
+            return redirect("/com_mast_cust")
+    return redirect("/com_mast_cust")
 
 def complainedit(request,id):
     instance = get_object_or_404(ComplainMaster, com_id=id)
@@ -1112,6 +1112,14 @@ def myordersview(request):
 
 def registration(request):
     return render(request, "authentication/registration.html")
+
+def com_mast_cust(request):
+    obj=ComplainMaster.objects.all()
+    return render(request, "authentication/com_mast_cust.html",{'obj':obj})
+
+def review_cust(request):
+    obj=ReviewFeedback.objects.all()
+    return render(request, "authentication/review_cust.html",{'obj':obj})
 
 def register(request):
     uemail=request.POST.get('email')
