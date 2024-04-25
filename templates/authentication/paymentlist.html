@@ -192,7 +192,15 @@
                 <td>{{ payment.pay_tran_id }}</td>
                 <td>{{ payment.pay_response }}</td>
                 <td><a href="/paymentedit/{{payment.doc_pay_detail_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
-                <td><a href="/paymentdelete/{{payment.doc_pay_detail_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <td><a href="#" onclick="confirmDelete('{{payment.doc_pay_detail_id}}')"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
+                <script> 
+                    function confirmDelete(doc_pay_detail_id)
+                     {
+                       if (confirm("Are you sure you want to delete this record?")) {
+                           window.location.href = "/paymentdelete/" + doc_pay_detail_id; // Redirect if confirmed
+                       }
+                     }
+           </script>
              </tr>
         {% endfor %}
     </tbody>
