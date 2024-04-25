@@ -7,7 +7,7 @@
         <h2><b>Complain Details</b></h2>
         <br>
     <div>
-        <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complain';">Add</button>
+        {% comment %} <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/complain';">Add</button> {% endcomment %}
         <form method="POST" action="">
             {% csrf_token %}
             <input type="text" placeholder="Search..." name="search">
@@ -24,8 +24,8 @@
             <th style="display: none;">User Id</th>
             <th>User Name</th>
             <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {% comment %} <th>Edit</th>
+            <th>Delete</th> {% endcomment %}
 
         </tr>
     </thead>

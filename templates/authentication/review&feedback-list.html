@@ -7,7 +7,7 @@
         <h2><b>Review Details</b></h2>
         <br>
         <div>
-            <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/review';">Add</button>
+            {% comment %} <button style="float: right;" class="btn btn-danger square-btn-adjust" onclick="location.href = '/review';">Add</button> {% endcomment %}
             <form method="POST" action="">
                 {% csrf_token %}
                 <input type="text" placeholder="Search..." name="search">
@@ -25,8 +25,8 @@
             <th>Review Image</th>
             <th>Review Description</th>
             <th>Review Star</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            {% comment %} <th>Edit</th>
+            <th>Delete</th> {% endcomment %}
 
         </tr>
     </thead>
@@ -39,8 +39,9 @@
             <td>{{ review.review_image }} </td>
             <td>{{ review.review_description }} </td>
             <td>{{ review.review_star }}</td>
-            <td><a href="/reviewedit/{{review.review_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
+            {% comment %} <td><a href="/reviewedit/{{review.review_id}}"><img src="{% static 'output.jpg' %}" alt=" Happy SVG" height="30px"/></a></td>
             <td><a href="/reviewdelete/{{review.review_id}}"><img src="{% static 'delete-bin-line.png' %}" alt=" Happy SVG" height="30px"/></a></td>
+         {% endcomment %} 
         </tr>
         {% endfor %}
     </tbody>
